@@ -1,0 +1,40 @@
+:root {
+  --font-jost: "Jost", -apple-system, sans-serif;
+  --font-fallback: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-body: var(--font-jost), var(--font-fallback);
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --line-height-normal: 1.5;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+.font-jost {
+  font-family: var(--font-jost), var(--font-fallback);
+}
+
+.font-100 { font-weight: 100; }
+.font-200 { font-weight: 200; }
+.font-300 { font-weight: 300; }
+.font-400 { font-weight: 400; }
+.font-500 { font-weight: 500; }
+.font-600 { font-weight: 600; }
+.font-700 { font-weight: 700; }
+.font-800 { font-weight: 800; }
+.font-900 { font-weight: 900; }
+
+.font-italic {
+  font-style: italic;
+}
+
+.leading-tight { line-height: 1.25; }
+.leading-normal { line-height: 1.5; }
+.leading-loose { line-height: 1.75; }
+
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
