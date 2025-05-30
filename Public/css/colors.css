@@ -1,0 +1,44 @@
+:root {
+  --color1: #272928;
+  --color2: #F6FFFC;
+  --color3: #A7633C;
+  --color4: #A47F65;
+  --color5: #AB977B;
+  --color6: #A3B790;
+  --color7: #95BF8F;
+  --color8: #99D17B;
+  --color9: #1E332A;
+  --color0: #a1a1a14d;
+}
+
+/* Define classes that use your color variables */
+.color1-bg {
+  background-color: var(--color0);
+  color: var(--color0); /* Text color for contrast */
+}
+
+.color3-text {
+  color: var(--color3);
+}
+
+.color5-border {
+  border: 2px solid var(--color5);
+  padding: 10px;
+}
+
+.primary-div {
+  background-color: var(--color7);
+  color: var(--color0); /* Dark text for contrast */
+  padding: 1em;
+  margin: 0.5em;
+  border-radius: 0.25em;
+  box-shadow: 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-div {
+  background-color: var(--color4);
+  color: var(--color2);
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+}
