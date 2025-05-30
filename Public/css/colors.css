@@ -1,12 +1,14 @@
 :root {
   --jet: #3A3A3A;
-  --white: #F2F0EF;
+  --white: #f2f0ef;
   --terracota: #C15123;
   --cinnabar: #D2522D;
   --navy: #1D454D;
   --navy-hoover: #32565D;
   --musgo: #1F2D16;
-  --musgo-hoover: ##495B2F;
+  --musgo-hoover: #495B2F;
+
+  --white-transparent: rgba(242, 240, 239, 0.25);
 }
 
 /* Background Colors */
@@ -15,7 +17,9 @@
 .bg-terracota { background-color: var(--terracota); }
 .bg-cinnabar { background-color: var(--cinnabar); }
 .bg-navy { background-color: var(--navy); }
+.bg-light-blue { background-color: var(--navy-hoover);}
 .bg-musgo { background-color: var(--musgo); }
+.bg-musgo-lighter { background-color: var(--musgo-hoover);}
 
 /* Text Colors */
 .text-jet { color: var(--jet); }
@@ -29,9 +33,6 @@
 .border-jet { border-color: var(--jet); }
 .border-terracota { border-color: var(--terracota); }
 .border-navy { border-color: var(--navy); }
-
-
-/* --- Component-like Classes (Remade from original divs) --- */
 
 /* Base styling for card-like elements */
 .card-base {
@@ -137,4 +138,8 @@
   background-color: var(--navy); /* Fill with navy on hover */
   color: var(--white); /* White text on navy background */
   border-color: var(--navy); /* Keep border color consistent */
+}
+
+.transparent {
+  background: rgba(0, 0, 0, 0.1);
 }

@@ -10,6 +10,99 @@ body, html {
     overflow-x: hidden; /* Prevent horizontal scrolling */
     
 }
+.main-header {
+  position: fixed; /* Makes it sticky */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures it stays on top of other content */
+  background-color: var(--white-transparent); /* Apply the transparent white background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 15px 0; /* Adjust padding as needed */
+  backdrop-filter: blur(5px); /* Optional: Adds a subtle blur effect behind the header */
+}
+
+/* Navigation bar layout within the header */
+.main-header .nav-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically aligns all direct children (logo, nav-list, go-to-forms-button) */
+  max-width: 1200px; /* Or whatever your max-width for content is */
+  margin: 0 auto; /* Center the content */
+  padding: 0 20px; /* Horizontal padding for spacing from edges */
+}
+
+/* Logo SVG Styling */
+.main-header .logo-svg {
+    height: 40px; /* **Downsized:** Adjust height as desired (e.g., 30px, 50px) */
+    width: auto; /* Maintain aspect ratio */
+    fill: var(--navy); /* Set the fill color using your variable --navy */
+    vertical-align: middle; /* Helps with alignment in text flow if it were next to text */
+}
+
+/* Navigation list styling */
+.main-header .nav-list ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-header .nav-list li {
+  margin-left: 25px; /* Spacing between nav items */
+}
+
+/* Nav link styling */
+.main-header .nav-list .nav-link {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--navy); /* Base color for nav links */
+  transition: color 300ms ease-in-out; /* Smooth transition */
+}
+
+.main-header .nav-list .nav-link:hover {
+  color: var(--navy-hoover); /* Uses your existing --navy-hoover */
+}
+
+/* Go-to-forms-button container styling */
+.main-header .go-to-forms-button {
+    display: flex; /* **Formatted in line:** Make it a flex container */
+    align-items: center; /* **Formatted in line:** Vertically align items */
+    gap: 15px; /* Space between the button and the SVG */
+}
+
+/* Default Button Styling */
+.btn-default {
+  background-color: var(--cinnabar);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 300ms ease-in-out;
+}
+
+.btn-default:hover {
+  background-color: var(--terracota);
+}
+
+/* Social Icon SVG Styling */
+.main-header .social-icon-svg {
+    height: 24px; /* **Downsized:** Smaller size for social icon */
+    width: 24px; /* Maintain aspect ratio */
+    fill: var(--navy); /* Set the fill color (e.g., your primary text color) */
+    transition: fill 300ms ease-in-out; /* Smooth transition on hover */
+}
+
+.main-header .social-icon-svg:hover {
+    fill: var(--navy-hoover); /* Change color on hover to match nav links */
+}
+
+
+
+/* hero page section*/
+
 #Hero-Page {
     position: relative;
     width: 100%;
@@ -60,7 +153,7 @@ body, html {
     display: inline-flex;
     align-items: center;
     padding: 12px 25px;
-    background-color: var(--navy); /* Verde da imagem */
+    background-color: var(--navy);
     color: var(--white);
     text-decoration: none;
     border-radius: 5px;

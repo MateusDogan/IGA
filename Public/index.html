@@ -21,10 +21,36 @@
     <link rel="icon" href="assets/fav/favicon-16x16.png" type="image/png"> <!-- Simple PNG version -->
 </head>
 <body>
-    <header></header>
-    <div id="Hero-Page">
+    <header class="main-header">
+        <nav id="nav-bar" class="nav-bar-container">
+            <div class="logo">
+                <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 8.859999656677246 81.54000091552734 37.0099983215332" data-asc="0.9052734375">
+                    <defs/>
+                    <g><g><path d="M0 45.26L0 9.47L4.74 9.47L4.74 45.26L0 45.26ZM29.83 31.23L29.83 27.03L45.00 27.00L45.00 40.28Q41.50 43.07 37.79 44.47Q34.08 45.87 30.18 45.87Q24.90 45.87 20.59 43.62Q16.28 41.36 14.09 37.08Q11.89 32.81 11.89 27.54Q11.89 22.31 14.07 17.79Q16.26 13.26 20.36 11.06Q24.46 8.86 29.81 8.86Q33.69 8.86 36.83 10.12Q39.97 11.38 41.75 13.62Q43.53 15.87 44.46 19.48L40.19 20.65Q39.38 17.92 38.18 16.36Q36.99 14.79 34.77 13.85Q32.54 12.92 29.83 12.92Q26.59 12.92 24.22 13.90Q21.85 14.89 20.40 16.50Q18.95 18.12 18.14 20.04Q16.77 23.36 16.77 27.25Q16.77 32.03 18.42 35.25Q20.07 38.48 23.22 40.04Q26.37 41.60 29.91 41.60Q32.98 41.60 35.91 40.42Q38.84 39.23 40.36 37.89L40.36 31.23L29.83 31.23ZM48.05 45.26L61.79 9.47L66.89 9.47L81.54 45.26L76.15 45.26L71.97 34.42L57.01 34.42L53.08 45.26L48.05 45.26M58.37 30.57L70.51 30.57L66.77 20.65Q65.06 16.14 64.23 13.23Q63.55 16.67 62.30 20.07L58.37 30.57Z"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="nav-list">
+                <ul>
+                    <li class="nav-item"><a href="#" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Escritório</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Projetos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Contato</a></li> </ul>
+            </div>
+            <div class="go-to-forms-button">
+                <button type="button" class="btn-default">Contato</button>
+                <a href="https://www.instagram.com/iga.arquitetura/" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                    
+                    <path d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z"/>
+                </svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <!-------------------------- Hero Page --------------------------->
+    <section id="Hero-Page">
     <div class="hero-content">
-        <h1>IGA</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultricies tempus magna, eget porttitor ipsum malesuada tincidunt. Donec a nisi ultrices, pulvinar mauris a, eleifend neque. In nisl metus, sagittis sed justo cursus, consectetur egestas diam. Aenean quis dolor dolor. Nam aliquet, velit eu faucibus pharetra, ligula enim blandit neque, id posuere tellus ligula eu nisl.</p>
         <a href="#" class="learn-more-button">
             Entre em contato
@@ -34,7 +60,7 @@
         </a>
     </div>
 
-    <div class="hero-cards">
+    <id class="hero-cards">
         <div class="card">
             <h3>Conheça a nossa equipe</h3>
             <p>At vero eos et accusamus et iusto odio dignissimos ducimus.</p>
@@ -46,17 +72,71 @@
             <a href="#" class="read-more">Saiba mais &rarr;</a>
         </div>
         <div class="card">
-            <h3>Sobre nós</h3>
+            <h3>Dúvidas Frequentes</h3>
             <p>Itaque earum rerum hic tenetur a sapiente delectus.</p>
             <a href="#" class="read-more">Saiba mais &rarr;</a>
         </div>
     </div>
-    </div>
+    </section>
 
-    <div id="Services"></div>
-    <div id="People"></div>
-    <div id="About-us"></div>
-    <div id="forms"></div>
+    <!-------------------------- office --------------------------->
+
+    <section id="Office" class="bg-musgo-lighter text-white">
+        <div id="People">
+            <ul id="car-separation">
+                <li id="Isabel" class="portfolio"></li>
+                <li id="G" class="portfolio"></li>
+                <li id="A" class="portfolio"></li>
+            </ul>
+        </div>
+        <div id="about-us">
+            <H2>Escritório</H2>
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tortor ipsum, bibendum eget interdum non, lobortis semper diam. Curabitur in odio molestie, facilisis sem ut, volutpat lorem. Phasellus arcu arcu, vehicula sed gravida nec, posuere eu leo. Suspendisse ornare lectus pretium efficitur faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sed metus volutpat, pretium quam quis, consequat nulla. Aliquam non ex eget urna venenatis ullamcorper sed quis felis. Ut nisl enim, ullamcorper pretium justo quis, congue egestas orci.
+
+Ut ut metus in odio tempus lobortis. Fusce sit amet libero luctus, efficitur ante venenatis, vestibulum nunc. Proin ut dictum nibh, nec pulvinar orci. Maecenas dictum turpis ac interdum varius. Pellentesque et dui dui. Donec malesuada lacus id leo vestibulum, a auctor diam tempor. Pellentesque vitae sapien ac diam dignissim ornare. Donec ac risus eget dui viverra efficitur. Integer mauris ipsum, tristique a nibh congue, tempor sodales tortor.
+
+Etiam a nunc commodo, aliquet diam ac, vulputate felis. Suspendisse iaculis libero non ex commodo pharetra. Nunc imperdiet, ante eleifend volutpat faucibus, felis augue aliquet felis, sed tristique odio eros a risus. Proin mattis pellentesque mattis. Praesent blandit, purus sit amet congue fermentum, sapien odio consequat lacus, ac porta est est quis odio. Nunc interdum magna at dictum sollicitudin. Integer vestibulum, lorem ac eleifend ultricies, urna urna lobortis orci, sed faucibus lectus leo et mauris.
+
+Sed ac ipsum nec velit venenatis mollis. Integer ipsum dolor, tincidunt et eros ac, blandit sollicitudin ex. Pellentesque sed enim accumsan, consequat neque sed, tempor mauris. Morbi scelerisque pretium magna, vel interdum ipsum egestas nec. Ut feugiat tortor et orci malesuada, vitae pellentesque felis ultricies. Integer id sem quis diam ultricies tristique eget sed ipsum. Fusce gravida arcu in porta sagittis. Etiam vestibulum blandit vulputate. Cras dignissim eros ac vehicula sagittis. In auctor tempus diam at iaculis. Nulla vestibulum placerat odio, in lacinia elit sagittis et. Ut non lacinia diam. Nunc condimentum eros a sollicitudin tempus. Nunc vitae egestas lacus, eu placerat quam. Cras ac ante rutrum, interdum ante elementum, condimentum metus.
+
+Proin vitae dapibus nibh. Sed sed nisi est. Sed posuere ut leo at laoreet. Ut quis erat at quam iaculis placerat. Aenean tincidunt pulvinar odio, nec mattis mi faucibus nec. Cras convallis vehicula efficitur. Proin porttitor ipsum at leo dapibus bibendum. Nunc posuere lacus id neque volutpat imperdiet sed id lectus.
+
+Pellentesque malesuada eros ut urna tristique accumsan. Nam malesuada, nulla nec mattis laoreet, metus arcu accumsan ligula, eu ultrices est arcu varius turpis. Integer venenatis dolor id augue aliquet scelerisque. Mauris posuere vel eros nec placerat. Etiam a nibh nisl. Aenean massa ante, pharetra quis aliquet vitae, semper eu risus. Duis ultricies euismod nunc, quis vulputate neque hendrerit vitae.
+
+Ut tempor lacinia augue sed pharetra. Pellentesque a turpis vulputate, sodales neque quis, sagittis justo. Fusce pretium velit eu erat consectetur, non suscipit nulla pharetra. Nam in sagittis ex, non interdum leo. Cras consequat tempor ipsum. Phasellus porttitor, eros at sodales luctus, urna nisl tempus nisl, nec malesuada erat turpis vitae felis. Ut scelerisque ornare neque at accumsan. Vestibulum nec vestibulum turpis. Phasellus tempus quis nibh id luctus. Vestibulum tincidunt orci diam, in lacinia lorem luctus eu. Aenean et nibh maximus quam viverra rutrum. Proin rutrum faucibus sapien et accumsan. Mauris in leo massa. Suspendisse potenti. Duis eu quam non sem pellentesque vehicula ac sit amet libero. Sed pellentesque quam vitae ante laoreet, ac vestibulum risus vulputate.
+
+Curabitur imperdiet ante at leo mattis, ac euismod ligula faucibus. Sed imperdiet vel est vitae imperdiet. Aliquam faucibus turpis nec mi aliquet, sed euismod erat facilisis. Duis pellentesque bibendum diam, nec finibus lorem porta vel. Maecenas quis mattis lectus. In in eros felis. Suspendisse euismod eros sed condimentum facilisis. Fusce vitae auctor nulla. Etiam pharetra et nisi ut blandit. Cras sodales ornare lectus nec auctor. Fusce vitae felis leo. Nulla facilisi. Proin fringilla, mauris egestas finibus mollis, ipsum neque sodales tellus, vel ultricies ante ligula sed justo.
+
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent vulputate, quam non elementum ultrices, purus velit iaculis ante, vel convallis mi turpis vel mauris. Etiam elementum facilisis accumsan. Donec rhoncus congue facilisis. Sed lorem urna, tincidunt in viverra quis, scelerisque vel augue. In vel nibh ante. Ut at hendrerit urna. 
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tortor ipsum, bibendum eget interdum non, lobortis semper diam. Curabitur in odio molestie, facilisis sem ut, volutpat lorem. Phasellus arcu arcu, vehicula sed gravida nec, posuere eu leo. Suspendisse ornare lectus pretium efficitur faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sed metus volutpat, pretium quam quis, consequat nulla. Aliquam non ex eget urna venenatis ullamcorper sed quis felis. Ut nisl enim, ullamcorper pretium justo quis, congue egestas orci.
+
+Ut ut metus in odio tempus lobortis. Fusce sit amet libero luctus, efficitur ante venenatis, vestibulum nunc. Proin ut dictum nibh, nec pulvinar orci. Maecenas dictum turpis ac interdum varius. Pellentesque et dui dui. Donec malesuada lacus id leo vestibulum, a auctor diam tempor. Pellentesque vitae sapien ac diam dignissim ornare. Donec ac risus eget dui viverra efficitur. Integer mauris ipsum, tristique a nibh congue, tempor sodales tortor.
+
+Etiam a nunc commodo, aliquet diam ac, vulputate felis. Suspendisse iaculis libero non ex commodo pharetra. Nunc imperdiet, ante eleifend volutpat faucibus, felis augue aliquet felis, sed tristique odio eros a risus. Proin mattis pellentesque mattis. Praesent blandit, purus sit amet congue fermentum, sapien odio consequat lacus, ac porta est est quis odio. Nunc interdum magna at dictum sollicitudin. Integer vestibulum, lorem ac eleifend ultricies, urna urna lobortis orci, sed faucibus lectus leo et mauris.
+
+Sed ac ipsum nec velit venenatis mollis. Integer ipsum dolor, tincidunt et eros ac, blandit sollicitudin ex. Pellentesque sed enim accumsan, consequat neque sed, tempor mauris. Morbi scelerisque pretium magna, vel interdum ipsum egestas nec. Ut feugiat tortor et orci malesuada, vitae pellentesque felis ultricies. Integer id sem quis diam ultricies tristique eget sed ipsum. Fusce gravida arcu in porta sagittis. Etiam vestibulum blandit vulputate. Cras dignissim eros ac vehicula sagittis. In auctor tempus diam at iaculis. Nulla vestibulum placerat odio, in lacinia elit sagittis et. Ut non lacinia diam. Nunc condimentum eros a sollicitudin tempus. Nunc vitae egestas lacus, eu placerat quam. Cras ac ante rutrum, interdum ante elementum, condimentum metus.
+
+Proin vitae dapibus nibh. Sed sed nisi est. Sed posuere ut leo at laoreet. Ut quis erat at quam iaculis placerat. Aenean tincidunt pulvinar odio, nec mattis mi faucibus nec. Cras convallis vehicula efficitur. Proin porttitor ipsum at leo dapibus bibendum. Nunc posuere lacus id neque volutpat imperdiet sed id lectus.
+
+Pellentesque malesuada eros ut urna tristique accumsan. Nam malesuada, nulla nec mattis laoreet, metus arcu accumsan ligula, eu ultrices est arcu varius turpis. Integer venenatis dolor id augue aliquet scelerisque. Mauris posuere vel eros nec placerat. Etiam a nibh nisl. Aenean massa ante, pharetra quis aliquet vitae, semper eu risus. Duis ultricies euismod nunc, quis vulputate neque hendrerit vitae.
+
+Ut tempor lacinia augue sed pharetra. Pellentesque a turpis vulputate, sodales neque quis, sagittis justo. Fusce pretium velit eu erat consectetur, non suscipit nulla pharetra. Nam in sagittis ex, non interdum leo. Cras consequat tempor ipsum. Phasellus porttitor, eros at sodales luctus, urna nisl tempus nisl, nec malesuada erat turpis vitae felis. Ut scelerisque ornare neque at accumsan. Vestibulum nec vestibulum turpis. Phasellus tempus quis nibh id luctus. Vestibulum tincidunt orci diam, in lacinia lorem luctus eu. Aenean et nibh maximus quam viverra rutrum. Proin rutrum faucibus sapien et accumsan. Mauris in leo massa. Suspendisse potenti. Duis eu quam non sem pellentesque vehicula ac sit amet libero. Sed pellentesque quam vitae ante laoreet, ac vestibulum risus vulputate.
+
+Curabitur imperdiet ante at leo mattis, ac euismod ligula faucibus. Sed imperdiet vel est vitae imperdiet. Aliquam faucibus turpis nec mi aliquet, sed euismod erat facilisis. Duis pellentesque bibendum diam, nec finibus lorem porta vel. Maecenas quis mattis lectus. In in eros felis. Suspendisse euismod eros sed condimentum facilisis. Fusce vitae auctor nulla. Etiam pharetra et nisi ut blandit. Cras sodales ornare lectus nec auctor. Fusce vitae felis leo. Nulla facilisi. Proin fringilla, mauris egestas finibus mollis, ipsum neque sodales tellus, vel ultricies ante ligula sed justo.
+
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent vulputate, quam non elementum ultrices, purus velit iaculis ante, vel convallis mi turpis vel mauris. Etiam elementum facilisis accumsan. Donec rhoncus congue facilisis. Sed lorem urna, tincidunt in viverra quis, scelerisque vel augue. In vel nibh ante. Ut at hendrerit urna. 
+        </div>
+    </section>
+    
+    <!-------------------------- office --------------------------->
+    
+    <section id="Services" class="">
+        <div id=""></div>
+    </section>
+
+    <!-------------------------- forms --------------------------->
+    
+    <section id="forms"></section>
     <footer></footer>
 </body>
 </html>
