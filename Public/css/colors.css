@@ -1,44 +1,140 @@
 :root {
-  --color1: #272928;
-  --color2: #F6FFFC;
-  --color3: #A7633C;
-  --color4: #A47F65;
-  --color5: #AB977B;
-  --color6: #A3B790;
-  --color7: #95BF8F;
-  --color8: #99D17B;
-  --color9: #1E332A;
-  --color0: #a1a1a14d;
+  --jet: #3A3A3A;
+  --white: #F2F0EF;
+  --terracota: #C15123;
+  --cinnabar: #D2522D;
+  --navy: #1D454D;
+  --navy-hoover: #32565D;
+  --musgo: #1F2D16;
+  --musgo-hoover: ##495B2F;
 }
 
-/* Define classes that use your color variables */
-.color1-bg {
-  background-color: var(--color0);
-  color: var(--color0); /* Text color for contrast */
+/* Background Colors */
+.bg-jet { background-color: var(--jet); }
+.bg-white { background-color: var(--white); }
+.bg-terracota { background-color: var(--terracota); }
+.bg-cinnabar { background-color: var(--cinnabar); }
+.bg-navy { background-color: var(--navy); }
+.bg-musgo { background-color: var(--musgo); }
+
+/* Text Colors */
+.text-jet { color: var(--jet); }
+.text-white { color: var(--white); }
+.text-terracota { color: var(--terracota); }
+.text-cinnabar { color: var(--cinnabar); }
+.text-navy { color: var(--navy); }
+.text-musgo { color: var(--musgo); }
+
+/* Border Colors */
+.border-jet { border-color: var(--jet); }
+.border-terracota { border-color: var(--terracota); }
+.border-navy { border-color: var(--navy); }
+
+
+/* --- Component-like Classes (Remade from original divs) --- */
+
+/* Base styling for card-like elements */
+.card-base {
+  padding: 1.5em; /* Generous padding for content */
+  margin: 1em; /* Consistent outer spacing */
+  border-radius: 0.5em; /* Moderately rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Soft, subtle shadow */
+  transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
 }
 
-.color3-text {
-  color: var(--color3);
+/* Primary Card/Section - Ideal for main content blocks or prominent features */
+.card-primary {
+  background-color: var(--navy);
+  color: var(--white); /* White text for high contrast on dark navy */
 }
 
-.color5-border {
-  border: 2px solid var(--color5);
-  padding: 10px;
+.card-primary:hover {
+  background-color: var(--navy-hover); /* Slightly lighter navy on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); /* Deeper shadow on hover for emphasis */
 }
 
-.primary-div {
-  background-color: var(--color7);
-  color: var(--color0); /* Dark text for contrast */
-  padding: 1em;
-  margin: 0.5em;
-  border-radius: 0.25em;
-  box-shadow: 0px 10px rgba(0, 0, 0, 0.2);
+/* Secondary Card/Section - Good for supplementary content or distinct sections */
+.card-secondary {
+  background-color: var(--musgo);
+  color: var(--white); /* White text for contrast on musgo green */
 }
 
-.secondary-div {
-  background-color: var(--color4);
-  color: var(--color2);
-  padding: 15px;
-  margin: 10px;
-  border-radius: 5px;
+.card-secondary:hover {
+  background-color: var(--musgo-hover); /* Slightly lighter musgo on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Accent Card/Highlight - Use for call-to-action boxes or important notices */
+.card-accent {
+  background-color: var(--terracota);
+  color: var(--white);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-accent:hover {
+  background-color: var(--cinnabar); /* Use cinnabar for a subtle color shift on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Specific Text and Border Styles --- */
+
+/* Text accent using Terracota */
+.text-accent-terracota {
+  color: var(--terracota);
+}
+
+/* Text accent using Cinnabar */
+.text-accent-cinnabar {
+  color: var(--cinnabar);
+}
+
+/* Highlight Border - For elements needing a clear outline */
+.border-highlight {
+  border: 2px solid var(--terracota); /* Uses a strong accent color for visibility */
+  padding: 1.2em; /* Adjusted padding for border context */
+  border-radius: 0.5em;
+}
+
+/* --- Example Button Styles (Common UI elements) --- */
+
+/* Primary Button - For main actions */
+.btn-primary {
+  display: inline-block;
+  padding: 0.8em 1.5em; /* Comfortable padding */
+  border-radius: 0.3em;
+  font-weight: bold;
+  text-decoration: none; /* Remove underline for links acting as buttons */
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background-color: var(--terracota);
+  color: var(--white);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--cinnabar); /* Subtle color change on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Secondary Button - For less prominent actions */
+.btn-secondary {
+  display: inline-block;
+  padding: 0.8em 1.5em;
+  border-radius: 0.3em;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--navy); /* Border with navy */
+  background-color: transparent; /* Transparent background */
+  color: var(--navy); /* Navy text */
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--navy); /* Fill with navy on hover */
+  color: var(--white); /* White text on navy background */
+  border-color: var(--navy); /* Keep border color consistent */
 }

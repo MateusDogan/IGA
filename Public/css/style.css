@@ -10,42 +10,136 @@ body, html {
     overflow-x: hidden; /* Prevent horizontal scrolling */
     
 }
+#Hero-Page {
+    position: relative;
+    width: 100%;
+    min-height: 600px; /* Ajuste conforme necessário */
+    background: url(../assets/img/image-not-available.png);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px 5%; /* Ajuste o padding conforme necessário */
+    box-sizing: border-box;
+    overflow: hidden; /* Garante que a imagem de fundo não "estoure" */
+}
 
-.curtain {
-    position: fixed;
+#Hero-Page::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #000; /* Solid black background for the curtain */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure the curtain is on top of other content */
-    transition: transform 0.1s ease-out, opacity 0.1s ease-out; /* Smoother transition for lifting and fading */
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Overlay escuro para melhorar a legibilidade do texto */
+    z-index: 1;
 }
 
-.logo {
-    color: white; 
-    font-size: 4rem; 
-    font-weight: bold;
-    text-align: center; /* Center the logo text */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin-bottom: 50px; /* Espaçamento entre o conteúdo principal e os cards */
 }
 
-.content {
-    min-height: 300vh; /* Increased to ensure enough scrollable content for testing */
-    padding: 20px;
-    background-color: var(--text-clr); /* Using a defined color variable for consistency */
-    color: var(--base-clr); /* Text color for content */
+.hero-content h1 {
+    font-size: 3.5em; /* Ajuste o tamanho da fonte conforme necessário */
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-weight: 700; /* Negrito */
 }
 
-/* Basic styling for content for better readability */
-.content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.content p {
-    font-size: 1.2rem;
+.hero-content p {
+    font-size: 1.1em;
     line-height: 1.6;
+    margin-bottom: 30px;
+    color: var(--white);
+}
+
+.learn-more-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 25px;
+    background-color: var(--navy); /* Verde da imagem */
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+    background-color: var(--navy-hoover); /* Um tom um pouco mais escuro no hover */
+}
+
+.learn-more-button svg {
+    margin-left: 10px;
+}
+
+.hero-cards {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; /* Espaço entre os cards */
+    padding-top: 20px; /* Para separar dos elementos acima */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória */
+}
+
+.hero-cards .card {
+    background-color: rgba(255, 255, 255, 0.05); /* Fundo semi-transparente para os cards */
+    padding: 25px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px); /* Efeito de blur no fundo do card */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+}
+
+.hero-cards .card h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: var(--white);
+}
+
+.hero-cards .card p {
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.hero-cards .card .read-more {
+    color: var(--cinnabar); /* Cor do link "Read more" */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.hero-cards .card .read-more:hover {
+    color: var(--navy-hoover);
+}
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+    #Hero-Page {
+        padding: 50px 5%;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    .hero-cards {
+        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2em;
+    }
 }
