@@ -30,6 +30,13 @@ p {
 }
 
 
+.libre-caslon-text-bold {
+  font-family: "Libre Caslon Text", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 .font-jost {
   font-family: var(--font-jost), var(--font-fallback);
 }

@@ -1,14 +1,16 @@
 :root {
   --jet: #3A3A3A;
   --white: #f2f0ef;
-  --terracota: #C15123;
-  --cinnabar: #D2522D;
+  --terracota: #8d2b00;
+  --cinnabar: #b55119;
   --navy: #1D454D;
   --navy-hoover: #32565D;
   --musgo: #1F2D16;
   --musgo-hoover: #495B2F;
+  --grey: #b0b0b0;
+  --white-transparent: rgba(242, 240, 239, 0.1);
 
-  --white-transparent: rgba(242, 240, 239, 0.25);
+
 }
 
 /* Background Colors */
@@ -28,6 +30,7 @@
 .text-cinnabar { color: var(--cinnabar); }
 .text-navy { color: var(--navy); }
 .text-musgo { color: var(--musgo); }
+.text-grey {color: var(--grey);}
 
 /* Border Colors */
 .border-jet { border-color: var(--jet); }

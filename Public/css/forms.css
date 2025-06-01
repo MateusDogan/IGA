@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: --color0; /* Main background color */
+    background-color:var(--white); /* Main background color */
 }
 .container {
     width: 80%;

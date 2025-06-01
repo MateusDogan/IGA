@@ -7,9 +7,12 @@
 body, html {
     width: 100%;
     height: 100vh;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    
+    cursor: none !important;  /* THIS IS KEY */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    transform: none;
+    perspective: none;
 }
+
 .main-header {
   position: fixed; /* Makes it sticky */
   top: 0;
@@ -65,9 +68,11 @@ body, html {
 }
 
 /* Go-to-forms-button container styling */
-.main-header .go-to-forms-button {
+.main-header .go-to-forms-button,
+.main-header .go-to-forms-button a 
+{
     display: flex; /* **Formatted in line:** Make it a flex container */
-    align-items: center; /* **Formatted in line:** Vertically align items */
+    align-items: center; /* **Formatted in line:** Vertically align items */    
     gap: 15px; /* Space between the button and the SVG */
 }
 
@@ -89,10 +94,10 @@ body, html {
 
 /* Social Icon SVG Styling */
 .main-header .social-icon-svg {
-    height: 24px; /* **Downsized:** Smaller size for social icon */
-    width: 24px; /* Maintain aspect ratio */
-    fill: var(--navy); /* Set the fill color (e.g., your primary text color) */
-    transition: fill 300ms ease-in-out; /* Smooth transition on hover */
+    height: 24px;
+    width: 24px;
+    fill: var(--navy);
+    transition: fill 300ms ease-in-out;
 }
 
 .main-header .social-icon-svg:hover {
@@ -107,12 +112,16 @@ body, html {
     position: relative;
     width: 100%;
     min-height: 600px; /* Ajuste conforme necessário */
-    background: url(../assets/img/image-not-available.png);
+    height: 100vh;
+    background: url(../assets/imagem_IGA.jpg);
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-size: cover; /* Scale the image to cover the entire background area */
+    background-position: center center;
     color: var(--white);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 80px 5%; /* Ajuste o padding conforme necessário */
+    padding: 7.5em 5% 4em; /* Ajuste o padding conforme necessário */
     box-sizing: border-box;
     overflow: hidden; /* Garante que a imagem de fundo não "estoure" */
 }

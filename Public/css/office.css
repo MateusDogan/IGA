@@ -1,0 +1,151 @@
+/* Section Office */
+#Office {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    gap: 2rem;
+    padding: 1em;
+    z-index: 2;
+}
+
+/* People Section */
+#People {
+    flex: 0 0 35%;
+    position: relative;
+    z-index: 2;
+    display: block;
+}
+
+#People-card-separation {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.portfolio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8em;
+    margin-bottom: 2.5em;
+}
+
+.portfolio img {
+    width: 10em;
+    height: 10em;
+    border-radius: 15%;
+}
+
+.People-port {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.People-port span:nth-child(1) {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.1em;
+}
+
+.People-port span:nth-child(2) {
+    font-size: 0.9em;
+    color: var(--grey);
+    margin-bottom: 0.5em;
+}
+
+.People-port p {
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin-bottom: 1em;
+}
+
+.People-links {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.8em;
+    border-top: 1px solid var(--white-transparent);
+    padding-top: 0.8em;
+    margin-top: 0.8em;
+}
+
+.People-links a svg {
+    fill: var(--jet);
+    transition: fill 0.3s ease;
+}
+
+.People-links a:hover svg {
+    fill: var(--white);
+}
+
+/* About Us Section */
+#about-us {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+#about-us H2 {
+    font-size: 2em;
+    color: var(--white);
+    margin-bottom: 1em;
+}
+
+#about-us p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+}
+
+/* Typography Helpers */
+.font-800 {
+    font-weight: 800;
+}
+
+
+
+
+.background-svg { /* Assuming this is the class on your <svg> tag */
+    /* Or use a percentage for responsive design */
+    position: absolute;
+    top: -35%;
+    width: 67%;
+    left: 30%;
+    height: auto; /* Important to maintain aspect ratio */
+    z-index: 1;
+    opacity: 0.4;
+    color: var(--cinnabar);
+    filter: drop-shadow( rgba(0 0 0 0.3));
+}
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #Office {
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    #People {
+        flex: 1;
+        margin-bottom: 2em;
+    }
+
+    .portfolio {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .People-port {
+        align-items: center;
+    }
+
+    .People-links {
+        justify-content: center;
+    }
+}
