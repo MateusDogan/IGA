@@ -105,14 +105,11 @@
     font-weight: 800;
 }
 
-
-
-
 .background-svg { /* Assuming this is the class on your <svg> tag */
     /* Or use a percentage for responsive design */
     position: absolute;
-    top: -35%;
-    width: 67%;
+    top:1%;
+    width: 57%;
     left: 30%;
     height: auto; /* Important to maintain aspect ratio */
     z-index: 1;

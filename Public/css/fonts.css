@@ -30,10 +30,12 @@ p {
 }
 
 
-.libre-caslon-text-bold {
+.libre-caslon {
   font-family: "Libre Caslon Text", serif;
   font-weight: 700;
   font-style: normal;
+  line-height: 1.75;
+  text-transform: capitalize; 
 }
 
 

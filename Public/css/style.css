@@ -39,7 +39,7 @@ body, html {
 .main-header .logo-svg {
     height: 40px; /* **Downsized:** Adjust height as desired (e.g., 30px, 50px) */
     width: auto; /* Maintain aspect ratio */
-    fill: var(--navy); /* Set the fill color using your variable --navy */
+    fill: var(--white); /* Set the fill color using your variable --navy */
     vertical-align: middle; /* Helps with alignment in text flow if it were next to text */
 }
 
