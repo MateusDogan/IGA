@@ -33,9 +33,9 @@ p {
 .libre-caslon {
   font-family: "Libre Caslon Text", serif;
   font-weight: 700;
+  font-size: 3rem;
   font-style: normal;
-  line-height: 1.75;
-  text-transform: capitalize; 
+  line-height: 1.5; 
 }
 
 

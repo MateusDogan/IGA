@@ -2,128 +2,86 @@
     margin: 0;
     padding: 0;
     font-family: 'Jost', sans-serif; /* Applied a Google Font for better appearance */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
 
-body, html {
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
     width: 100%;
     height: 100vh;
     cursor: none !important;  /* THIS IS KEY */
     overflow-x: hidden; /* Prevent horizontal scrollbar */
-    transform: none;
-    perspective: none;
 }
 
-.main-header {
-  position: fixed; /* Makes it sticky */
+/* header section*/
+#main-header {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Ensures it stays on top of other content */
-  background-color: var(--white-transparent); /* Apply the transparent white background */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  padding: 15px 0; /* Adjust padding as needed */
-  backdrop-filter: blur(5px); /* Optional: Adds a subtle blur effect behind the header */
-}
-
-/* Navigation bar layout within the header */
-.main-header .nav-bar-container {
+  z-index: 1000;
+  padding: 1.5rem 6rem; /* Consistent padding using rem */
   display: flex;
-  justify-content: space-between;
-  align-items: center; /* Vertically aligns all direct children (logo, nav-list, go-to-forms-button) */
-  max-width: 1200px; /* Or whatever your max-width for content is */
-  margin: 0 auto; /* Center the content */
-  padding: 0 20px; /* Horizontal padding for spacing from edges */
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--white);
 }
 
 /* Logo SVG Styling */
-.main-header .logo-svg {
-    height: 40px; /* **Downsized:** Adjust height as desired (e.g., 30px, 50px) */
-    width: auto; /* Maintain aspect ratio */
-    fill: var(--white); /* Set the fill color using your variable --navy */
-    vertical-align: middle; /* Helps with alignment in text flow if it were next to text */
+#main-header .logo-svg {
+    height: 5rem; /* Using rem for consistent scaling */
+    width: auto;
+    vertical-align: middle;
+    margin-left: 3rem; /* Consistent margin */
 }
 
-/* Navigation list styling */
-.main-header .nav-list ul {
+/* Navigation list styling for header-navigation */
+#header-navigation {
+  margin-left: auto;
+}
+
+#header-navigation ul {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.main-header .nav-list li {
-  margin-left: 25px; /* Spacing between nav items */
+#header-navigation li {
+  margin-left: 2rem; /* Consistent margin */
 }
 
 /* Nav link styling */
-.main-header .nav-list .nav-link {
+#main-header .nav-link {
   text-decoration: none;
+  font-size: 1.5rem; /* Consistent font size */
+  text-transform: uppercase;
   font-weight: 500;
-  color: var(--navy); /* Base color for nav links */
-  transition: color 300ms ease-in-out; /* Smooth transition */
-}
-
-.main-header .nav-list .nav-link:hover {
-  color: var(--navy-hoover); /* Uses your existing --navy-hoover */
-}
-
-/* Go-to-forms-button container styling */
-.main-header .go-to-forms-button,
-.main-header .go-to-forms-button a 
-{
-    display: flex; /* **Formatted in line:** Make it a flex container */
-    align-items: center; /* **Formatted in line:** Vertically align items */    
-    gap: 15px; /* Space between the button and the SVG */
-}
-
-/* Default Button Styling */
-.btn-default {
-  background-color: var(--cinnabar);
   color: var(--white);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 300ms ease-in-out;
+  transition: color 300ms ease-in-out;
 }
 
-.btn-default:hover {
-  background-color: var(--terracota);
+#main-header .nav-link:hover {
+  color: var(--grey);
 }
-
-/* Social Icon SVG Styling */
-.main-header .social-icon-svg {
-    height: 24px;
-    width: 24px;
-    fill: var(--navy);
-    transition: fill 300ms ease-in-out;
-}
-
-.main-header .social-icon-svg:hover {
-    fill: var(--navy-hoover); /* Change color on hover to match nav links */
-}
-
-
 
 /* hero page section*/
-
 #Hero-Page {
-    position: relative;
+     position: relative;
     width: 100%;
-    min-height: 600px; /* Ajuste conforme necessário */
+    min-height: 600px;
     height: 100vh;
-    background: url(../assets/imagem_IGA.jpg);
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-size: cover; /* Scale the image to cover the entire background area */
-    background-position: center center;
+    background: url(../assets/imagem_IGA.jpg) no-repeat center center / cover; /* Shorthand for background properties */
     color: var(--white);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 7.5em 5% 4em; /* Ajuste o padding conforme necessário */
+    display: flex; /* Changed to flex for better content positioning */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Push content and label to ends */
+    padding: 7.5rem 6rem 1em; /* Adjusted bottom padding to 0.5em */
     box-sizing: border-box;
-    overflow: hidden; /* Garante que a imagem de fundo não "estoure" */
+    overflow: hidden;
 }
 
 #Hero-Page::before {
@@ -137,111 +95,65 @@ body, html {
     z-index: 1;
 }
 
-.hero-content {
+#hero-content {
     position: relative;
     z-index: 2;
     max-width: 600px;
-    margin-bottom: 50px; /* Espaçamento entre o conteúdo principal e os cards */
+    margin-top: auto; /* Pushes content to the bottom, above the label */
+    margin-bottom: auto; /* Space between content and label */
 }
 
-.hero-content h1 {
-    font-size: 3.5em; /* Ajuste o tamanho da fonte conforme necessário */
-    margin-bottom: 20px;
-    line-height: 1.2;
-    font-weight: 700; /* Negrito */
+#hero-buttons {
+    display: flex;
+    gap: 2em;
 }
 
-.hero-content p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    color: var(--white);
-}
-
-.learn-more-button {
-    display: inline-flex;
+#hero-label {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 12px 25px;
-    background-color: var(--navy);
-    color: var(--white);
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.learn-more-button:hover {
-    background-color: var(--navy-hoover); /* Um tom um pouco mais escuro no hover */
-}
-
-.learn-more-button svg {
-    margin-left: 10px;
-}
-
-.hero-cards {
+    width: 100%;
+   
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px; /* Espaço entre os cards */
-    padding-top: 20px; /* Para separar dos elementos acima */
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória */
-}
-
-.hero-cards .card {
-    background-color: rgba(255, 255, 255, 0.05); /* Fundo semi-transparente para os cards */
-    padding: 25px;
-    border-radius: 8px;
-    backdrop-filter: blur(5px); /* Efeito de blur no fundo do card */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
-}
-
-.hero-cards .card h3 {
-    font-size: 1.3em;
-    margin-bottom: 10px;
     color: var(--white);
+    text-transform: uppercase;
 }
 
-.hero-cards .card p {
-    font-size: 0.95em;
-    line-height: 1.5;
-    color: var(--white);
-    margin-bottom: 15px;
-}
-
-.hero-cards .card .read-more {
-    color: var(--cinnabar); /* Cor do link "Read more" */
+#Explore a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    color: inherit;
 }
 
-.hero-cards .card .read-more:hover {
-    color: var(--navy-hoover);
+#Explore a h1 {
+    margin: 0;
+    font-size: 1.2rem;
 }
 
-/* Responsividade básica */
-@media (max-width: 768px) {
-    #Hero-Page {
-        padding: 50px 5%;
-    }
-
-    .hero-content h1 {
-        font-size: 2.5em;
-    }
-
-    .hero-content p {
-        font-size: 1em;
-    }
-
-    .hero-cards {
-        grid-template-columns: 1fr; /* Stack cards on smaller screens */
-        padding-top: 30px;
-    }
+.sections {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Allow content to stack */
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background-color: aliceblue;
+    color: #333;
+    text-align: center;
+    padding: 4rem 6rem; /* Consistent padding for all sections */
+    box-sizing: border-box;
 }
 
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2em;
-    }
+.sections h1 {
+    margin-bottom: 1.5rem; /* Space below section titles */
+}
+
+.sections p {
+    font-size: 1.2rem; /* Adjusted font size for paragraph in sections */
+    line-height: 1.6;
+    max-width: 800px; /* Limit paragraph width for readability */
 }

@@ -4,12 +4,14 @@
     top: 0;
     left: 0;
 
-    
+    will-change: transform, opacity, width, height; 
+    transition: transform 0.1s ease-out, opacity 0.2s ease,
+                width 0.3s ease-out, height 0.3s ease-out;
     width: 1.25em;  /* Match height for a circle */
     height: 1.25em; /* Adjust size as needed */
     border-radius: 50%; /* Make it a circle */
 
-    background-color: rgba(255, 255, 255, 0.9); /* Color of the ball itself (for inversion effect) */
+    background-color: rgba(255, 255, 255, 0.7); /* Color of the ball itself (for inversion effect) */
 
     /* ESSENTIAL: Allows clicks/interactions with elements underneath the cursor */
     pointer-events: none;
@@ -21,29 +23,26 @@
     /* The first translate moves it to mouse X,Y. The second centers the element itself. */
     transform: translate(0px, 0px) translate(-50%, -50%);
 
-    backdrop-filter: invert(0.5); /* Invert by 50%. Adjust this value (0 to 1) for lighter/stronger. */
-    /* You might need vendor prefixes for wider browser support: */
+    backdrop-filter: invert(0.5);
     -webkit-backdrop-filter: invert(0.5);
-    /* THE INVERSION EFFECT */
-    transition: transform 0.1s ease-out, opacity 0.2s ease,
-                width 0.3s ease-out, height 0.3s ease-out; /* Smooth resizing */
-
     mix-blend-mode: difference; /* Or exclusion, or backdrop-filter etc. */
-
-    #custom-cursor {
-    /* ... */
-    pointer-events: none; /* Crucial: This ensures your clicks still work through the custom cursor */
-    /* ... */
-    }
 }
 
 #custom-cursor.is-enlarged {
-    width: 3em; /* Bigger size when over clickable objects */
-    height: 3em; /* Match width for circle */
+    width: 2em; /* Bigger size when over clickable objects */
+    height: 2em; /* Match width for circle */
     /* You could also change other properties like background-color or border here */
     /* background-color: rgba(255, 0, 0, 0.5); */ /* Example: Change color when enlarged */
+    transition: transform 0.2s ease;
 }
 
 a, button, input[type="button"], input[type="submit"], input[type="reset"] {
     cursor: none !important;
+}
+
+.clickable-object {
+    cursor: none !important;/* This will be overridden by custom cursor, but helps visually */
+    display: inline-block; /* For buttons and anchors */
+    text-decoration: none; /* For anchors */
+    transition: background-color 0.2s ease;
 }
