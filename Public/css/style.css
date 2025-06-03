@@ -14,6 +14,7 @@ body {
     height: 100vh;
     cursor: none !important;  /* THIS IS KEY */
     overflow-x: hidden; /* Prevent horizontal scrollbar */
+    background-color: var(--white);
 }
 
 /* header section*/
