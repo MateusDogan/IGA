@@ -1,0 +1,369 @@
+:root {
+  /* Material Design Component Overrides */
+  --md-sys-typescale-body-large: 400 1rem system-ui;
+  --md-sys-color-primary: var(--navy);
+  --md-sys-color-surface-container-highest: #e0e3e2; /* Default surface color */
+
+  /* md-outlined-text-field specific overrides */
+  --md-outlined-text-field-label-text-color: var(--navy); /* Label color */
+  --md-outlined-text-field-input-text-color: var(--navy); /* Input text color */
+
+  /* Border color when not in focus */
+  --md-outlined-text-field-outline-color: var(--navy-dark);
+
+  /* Background color of the text field container */
+  --md-outlined-text-field-container-color: var(--navy);
+
+  /* Border radius (shape) of the text field container */
+  --md-outlined-text-field-container-shape: 8px; /* Example: 8px for rounded corners */
+
+  /* Optional: Outline color when focused */
+  --md-outlined-text-field-focus-outline-color: var(--navy-dark); /* Example: Primary color when focused */
+}
+
+
+/* --- Connect Section --- */
+#Connect-outside
+{
+    
+    display: block;
+    overflow: hidden;
+    background-color: var(--rosa);
+}
+#Connect {
+    margin:  0 6% 2%; 
+    display: flex;
+    overflow: hidden;
+}
+
+#connect-container
+{
+    display:flex;
+    flex-direction: column;
+    color:  var(--white);
+    background-color: var(--musgo);
+    border-top-left-radius: 1em;
+    border-top-right-radius:  1em ;
+    border-bottom-right-radius: 1em;
+    flex-grow: 1;
+        z-index: 0;
+}
+
+#social-container {
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden; /* This is important for containing the border-radius on children */
+    flex-direction: column;
+    height: auto;
+
+}
+
+#socila-links {
+    display: flex; /* Use flexbox for easy icon centering and gap */
+    flex-direction: column; /* Stack icons vertically */
+    padding: 1em;
+    gap: 1.5em;
+    background-color: var(--rosa);
+    border-radius: 0 0 1em 0;
+}
+
+#socila-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#socila-links a svg {
+    width: 1em;
+    height: 1em;
+    color: var(--navy-dark); /* Ensure the SVG itself picks up the color */
+}
+#social-container-inv
+{
+    background-color: var(--musgo);
+    border-radius:  0 0 0 0;
+}
+
+#social-container-fill {
+    background-color: var(--musgo);
+    border-radius:  1em 0  0 1em;
+    flex-grow: 1;
+}
+
+#forms-footer{
+    display: flex;
+}
+
+/* --- Footer Styling --- */
+#footer {
+    padding: 1em 2rem; /* Padding inside the grid column */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+    flex-basis: 0;
+    position: relative; /* Establish a positioning context for absolute children */
+}
+
+.footer-svg {
+    position: absolute; /* Position the SVG absolutely within the footer */
+    top: 1em;
+    left: -4em;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place the SVG behind other footer content */
+    color: var(--musgo-hover);
+}
+
+#footer-row {
+    display: flex;
+    width: 100%; /* Take full width of parent */
+}
+
+.footer-col {
+    width: calc(50% - 1em); /* Adjust for gap */
+    min-width: 150px; /* Prevent columns from getting too squished */
+}
+
+.footer-col h4{
+    font-size: larger;
+    color: var(--grey); /* Ensure footer headings are visible */
+}
+
+
+
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li { 
+    margin-bottom: 0.5em;
+    gap: 1em;
+}
+
+#footer .footer-col ul li a {
+    color: var(--white);
+    text-decoration: none;
+    /* Change display from 'block' to 'inline-block' */
+    display: inline-flex; /* <--- Make this change */
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5em 0; /* Example: Added some padding to make the clickable area larger */
+    transition: all 0.3s ease;
+}
+
+#footer .footer-col ul li a svg{
+    height: 1em;
+    width: 1em;   
+}
+
+
+/* --- Form Container (#form) --- */
+#form-container {
+    display: block;
+    margin: 0 auto;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+#form {
+    padding: 1em 2em ;
+    width: 90%; /* Ensure it's responsive */
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* Two columns for inputs */
+    /* Auto height for content in each row, message-section spans two rows */
+    grid-template-rows: auto auto;
+    gap: 1em; /* Gap between grid items */
+    grid-template-areas:
+        "input-section message-section"
+        "submit-section submit-section";
+}
+
+/* --- Form Header Styling --- */
+#form-header {
+    display: flex;
+    align-items: flex-start; /* Align text to the left */
+    padding: 1em 2.55em 0; 
+    font-size:  0.75em;
+}
+
+/* --- Input Container (for Name, Email, Phone, City) --- */
+#input-container {
+    grid-area: input-section; /* Assign to its grid area */
+    display: flex; /* Changed to grid for its internal layout */
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5em;
+}
+
+.question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 4em;
+}
+
+/* --- Message Box --- */
+
+
+.message-box {
+    display: flex;
+}
+
+.message-box md-outlined-text-field{
+    height: calc(100% - 1.2em);
+}
+
+
+/* --- New: Submit Section Styling (add this to your CSS) --- */
+.submit-section {
+    grid-area: submit-section; /* Assign to its grid area */
+    display: flex;
+    justify-content: space-between; /* Center the button */
+    /* Add any specific styling for your button here */
+}
+
+.submit-button {
+    display: flex; /* Use flexbox for easy alignment */
+    justify-content: space-between; /* Pushes items to opposite ends */
+    align-items: center; /* Vertically centers items if they have different heights */
+    width: 100%; /* Ensure the container takes full width of its parent */
+}
+
+.submit-button md-filled-button {
+    flex: 1; /* Allows the button to grow and shrink, taking up its share of space */
+    margin-right: 10px; /* Add some space between the button and the text */
+}
+
+.submit-button span {
+    font-size: 0.95em;
+    flex: 1; /* Allows the span to grow and shrink, taking up its share of space */
+    text-align: left; /* Aligns the text to the right */
+}
+
+
+md-outlined-text-field[type="textarea"] { /* Target it specifically if you only want this for textarea-type outlined fields */
+    width: 100%;
+    min-height: 150px; /* Use standard CSS for base height */
+    resize: vertical; /* Allow vertical resizing */
+
+}
+
+/* --- Submit Section --- */
+#submit {
+    grid-area: submit-section; /* Assign to its grid area */
+    display: flex;
+    justify-content: space-between; /* Align button to the right */
+    margin-top: 0.5em; /* Add some space above the button */
+}
+
+.error {
+    font-size: 0.85em;
+    color: var(--cinnabar);
+    overflow: hidden;
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    min-height: 1.2em; /* Approximately the height of one line of error text */
+
+}
+
+.error.active {
+    height: auto; /* Allow height to adjust to content */
+    opacity: 1;
+}
+
+
+
+
+#copyright {
+    width: 100%;
+    color: var(--white);
+    padding: 0 1.75em;
+    border-bottom-left-radius:  1em ;
+    border-bottom-right-radius:  1em ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 0;
+}
+
+#copyright span {
+    margin-right: var(--spacing-md);
+    line-height: 1.2;
+}
+
+#copyright ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+#copyright ul li a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: var(--white);
+    line-height: 1.2;
+    padding: 0;
+    font-size: 1em;
+}
+
+#copyright ul li a:hover {
+    color: var(--jet); /* Example hover color */
+}
+
+        .marquee-container {
+            width: 100%;
+            /* Remover white-space: nowrap; daqui */
+            overflow: hidden;
+            box-sizing: border-box;
+            padding: 20px 0;
+            margin: 10px 0;
+            position: relative; /* Pode ser útil para posicionamento futuro */
+        }
+
+        .marquee-content-wrapper { /* Novo wrapper para todo o conteúdo rolante */
+            display: flex; /* Usamos flexbox para que as divs internas fiquem lado a lado */
+            width: max-content; /* Permite que o wrapper se estenda para conter todo o texto */
+            animation: marquee-left 30s linear infinite;
+        }
+
+        .marquee-content-wrapper.right {
+            animation: marquee-right 30s linear infinite;
+        }
+
+        /* Estilos para as divs internas */
+        .marquee-text-wrapper,
+        .false-div {
+            flex-shrink: 0; /* Impede que as divs encolham */
+            /* Se você quiser um espaçamento visual entre os blocos, pode adicionar margin-right */
+            /* margin-right: 20px; */
+        }
+
+        h2.marquee-text { /* Estilo para o texto dentro das divs */
+            display: inline-block; /* Para que os h2 fiquem lado a lado dentro de suas divs pais */
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--jet);
+            padding: 0 25px; /* Ajuste o padding para o espaçamento entre as repetições do texto */
+            margin: 0; /* Remover margens padrão do h2 */
+        }
+
+        /* Animação para mover o texto para a esquerda */
+        @keyframes marquee-left {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); } /* Move apenas metade da largura total para um loop suave */
+        }
+
+        /* Animação para mover o texto para a direita */
+        @keyframes marquee-right {
+            0% { transform: translateX(-50%); } /* Inicia metade para a esquerda */
+            100% { transform: translateX(0%); }
+        }
+
+        

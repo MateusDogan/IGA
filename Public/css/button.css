@@ -6,15 +6,13 @@
   text-align: center;
   text-decoration: none;
   display: inline-block; /* Essential for applying width/height to anchor tags */
-  font-size: 16px;
-  cursor: pointer;
+  font-size:1em;
   transition: background-color 0.3s ease, color 0.3s ease;
 
   /* --- Add these properties for fixed size --- */
-  width: 150px;   /* Set a fixed width */
-  height: 50px;  /* Set a fixed height */
-  line-height: 50px; /* Vertically center text if height is fixed */
-  /* --- End fixed size properties --- */
+  width: 9.375em;   /* Set a fixed width */
+  height: 3.125em; 
+  line-height: 3.125em;
 }
 
 .transparent-button:hover {

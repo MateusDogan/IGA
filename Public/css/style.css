@@ -3,18 +3,27 @@
     padding: 0;
     font-family: 'Jost', sans-serif; /* Applied a Google Font for better appearance */
     box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+    list-style: none;
+    text-decoration: none;
 }
 
 html {
-    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    scroll-behavior: smooth;
+    cursor: none !important;
 }
 
 body {
     width: 100%;
     height: 100vh;
-    cursor: none !important;  /* THIS IS KEY */
-    overflow-x: hidden; /* Prevent horizontal scrollbar */
-    background-color: var(--white);
+    cursor: none !important;
+    overflow-x: hidden;
+    background-color: var(--rosa);
+}
+
+main {
+    position: relative;
+    --main-cor: white;
+    --main-hover: var(--jet);
 }
 
 /* header section*/
@@ -24,19 +33,21 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 1.5rem 6rem; /* Consistent padding using rem */
+  padding: 0.2rem 6rem 0.2em; /* Consistent padding using rem */
   display: flex;
+  transition: transform 0.2s ease-out, background 0.3s ease;
   justify-content: flex-start;
   align-items: center;
-  color: var(--white);
+  color: var(--main-cor);
 }
 
 /* Logo SVG Styling */
 #main-header .logo-svg {
-    height: 5rem; /* Using rem for consistent scaling */
+    height: 5.5rem; /* Using rem for consistent scaling */
     width: auto;
     vertical-align: middle;
     margin-left: 3rem; /* Consistent margin */
+    padding-top: 0em;
 }
 
 /* Navigation list styling for header-navigation */
@@ -46,7 +57,8 @@ body {
 
 #header-navigation ul {
   display: flex;
-  list-style: none;
+
+  gap: 3em;
   margin: 0;
   padding: 0;
 }
@@ -58,25 +70,26 @@ body {
 /* Nav link styling */
 #main-header .nav-link {
   text-decoration: none;
-  font-size: 1.5rem; /* Consistent font size */
+  font-size: 2rem; /* Consistent font size */
   text-transform: uppercase;
-  font-weight: 500;
-  color: var(--white);
+  font-weight: 300;
+  color: inherit;
   transition: color 300ms ease-in-out;
 }
 
 #main-header .nav-link:hover {
-  color: var(--grey);
+  color: var(--main-hover);
 }
 
 /* hero page section*/
 #Hero-Page {
-     position: relative;
+    position: relative;
     width: 100%;
     min-height: 600px;
     height: 100vh;
     background: url(../assets/imagem_IGA.jpg) no-repeat center center / cover; /* Shorthand for background properties */
-    color: var(--white);
+    color: var(--main-cor);
+    filter: brightness(1.25) contrast(130%);
     display: flex; /* Changed to flex for better content positioning */
     flex-direction: column; /* Stack content vertically */
     justify-content: space-between; /* Push content and label to ends */
@@ -117,7 +130,7 @@ body {
    
     position: relative;
     z-index: 2;
-    color: var(--white);
+    color: var(--main-cor);
     text-transform: uppercase;
 }
 
@@ -135,26 +148,85 @@ body {
     font-size: 1.2rem;
 }
 
-.sections {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column; /* Allow content to stack */
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    background-color: aliceblue;
-    color: #333;
-    text-align: center;
-    padding: 4rem 6rem; /* Consistent padding for all sections */
-    box-sizing: border-box;
+.container {
+    padding: 20px;
 }
 
-.sections h1 {
-    margin-bottom: 1.5rem; /* Space below section titles */
-}
-
-.sections p {
-    font-size: 1.2rem; /* Adjusted font size for paragraph in sections */
+.content-with-first-letter {
+    font-size: 18px;
     line-height: 1.6;
-    max-width: 800px; /* Limit paragraph width for readability */
+    color: var(--jet);
+    margin: 0;
+    padding: 0;
+    text-align: justify; 
+}
+
+.content-with-first-letter::first-letter {
+    font-size: 150px; /* Tamanho grande para a primeira letra (o "1") */
+    font-weight: bold;
+    font-family: "Space Grotesk";
+    color: var(--orange); 
+    float: left; 
+    line-height: 1; 
+    margin-right: 15px; 
+    padding-top: 10px; 
+}
+
+#main-header:not(.header-scrolled) {
+    background: transparent;
+    color: var(--main-cor); }
+/* Solid state (post-hero) */
+#main-header.header-scrolled {
+    background-color: rgba(155, 155, 155, 0.2);
+    backdrop-filter: blur(0.8em); 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: var(--white);
+    width: 60%;
+    height: auto; 
+    padding: 0.5em 1em; 
+    position: fixed; 
+    top: 10px;  
+    left: 0;
+    right: 0;
+    margin-inline: auto; 
+    z-index: 1000; 
+    border-radius: 1em;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hidden state (scroll down) */
+#main-header.header-hide {
+    transform: translateY(-110%);
+}
+
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color:  var(--musgo-hover);
+  transition: transform 0.25s ease-out;
+}
+
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+}
+
+.hover-underline-animation.left::after {
+  transform-origin: bottom right;
+}
+
+.hover-underline-animation.left:hover::after {
+  transform-origin: bottom left;
 }

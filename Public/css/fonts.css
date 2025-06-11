@@ -1,10 +1,26 @@
 :root {
-  --font-jost: "Jost", -apple-system, sans-serif;
+  --font-jost: "Jost", sans-serif;
+  --font-julius: 'Julius Sans One', sans-serif;
+  --font-libre-caslon: 'Libre Caslon Display', serif;
+  --font-inter: 'Inter', sans-serif;
   --font-fallback: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --font-body: var(--font-jost), var(--font-fallback);
+
+  /* Font Weights */
+  --font-weight-thin: 100;
+  --font-weight-extra-light: 200;
+  --font-weight-light: 300;
   --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
   --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-weight-black: 900;
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
   --line-height-normal: 1.5;
+  --line-height-loose: 1.75;
 }
 
 body {
@@ -13,11 +29,16 @@ body {
   line-height: var(--line-height-normal);
   font-style: normal;
   font-variation-settings: 'ital' 0;
+  /* Responsive font size: minimum 16px, preferred 1vw + 1rem, maximum 20px */
+  font-size: clamp(1rem, 1vw + 1rem, 1.25rem);
+  margin: 0;
+  padding: 0;
 }
 
+/* Element Specific Styles */
 strong {
+  font-weight: var(--font-weight-bold);
   font-stretch: 193%;
-  font-weight: 780;
 }
 
 em {
@@ -25,41 +46,50 @@ em {
 }
 
 p {
-  font-weight: 350;
+  font-weight: var(--font-weight-light);
   font-stretch: 50%;
+  line-height: var(--line-height-normal);
+  font-size: clamp(0.9rem, 0.9vw + 0.9rem, 1.15rem);
 }
-
-
-.libre-caslon {
-  font-family: "Libre Caslon Text", serif;
-  font-weight: 700;
-  font-size: 3rem;
-  font-style: normal;
-  line-height: 1.5; 
-}
-
 
 .font-jost {
-  font-family: var(--font-jost), var(--font-fallback);
+  font-family: var(--font-jost);
 }
 
-.font-100 { font-weight: 100; }
-.font-200 { font-weight: 200; }
-.font-300 { font-weight: 300; }
-.font-400 { font-weight: 400; }
-.font-500 { font-weight: 500; }
-.font-600 { font-weight: 600; }
-.font-700 { font-weight: 700; }
-.font-800 { font-weight: 800; }
-.font-900 { font-weight: 900; }
+.julius-sans {
+  font-family: var(--font-julius);
+  font-style: normal;
+}
+
+.font-libre-caslon {
+  font-family: var(--font-libre-caslon);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.Segoe {
+  font-family: var(--font-fallback);
+}
+
+.font-100 { font-weight: var(--font-weight-thin); }
+.font-200 { font-weight: var(--font-weight-extra-light); }
+.font-300 { font-weight: var(--font-weight-light); }
+.font-400 { font-weight: var(--font-weight-normal); }
+.font-500 { font-weight: var(--font-weight-medium); }
+.font-600 { font-weight: var(--font-weight-semi-bold); }
+.font-700 { font-weight: var(--font-weight-bold); }
+.font-800 { font-weight: var(--font-weight-extra-bold); }
+.font-900 { font-weight: var(--font-weight-black); }
 
 .font-italic {
   font-style: italic;
 }
 
-.leading-tight { line-height: 1.25; }
-.leading-normal { line-height: 1.5; }
-.leading-loose { line-height: 1.75; }
+.leading-tight { line-height: var(--line-height-tight); }
+.leading-normal { line-height: var(--line-height-normal); }
+.leading-loose { line-height: var(--line-height-loose); }
 
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform: lowercase; }

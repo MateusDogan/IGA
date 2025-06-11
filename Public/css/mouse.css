@@ -1,43 +1,40 @@
 #custom-cursor {
-    position: fixed; /* Crucial: Positions relative to the viewport, ignoring scroll */
-    /* Set initial position to 0,0 and let JS handle precise positioning via transform */
+    position: fixed;
     top: 0;
     left: 0;
 
-    will-change: transform, opacity, width, height; 
-    transition: transform 0.1s ease-out, opacity 0.2s ease,
-                width 0.3s ease-out, height 0.3s ease-out;
-    width: 1.25em;  /* Match height for a circle */
-    height: 1.25em; /* Adjust size as needed */
-    border-radius: 50%; /* Make it a circle */
+    /* Reduced transform transition for immediate movement */
+    transition: transform 0.01s linear, /* Very short, almost instant movement */
+                opacity 0.2s ease,
+                width 0.15s ease-out, /* Reduced duration for snappier size changes */
+                height 0.15s ease-out; /* Reduced duration for snappier size changes */
 
-    background-color: rgba(255, 255, 255, 0.7); /* Color of the ball itself (for inversion effect) */
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 50%;
+    will-change: transform, width, height;
 
-    /* ESSENTIAL: Allows clicks/interactions with elements underneath the cursor */
+    background-color: rgba(255, 255, 255);
+
     pointer-events: none;
-
-    /* Ensure it's always on top of other content */
     z-index: 9999;
 
-    /* Smooth movement and centering */
-    /* The first translate moves it to mouse X,Y. The second centers the element itself. */
     transform: translate(0px, 0px) translate(-50%, -50%);
 
     backdrop-filter: invert(0.5);
     -webkit-backdrop-filter: invert(0.5);
-    mix-blend-mode: difference; /* Or exclusion, or backdrop-filter etc. */
+    mix-blend-mode: difference;
 }
 
 #custom-cursor.is-enlarged {
-    width: 2em; /* Bigger size when over clickable objects */
-    height: 2em; /* Match width for circle */
-    /* You could also change other properties like background-color or border here */
-    /* background-color: rgba(255, 0, 0, 0.5); */ /* Example: Change color when enlarged */
-    transition: transform 0.2s ease;
+    width: 2.5em;
+    height: 2.5em;
 }
 
-a, button, input[type="button"], input[type="submit"], input[type="reset"] {
-    cursor: none !important;
+#custom-cursor.is-clicked {
+    width: 1em;
+    height: 1em;
+    transition: transform 0.1s ease;
 }
 
 .clickable-object {
@@ -45,4 +42,8 @@ a, button, input[type="button"], input[type="submit"], input[type="reset"] {
     display: inline-block; /* For buttons and anchors */
     text-decoration: none; /* For anchors */
     transition: background-color 0.2s ease;
+}
+
+a, button, input[type="button"], input[type="submit"], input[type="reset"], input, textarea, span, label {
+    cursor: none !important;
 }

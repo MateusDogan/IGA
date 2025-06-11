@@ -1,0 +1,14 @@
+#Services {
+    grid-template-columns: repeat(3, minmax(12.5em, 1fr));
+    grid-template-rows: auto;
+    padding: 1% 5%;
+    background-color: aqua;
+    grid-template-areas:
+    "arch-p des-p int-p"
+    "arch    .     . "
+    "arch   des    . "
+    " .     des   int"
+    " .      .    int";
+
+}
+

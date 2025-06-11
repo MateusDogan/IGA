@@ -1,148 +1,148 @@
-/* Section Office */
+/* Office.css */
 #Office {
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    gap: 2rem;
-    padding: 1em;
-    z-index: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ min-height: 70vh;
+ gap: 2rem;
+ width: 100%;
+ padding: 1em 2em 0;
+  --heading-cor: var(--orange);
 }
 
-/* People Section */
-#People {
-    flex: 0 0 35%;
-    position: relative;
-    z-index: 2;
-    display: block;
+#Office-heading {
+ text-align: left;
+ font-size: 3em;
+ text-transform: uppercase;
+ position: relative;
+ padding: 0.1em 20%;
+ width: 100%;
+
+ color: var(--heading-cor);
+
 }
 
-#People-card-separation {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+#Office-heading::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ right: 50%;
+ transform: translateX(9%);
+ width: calc(100% - 2em);
+ height: 2px;
+ background-color: var(--heading-cor);
 }
 
-.portfolio {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8em;
-    margin-bottom: 2.5em;
-}
-
-.portfolio img {
-    width: 10em;
-    height: 10em;
-    border-radius: 15%;
-}
-
-.People-port {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: center;
-}
-
-.People-port span:nth-child(1) {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 0.1em;
-}
-
-.People-port span:nth-child(2) {
-    font-size: 0.9em;
-    color: var(--grey);
-    margin-bottom: 0.5em;
-}
-
-.People-port p {
-    font-size: 0.95em;
-    line-height: 1.5;
-    margin-bottom: 1em;
-}
-
-.People-links {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
-    gap: 0.8em;
-    border-top: 1px solid var(--white-transparent);
-    padding-top: 0.8em;
-    margin-top: 0.8em;
-}
-
-.People-links a svg {
-    fill: var(--jet);
-    transition: fill 0.3s ease;
-}
-
-.People-links a:hover svg {
-    fill: var(--white);
-}
-
-/* About Us Section */
-#about-us {
-    flex: 1;
-    position: relative;
-    z-index: 1;
-}
-
-#about-us H2 {
-    font-size: 2em;
-    color: var(--white);
-    margin-bottom: 1em;
-}
-
-#about-us p {
-    margin-bottom: 1em;
-    line-height: 1.6;
-}
-
-/* Typography Helpers */
-.font-800 {
-    font-weight: 800;
-}
-
-.background-svg { /* Assuming this is the class on your <svg> tag */
-    /* Or use a percentage for responsive design */
-    position: absolute;
-    top:1%;
-    width: 57%;
-    left: 30%;
-    height: auto; /* Important to maintain aspect ratio */
-    z-index: 1;
-    opacity: 0.4;
-    color: var(--cinnabar);
-    filter: drop-shadow( rgba(0 0 0 0.3));
+#Office-heading::after {
+ content: '';
+ position: absolute;
+ bottom: 0;
+ left: 50%;
+ transform: translateX(-9%);
+ width: calc(100% - 2em);
+ height: 2px;
+ background-color: var(--heading-cor);
 }
 
 
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    #Office {
-        flex-direction: column;
-        padding: 1em;
-    }
 
-    #People {
-        flex: 1;
-        margin-bottom: 2em;
-    }
+#office-text {
+ text-align: right;
+ grid-area: text;
+ color: var(--jet);
+}
 
-    .portfolio {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+#photos-container{
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  min-height: 60vh;
+  
+}
 
-    .People-port {
-        align-items: center;
-    }
+#Isabel-photo {
+ background: url(../assets/Bel.jpg) no-repeat center/cover;
+ height: 100%;
+ transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
 
-    .People-links {
-        justify-content: center;
-    }
+#Gustavo-photo {
+ background: url(../assets/Gu_Henrique.jpg) no-repeat center/cover;
+ height: 100%;
+ transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#Gabriela-photo {
+ background: url(../assets/Ga_muhein.jpg) no-repeat center/cover;
+ height: 100%; 
+ transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out; 
+}
+
+.container-profile {
+ border-radius: 0.3em;
+ box-shadow: 10em rgba(0, 0, 0, 0.3);
+ overflow: hidden;
+ position: relative;
+ aspect-ratio: 3/4;
+}
+
+.container-profile:hover .photo-card {
+ filter: brightness(0.7);
+ transform: scale(1.1);
+}
+
+.container-profile:hover .hide {
+ opacity: 1;
+}
+
+.photo-card {
+  height: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+/* Remove transitions from here */
+}
+
+.hide {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; /* Only transition opacity */
+  padding: 1em; /* Add padding to prevent text from touching the edges */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.hide h4,
+.hide span {
+  text-align: left; /* Ensure they are left-aligned */
+  width: 100%; /* Make sure they take up full width for alignment */
+  font-size: 2rem;
+}
+
+.hide span { font-size: 1rem;}
+
+.hide p {
+  word-wrap: break-word; /* Legacy support for word breaking */
+  overflow: hidden; /* Hides content that exceeds its container */
+  max-height: 100%; /* Ensures paragraph doesn't stretch beyond available height */
+  text-align: right;
+  margin-top: auto;
+  margin-left: auto;
+  font-size: 1rem; /* Slightly smaller font for paragraphs, scales with rem */
+  line-height: 1.5; /* Good line height for paragraph readability */
+  max-width: 80%; /* Limit paragraph width to prevent it from becoming too wide on large screens and help with responsiveness on smaller screens */
+  box-sizing: border-box; /* Important if you add horizontal padding later */
 }
