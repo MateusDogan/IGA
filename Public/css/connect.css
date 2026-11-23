@@ -367,3 +367,6 @@ md-outlined-text-field[type="textarea"] { /* Target it specifically if you only 
         }
 
         
+#form-status { margin: 8px 0 0; font-size: 0.9rem; }
+#form-status[data-type="error"] { color: #b3261e; }
+#form-status[data-type="success"] { color: #2e7d32; }

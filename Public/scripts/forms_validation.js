@@ -1,74 +1,95 @@
+// URL do Web App do Google Apps Script (ver docs/google-sheets-setup.md).
+// Cole aqui a URL que termina em /exec depois de publicar o script.
+const GOOGLE_SCRIPT_URL = '';
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('form');
+    if (!form) return;
 
-    form.addEventListener('submit', (event) => {
-        let isValid = true;
+    const submitButton = form.querySelector('md-filled-button');
+    const status = document.createElement('p');
+    status.id = 'form-status';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    submitButton.closest('.submit-button').appendChild(status);
 
-        // Validate Name
-        const nameField = form.querySelector('md-outlined-text-field[name="name"]');
-        if (!nameField.value.trim()) {
-            nameField.error = true;
-            isValid = false;
-        } else {
-            nameField.error = false;
+    // Campo isca anti-spam: humanos não veem, robôs preenchem.
+    const honeypot = document.createElement('input');
+    honeypot.type = 'text';
+    honeypot.name = 'website';
+    honeypot.tabIndex = -1;
+    honeypot.autocomplete = 'off';
+    honeypot.setAttribute('aria-hidden', 'true');
+    honeypot.style.cssText = 'position:absolute;left:-9999px;opacity:0;height:0;width:0;';
+    form.appendChild(honeypot);
+
+    const field = (name) => form.querySelector(`md-outlined-text-field[name="${name}"]`);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const setStatus = (msg, type) => {
+        status.textContent = msg;
+        status.dataset.type = type || '';
+    };
+
+    function validate() {
+        const name = field('name');
+        const email = field('email');
+        const phone = field('phone');
+        const message = field('message');
+
+        name.error = !name.value.trim();
+        email.error = !emailRegex.test(email.value.trim());
+        const digits = phone.value.replace(/\D/g, '');
+        phone.error = digits.length > 0 && (digits.length < 10 || digits.length > 11);
+        message.error = !message.value.trim();
+
+        return ![name, email, phone, message].some((f) => f.error);
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!validate()) {
+            const firstInvalid = form.querySelector('md-outlined-text-field[error]');
+            if (firstInvalid) firstInvalid.focus();
+            setStatus('Por favor, preencha os campos obrigatórios corretamente.', 'error');
+            return;
         }
 
-        // Validate Email
-        const emailField = form.querySelector('md-outlined-text-field[name="email"]');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailField.value.trim() || !emailRegex.test(emailField.value.trim())) {
-            emailField.error = true;
-            isValid = false;
-        } else {
-            emailField.error = false;
+        if (honeypot.value) return; // provável robô: ignora em silêncio
+
+        if (!GOOGLE_SCRIPT_URL) {
+            setStatus('Formulário ainda não configurado. Tente novamente mais tarde.', 'error');
+            console.error('GOOGLE_SCRIPT_URL vazio em forms_validation.js');
+            return;
         }
 
-        // Validate Phone (optional, but pattern is set)
-        const phoneField = form.querySelector('md-outlined-text-field[name="phone"]');
-        // Material Design text fields automatically handle pattern validity.
-        // We just need to check if a value exists and if it's invalid.
-        if (phoneField.value.trim() && !phoneField.checkValidity()) {
-            phoneField.error = true;
-        } else {
-            phoneField.error = false;
-        }
+        const data = new URLSearchParams({
+            name: field('name').value.trim(),
+            email: field('email').value.trim(),
+            phone: field('phone').value.replace(/\D/g, ''),
+            city: field('city').value.trim(),
+            message: field('message').value.trim(),
+        });
 
-        // Validate Message
-        const messageField = form.querySelector('md-outlined-text-field[name="message"]');
-        if (!messageField.value.trim()) {
-            messageField.error = true;
-            isValid = false;
-        } else {
-            messageField.error = false;
-        }
+        submitButton.disabled = true;
+        setStatus('Enviando...', 'info');
 
-        // There's no consent checkbox in the provided HTML.
-        // If you intended to add one, you'll need to include its HTML first.
-        // For now, I'm removing the consent checkbox validation logic as it's not present.
-
-        if (!isValid) {
-            event.preventDefault(); // Prevent form submission if validation fails
-            
-            // Scroll to the first invalid field
-            const firstInvalidField = form.querySelector('[error="true"]');
-            if (firstInvalidField) {
-                firstInvalidField.focus();
-            }
-            alert('Por favor, preencha todos os campos obrigatórios corretamente.');
-        } else {
-            alert('Formulário enviado com sucesso!'); // Or handle actual submission
-            // event.currentTarget.submit(); // Uncomment to actually submit the form
+        try {
+            // no-cors: o Apps Script não envia cabeçalhos CORS; a resposta é opaca,
+            // mas a requisição chega e a linha é gravada na planilha.
+            await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+            setStatus('Mensagem enviada! Entraremos em contato em breve.', 'success');
+            form.querySelectorAll('md-outlined-text-field').forEach((f) => { f.value = ''; });
+        } catch (err) {
+            console.error(err);
+            setStatus('Não foi possível enviar. Verifique sua conexão e tente novamente.', 'error');
+        } finally {
+            submitButton.disabled = false;
         }
     });
 
-    // Add event listeners for input changes to clear errors for text fields
-    const textFields = form.querySelectorAll('md-outlined-text-field');
-    textFields.forEach(field => {
-        field.addEventListener('input', () => {
-            // Check if the field is currently in an error state to clear it
-            if (field.error) {
-                field.error = false;
-            }
-        });
+    form.querySelectorAll('md-outlined-text-field').forEach((f) => {
+        f.addEventListener('input', () => { if (f.error) f.error = false; });
     });
 });
