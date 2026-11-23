@@ -1,49 +1,37 @@
-#custom-cursor {
+/* Cursor customizado: só em dispositivos com mouse (JS adiciona .has-custom-cursor) */
+#custom-cursor { display: none; }
+
+.has-custom-cursor,
+.has-custom-cursor * { cursor: none !important; }
+
+.has-custom-cursor #custom-cursor {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
-
-    /* Reduced transform transition for immediate movement */
-    transition: transform 0.01s linear, /* Very short, almost instant movement */
-                opacity 0.2s ease,
-                width 0.15s ease-out, /* Reduced duration for snappier size changes */
-                height 0.15s ease-out; /* Reduced duration for snappier size changes */
-
-    width: 1.25em;
-    height: 1.25em;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    will-change: transform, width, height;
-
-    background-color: rgba(255, 255, 255);
-
+    border: 2px solid #fff;
+    background: transparent;
+    mix-blend-mode: difference; /* contrasta com fundos claros e escuros */
     pointer-events: none;
     z-index: 9999;
-
-    transform: translate(0px, 0px) translate(-50%, -50%);
-
-    backdrop-filter: invert(0.5);
-    -webkit-backdrop-filter: invert(0.5);
-    mix-blend-mode: difference;
+    opacity: 0;
+    will-change: transform;
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
 }
 
-#custom-cursor.is-enlarged {
-    width: 2.5em;
-    height: 2.5em;
-}
+.has-custom-cursor #custom-cursor.is-visible { opacity: 1; }
+.has-custom-cursor #custom-cursor.is-enlarged { width: 48px; height: 48px; background: rgba(255, 255, 255, 0.25); }
+.has-custom-cursor #custom-cursor.is-clicked { width: 14px; height: 14px; background: #fff; }
 
-#custom-cursor.is-clicked {
-    width: 1em;
-    height: 1em;
-    transition: transform 0.1s ease;
+@media (prefers-reduced-motion: reduce) {
+    .has-custom-cursor #custom-cursor { transition: none; }
 }
 
 .clickable-object {
-    cursor: none !important;/* This will be overridden by custom cursor, but helps visually */
-    display: inline-block; /* For buttons and anchors */
-    text-decoration: none; /* For anchors */
+    display: inline-block;
+    text-decoration: none;
     transition: background-color 0.2s ease;
-}
-
-a, button, input[type="button"], input[type="submit"], input[type="reset"], input, textarea, span, label {
-    cursor: none !important;
 }
