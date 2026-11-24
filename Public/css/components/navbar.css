@@ -75,6 +75,9 @@ html.past-hero .header-progress { opacity: 1; }
   transition: color 0.2s ease;
 }
 #main-header .nav-link:hover { color: var(--new-terracota); }
+/* Área de clique maior, invisível */
+#main-header .nav-link { position: relative; }
+#main-header .nav-link::before { content: ''; position: absolute; inset: -12px -10px; }
 /* Seção atual (marcada por header.js): sublinhado terracota */
 #main-header .nav-link[aria-current] {
   text-decoration: underline;

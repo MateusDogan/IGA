@@ -35,6 +35,18 @@
     border-radius: 1px;
     background: var(--white);
 }
+/* Rodapé: sobre a oliva o modo "difference" daria um lilás; a linha fica em argila, sem mistura */
+.has-custom-cursor #custom-cursor.is-underline.is-footer {
+    mix-blend-mode: normal;
+    background: var(--argila);
+}
+/* "Explore o espaço": o anel vira o contorno do ícone do mouse (tamanho vem do JS) */
+.has-custom-cursor #custom-cursor.is-explore {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.18);
+}
+.has-custom-cursor #custom-cursor.is-explore.is-clicked { background: rgba(255, 255, 255, 0.4); }
+
 /* Fotos de Projetos: o anel mantém o tamanho e mostra uma seta.
    Ao pressionar, o anel continua do mesmo tamanho, sem preenchimento, e a seta encolhe um pouco. */
 .has-custom-cursor #custom-cursor.is-photo.is-clicked { width: 22px; height: 22px; background: transparent; }

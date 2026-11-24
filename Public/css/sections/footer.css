@@ -86,6 +86,10 @@
 .hover-underline-animation:hover::after { transform: scaleX(1); }
 .hover-underline-animation.left::after { transform-origin: bottom right; }
 .hover-underline-animation.left:hover::after { transform-origin: bottom left; }
+/* Com o cursor customizado, o próprio cursor vira o sublinhado (igual à navbar) */
+.has-custom-cursor .hover-underline-animation::after { display: none; }
+/* Área de clique maior, invisível */
+#footer .footer-col ul li a::before { content: ''; position: absolute; inset: -4px -10px; }
 
 /* ---------- Direitos ---------- */
 #copyright {

@@ -1,4 +1,4 @@
-// Hero: com mais de uma foto em .hero-slides, troca a cada 6 s com fade lento
+// Hero: com mais de uma foto em .hero-slides, troca a cada 8 s com fade lento
 // e atualiza a legenda (data-name / data-meta). Com uma foto, não faz nada.
 // Pausa com a aba escondida e respeita "reduzir movimento".
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,5 +28,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
         if (document.hidden) return;
         show((current + 1) % slides.length);
-    }, 6000);
+    }, 8000);
 });

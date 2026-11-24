@@ -1,6 +1,7 @@
 // Cursor do site: anel simples que segue o mouse com suavidade.
 //   links e botões     -> o anel cresce
-//   links do menu      -> o anel desliza para baixo da palavra e vira o sublinhado dela
+//   links do menu e do rodapé -> o anel desliza para baixo da palavra e vira o sublinhado dela
+//   "Explore o espaço" -> o anel assume a forma do ícone do mouse do botão
 //   fotos de Projetos  -> aparece uma seta dentro do anel (a foto abre a galeria)
 // Só em dispositivos com mouse; com "reduzir movimento" o anel acompanha sem atraso.
 (function () {
@@ -23,7 +24,9 @@
 
     const INTERACTIVE = 'a, button, .clickable-object';
     const TEXT = 'input, textarea';
-    const MENU_LINK = '#main-header .nav-link';
+    const MENU_LINK = '#main-header .nav-link, #footer .footer-col a';
+    const FOOTER_LINK = '#footer .footer-col a';
+    const EXPLORE = '#Explore';
     const PHOTO = '.portfolio-open';
 
     function frame() {
@@ -46,24 +49,39 @@
         cursor.classList.add('is-visible');
 
         const menuLink = e.target.closest(MENU_LINK);
-        const photo = !menuLink && e.target.closest(PHOTO);
+        const footerLink = !!menuLink && menuLink.matches(FOOTER_LINK);
+        const explore = !menuLink && e.target.closest(EXPLORE);
+        const photo = !menuLink && !explore && e.target.closest(PHOTO);
 
         if (menuLink) {
             // vira o sublinhado: mesma largura da palavra, logo abaixo dela
+            // (no rodapé o link já tem respiro embaixo, então a linha sobe um pouco)
             const r = menuLink.getBoundingClientRect();
             targetX = r.left + r.width / 2;
-            targetY = r.bottom + 5;
+            targetY = footerLink ? r.bottom - 2 : r.bottom + 5;
             cursor.style.width = r.width + 'px';
+            cursor.style.height = '';
+        } else if (explore) {
+            // vira o botão: o anel envolve o ícone do mouse, com a mesma forma
+            const icon = explore.querySelector('.scroll-mouse') || explore;
+            const r = icon.getBoundingClientRect();
+            targetX = r.left + r.width / 2;
+            targetY = r.top + r.height / 2;
+            cursor.style.width = (r.width + 12) + 'px';
+            cursor.style.height = (r.height + 12) + 'px';
         } else {
             targetX = e.clientX;
             targetY = e.clientY;
             cursor.style.width = '';
+            cursor.style.height = '';
         }
         cursor.classList.toggle('is-underline', !!menuLink);
+        cursor.classList.toggle('is-footer', footerLink);
+        cursor.classList.toggle('is-explore', !!explore);
         cursor.classList.toggle('is-photo', !!photo);
         const onText = !!e.target.closest(TEXT);
         cursor.classList.toggle('is-text', onText);
-        cursor.classList.toggle('is-enlarged', !menuLink && !photo && !onText && !!e.target.closest(INTERACTIVE));
+        cursor.classList.toggle('is-enlarged', !menuLink && !explore && !photo && !onText && !!e.target.closest(INTERACTIVE));
 
         if (!running) { running = true; requestAnimationFrame(frame); }
     }, { passive: true });
