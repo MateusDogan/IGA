@@ -43,6 +43,8 @@ function doPost(e) {
     cidade: texto(p.city),
     mensagem: texto(p.message)
   };
+  // "Editar mensagem" no site reenvia com o protocolo da anterior
+  var corrige = /^IGA-\d{4,}$/.test(String(p.corrige || '')) ? String(p.corrige) : '';
   var campos = validar(dados);
   if (campos.length) return responder({ ok: false, erro: 'campos', campos: campos });
 
@@ -61,13 +63,13 @@ function doPost(e) {
     protocolo = 'IGA-' + ('000' + numero).slice(-4);
     SpreadsheetApp.getActiveSpreadsheet().getSheets()[0].appendRow([
       new Date(), seguro(dados.nome), seguro(dados.email), seguro(dados.celular),
-      seguro(dados.cidade), seguro(dados.mensagem), protocolo
+      seguro(dados.cidade), seguro((corrige ? '[Correção de ' + corrige + '] ' : '') + dados.mensagem), protocolo
     ]);
   } finally {
     lock.releaseLock();
   }
 
-  avisarEscritorio(props.getProperty('EMAIL_ESCRITORIO'), dados, protocolo);
+  avisarEscritorio(props.getProperty('EMAIL_ESCRITORIO'), dados, protocolo, corrige);
   return responder({ ok: true, protocolo: protocolo });
 }
 
@@ -115,16 +117,18 @@ function dentroDoLimite(email) {
 }
 
 // ---------- Aviso ao escritório ----------
-function avisarEscritorio(destino, d, protocolo) {
+function avisarEscritorio(destino, d, protocolo, corrige) {
   if (!destino) return;
   try {
     MailApp.sendEmail({
       to: destino,
       replyTo: d.email,
       name: 'Site IGA',
-      subject: 'Novo contato ' + protocolo + ': ' + d.nome,
+      subject: (corrige ? 'Correção de ' + corrige + ' (' + protocolo + ')' : 'Novo contato ' + protocolo) + ': ' + d.nome,
       body: [
-        'Novo contato pelo site (' + protocolo + ').',
+        corrige
+          ? 'Correção pelo site (' + protocolo + '). Substitui a mensagem ' + corrige + '.'
+          : 'Novo contato pelo site (' + protocolo + ').',
         '',
         'Nome: ' + d.nome,
         'E-mail: ' + d.email,

@@ -10,14 +10,18 @@
   flex: 1 1 0;
   padding: 2.5rem 6rem 1.5rem 3rem;
 }
-/* Marca "iga" em marca-d'água atrás dos links */
+/* Marca "iga" em marca-d'água atrás de tudo: ocupa o painel verde inteiro
+   (formulário + rodapé), centralizada. Fica em #connect-container, não no rodapé. */
 .footer-svg {
   position: absolute;
-  top: 1em;
-  left: 0;
+  top: 50%;
+  left: 50%;
   z-index: -1;
-  width: 100%;
-  height: 100%;
+  width: 92%;
+  height: auto;
+  max-height: 90%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
   color: var(--oliva-escura);
   opacity: 0.35;
 }

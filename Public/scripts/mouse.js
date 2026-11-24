@@ -29,6 +29,7 @@
     const FOOTER_LINK = '#footer .footer-col a';
     const EXPLORE = '#Explore';
     const PHOTO = '.portfolio-open';
+    const OLIVE = '#connect-container'; // painel verde do contato e do rodapé
 
     function frame() {
         x += (targetX - x) * ease;
@@ -84,6 +85,7 @@
         cursor.classList.toggle('is-footer', footerLink);
         cursor.classList.toggle('is-explore', !!explore);
         cursor.classList.toggle('is-photo', !!photo);
+        cursor.classList.toggle('is-olive', !!e.target.closest(OLIVE));
         const onText = !!e.target.closest(TEXT);
         cursor.classList.toggle('is-text', onText);
         cursor.classList.toggle('is-enlarged', !menuLink && !explore && !photo && !onText && !!e.target.closest(INTERACTIVE));

@@ -69,7 +69,7 @@ O formulário não tem servidor próprio: o site envia para um Apps Script do Go
 - [x] Validação no script: nome, e-mail, celular (DDD que existe, 8 ou 9 dígitos, sem números repetidos), mensagem (de 20 a 3000 caracteres, no máximo 3 links), tamanho de cada campo.
 - [x] Mesmas regras no site, com a mensagem de erro de cada campo.
 - [x] Máscara do celular enquanto digita e contador de caracteres da mensagem.
-- [x] Pop-up "Confira antes de enviar" com o resumo, e pop-up de resultado (enviada com protocolo, ou o que fazer em caso de erro).
+- [x] Sem pop-up: o botão mostra "Enviando…"; a confirmação (protocolo, prazo e resumo do que foi enviado) aparece no lugar dos campos, dentro do mesmo painel, com "Editar mensagem" (volta ao formulário com tudo escrito; o reenvio chega ao escritório como "Correção de IGA-0007", com protocolo novo) e "Enviar outra mensagem". Um erro aparece na linha do botão, com os campos marcados. Para formulário de contato, as referências de UX recomendam confirmar no lugar, sem passo extra de revisão.
 - [x] Limite de envios: 3 por hora por e-mail e 30 por hora no total.
 - [x] Trava de escrita (`LockService`): dois envios ao mesmo tempo não se atropelam.
 - [x] Armadilha de tempo (envio em menos de 3 s) e campo isca conferidos no script. O robô recebe "ok" e nada é gravado.

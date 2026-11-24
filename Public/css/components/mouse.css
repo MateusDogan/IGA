@@ -36,11 +36,12 @@
     border-radius: 1px;
     background: var(--white);
 }
-/* Rodapé: sobre a oliva o modo "difference" daria um lilás; a linha fica em argila, sem mistura */
-.has-custom-cursor #custom-cursor.is-underline.is-footer {
-    mix-blend-mode: normal;
-    background: var(--argila);
-}
+/* Painel verde (contato e rodapé): o modo "difference" vira um lilás quase do tom da oliva
+   e o anel some. Ali o anel fica creme, sem mistura; o sublinhado dos links, argila. */
+.has-custom-cursor #custom-cursor.is-olive { mix-blend-mode: normal; border-color: var(--linho); }
+.has-custom-cursor #custom-cursor.is-olive.is-enlarged { background: rgba(247, 242, 236, 0.25); }
+.has-custom-cursor #custom-cursor.is-olive.is-clicked { background: var(--linho); }
+.has-custom-cursor #custom-cursor.is-underline.is-footer { background: var(--argila); }
 /* "Explore o espaço": o anel vira o contorno do ícone do mouse (tamanho vem do JS) */
 .has-custom-cursor #custom-cursor.is-explore {
     border-radius: 16px;

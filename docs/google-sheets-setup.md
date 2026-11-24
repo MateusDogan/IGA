@@ -30,9 +30,10 @@ Se a planilha já existia com 6 colunas, escreva `protocolo` na célula G1.
 
 1. Abra o site publicado e envie uma mensagem com seus próprios dados.
 2. Confira:
-   - o pop-up mostra o protocolo (IGA-0001, IGA-0002…);
+   - a confirmação no lugar do formulário mostra o protocolo (IGA-0001, IGA-0002…);
    - a linha aparece na planilha;
-   - o e-mail de aviso chega, e "Responder" vai para o endereço digitado.
+   - o e-mail de aviso chega, e "Responder" vai para o endereço digitado;
+   - "Editar mensagem" e um novo envio geram outra linha, com `[Correção de IGA-0001]` no começo da mensagem e "Correção de…" no assunto do aviso.
 3. Se der erro, veja **Execuções** no menu do Apps Script.
 
 ## O que o script recusa

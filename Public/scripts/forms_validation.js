@@ -5,25 +5,21 @@ const CONTACT_EMAIL = 'iga@e-mail.com';
 
 // Formulário de contato:
 //   1. cada campo é conferido ao sair dele e de novo no envio (aria-invalid mostra o erro via CSS);
-//   2. o envio abre "Confira antes de enviar" com o resumo;
-//   3. o script do Google confere tudo de novo, grava e devolve o protocolo, mostrado no pop-up.
+//   2. o botão mostra "Enviando…" e o script do Google confere tudo de novo, grava e devolve o protocolo;
+//   3. a confirmação (protocolo, prazo e resumo) aparece no lugar dos campos; um erro aparece na linha do botão.
 // As regras abaixo são as mesmas de docs/apps-script.gs. Mudou aqui, mude lá.
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('form');
-    const dialog = document.getElementById('form-dialog');
+    const done = document.getElementById('form-done');
     if (!form) return;
 
     const startedAt = Date.now(); // armadilha de tempo: o script recusa envio em menos de 3 s
     const submitButton = form.querySelector('.form-submit');
     const field = (name) => form.elements[name];
 
-    // Mensagem para leitores de tela (erros de validação)
-    const status = document.createElement('p');
-    status.id = 'form-status';
-    status.setAttribute('role', 'status');
-    status.setAttribute('aria-live', 'polite');
-    submitButton.closest('.submit-button').appendChild(status);
-    const setStatus = (msg) => { status.textContent = msg; };
+    // Linha de erro ao lado do botão (lida por leitores de tela)
+    const status = document.getElementById('form-status');
+    const setStatus = (msg) => { if (status) status.textContent = msg; };
 
     // Campo isca anti-spam: humanos não veem, robôs preenchem.
     const honeypot = document.createElement('input');
@@ -119,58 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
     message.addEventListener('input', updateCounter);
     updateCounter();
 
-    // ---------- Pop-up: confirmar e resultado ----------
-    const canDialog = dialog && typeof dialog.showModal === 'function';
-    const ui = canDialog && {
-        title: dialog.querySelector('.form-dialog-title'),
-        body: dialog.querySelector('.form-dialog-body'),
-        primary: dialog.querySelector('.form-dialog-primary'),
-        secondary: dialog.querySelector('.form-dialog-secondary'),
-    };
-    let onPrimary = null;
-    let sending = false;
-
-    // Monta o pop-up: título, conteúdo (nós DOM, nunca HTML vindo do usuário) e botões
-    function openDialog({ title, body, primary, secondary, action }) {
-        ui.title.textContent = title;
-        ui.body.replaceChildren(...body);
-        ui.primary.textContent = primary;
-        ui.primary.disabled = false;
-        ui.secondary.hidden = !secondary;
-        ui.secondary.textContent = secondary || '';
-        onPrimary = action;
-        if (!dialog.open) dialog.showModal();
-        ui.primary.focus();
-    }
-    const para = (text) => { const p = document.createElement('p'); p.textContent = text; return p; };
-
-    function summary(values) {
-        const dl = document.createElement('dl');
-        dl.className = 'form-dialog-summary';
-        [['Nome', values.name], ['E-mail', values.email], ['Celular', values.phone], ['Cidade', values.city], ['Mensagem', values.message]]
-            .filter(([, v]) => v)
-            .forEach(([label, v]) => {
-                const dt = document.createElement('dt');
-                const dd = document.createElement('dd');
-                dt.textContent = label;
-                dd.textContent = v;
-                dl.append(dt, dd);
-            });
-        return dl;
-    }
-
-    if (canDialog) {
-        ui.primary.addEventListener('click', () => { if (onPrimary) onPrimary(); });
-        ui.secondary.addEventListener('click', () => dialog.close());
-        // Esc ou clique no fundo fecham, menos durante o envio
-        dialog.addEventListener('cancel', (e) => { if (sending) e.preventDefault(); });
-        dialog.addEventListener('click', (e) => { if (e.target === dialog && !sending) dialog.close(); });
-        dialog.addEventListener('close', () => {
-            const invalid = form.querySelector('[aria-invalid="true"]');
-            (invalid || submitButton).focus();
-        });
-    }
-
     // ---------- Envio ----------
     const values = () => ({
         name: field('name').value.trim(),
@@ -179,54 +123,51 @@ document.addEventListener('DOMContentLoaded', () => {
         city: field('city').value.trim(),
         message: message.value.trim(),
     });
+    const label = submitButton.textContent;
+    let sending = false;
+    let correcting = ''; // protocolo da mensagem que está sendo editada
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        if (sending) return;
         const invalid = Object.keys(rules).filter((name) => !check(name));
         if (invalid.length) {
             field(invalid[0]).focus();
             setStatus('Confira os campos marcados.');
             return;
         }
-        setStatus('');
         if (honeypot.value) return; // provável robô: ignora em silêncio
+        if (!GOOGLE_SCRIPT_URL) { setStatus(ERRORS.config); return; }
 
         const v = values();
-        if (!canDialog) { send(v); return; } // navegador antigo: envia direto
-        openDialog({
-            title: 'Confira antes de enviar',
-            body: [summary(v)],
-            primary: 'Enviar mensagem',
-            secondary: 'Corrigir',
-            action: () => send(v),
-        });
-    });
-
-    // Resposta do script: {ok, protocolo} ou {ok: false, erro, campos}.
-    // O script antigo respondia só "ok"; continua aceito.
-    async function send(v) {
-        if (!GOOGLE_SCRIPT_URL) { showResult({ ok: false, erro: 'config' }); return; }
         sending = true;
         submitButton.disabled = true;
-        if (canDialog) { ui.primary.disabled = true; ui.primary.textContent = 'Enviando…'; ui.secondary.hidden = true; }
+        submitButton.textContent = 'Enviando…';
+        setStatus('');
 
-        const data = new URLSearchParams({
-            name: v.name, email: v.email, phone: digits(v.phone), city: v.city, message: v.message,
-            website: honeypot.value, t: String(Date.now() - startedAt),
-        });
+        // Resposta do script: {ok, protocolo} ou {ok: false, erro, campos}.
+        // O script antigo respondia só "ok"; continua aceito.
         let result;
         try {
+            const data = new URLSearchParams({
+                name: v.name, email: v.email, phone: digits(v.phone), city: v.city, message: v.message,
+                website: honeypot.value, t: String(Date.now() - startedAt),
+            });
+            if (correcting) data.set('corrige', correcting); // o escritório vê que substitui a anterior
             const res = await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: data });
             const text = (await res.text()).trim();
-            try { result = JSON.parse(text); } catch { result = { ok: text === 'ok', erro: 'resposta' }; }
+            try { result = JSON.parse(text); } catch { result = { ok: text === 'ok' }; }
         } catch (err) {
             console.error(err);
             result = { ok: false, erro: 'rede' };
         }
         sending = false;
         submitButton.disabled = false;
-        showResult(result);
-    }
+        submitButton.textContent = correcting ? 'Enviar correção' : label;
+
+        if (result.ok) showDone(v, result.protocolo);
+        else showError(result);
+    });
 
     const ERRORS = {
         campos: 'Alguns campos não passaram na conferência. Corrija os campos marcados e envie de novo.',
@@ -237,28 +178,68 @@ document.addEventListener('DOMContentLoaded', () => {
         config: `O envio ainda não está configurado. Escreva para ${CONTACT_EMAIL} enquanto isso.`,
     };
 
-    function showResult(result) {
-        if (result.ok) {
-            form.reset();
-            form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
-            updateCounter();
-            const done = result.protocolo
-                ? `Seu protocolo é ${result.protocolo}. Respondemos em até dois dias úteis.`
-                : 'Respondemos em até dois dias úteis.';
-            if (!canDialog) { setStatus(`Mensagem enviada. ${done}`); return; }
-            openDialog({ title: 'Mensagem enviada', body: [para(done)], primary: 'Fechar', action: () => dialog.close() });
-            return;
+    function showError(result) {
+        if (result.erro === 'campos' && Array.isArray(result.campos)) {
+            result.campos.forEach((name) => field(name) && field(name).setAttribute('aria-invalid', 'true'));
+            const first = form.querySelector('[aria-invalid="true"]');
+            if (first) first.focus();
         }
-        if (result.erro === 'campos' && Array.isArray(result.campos)) markInvalid(result.campos);
-        const text = ERRORS[result.erro] || ERRORS.rede;
-        if (!canDialog) { setStatus(text); return; }
-        const retry = result.erro === 'rede' || result.erro === 'ocupado';
-        openDialog({
-            title: 'Não foi possível enviar',
-            body: [para(text)],
-            primary: retry ? 'Tentar de novo' : 'Voltar ao formulário',
-            secondary: retry ? 'Voltar' : '',
-            action: retry ? () => send(values()) : () => dialog.close(),
+        setStatus(ERRORS[result.erro] || ERRORS.rede);
+    }
+
+    // ---------- Confirmação no lugar dos campos ----------
+    function showDone(v, protocolo) {
+        if (!done) { form.reset(); setStatus('Mensagem enviada. Respondemos em até dois dias úteis.'); return; }
+        done.querySelector('.form-done-text').textContent = protocolo
+            ? `Seu protocolo é ${protocolo}. Respondemos em até dois dias úteis.`
+            : 'Respondemos em até dois dias úteis.';
+        const summary = done.querySelector('.form-done-summary');
+        summary.replaceChildren();
+        [['Nome', v.name], ['E-mail', v.email], ['Celular', v.phone], ['Cidade', v.city], ['Mensagem', v.message]]
+            .filter(([, value]) => value)
+            .forEach(([term, value]) => {
+                const dt = document.createElement('dt');
+                const dd = document.createElement('dd');
+                dt.textContent = term;
+                dd.textContent = value;
+                summary.append(dt, dd);
+            });
+        // Os campos ficam preenchidos (escondidos) para o "Editar mensagem"
+        lastProtocol = protocolo || '';
+        correcting = '';
+        submitButton.textContent = label;
+        form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
+        form.hidden = true;
+        done.hidden = false;
+        done.querySelector('h3').focus(); // leitores de tela anunciam a confirmação
+    }
+    let lastProtocol = '';
+
+    function backToForm() {
+        done.hidden = true;
+        form.hidden = false;
+        updateCounter();
+    }
+
+    if (done) {
+        // Editar: volta com tudo escrito; o reenvio vai como correção da mensagem anterior
+        done.querySelector('.form-done-edit').addEventListener('click', () => {
+            correcting = lastProtocol;
+            submitButton.textContent = 'Enviar correção';
+            backToForm();
+            setStatus(lastProtocol
+                ? `Editando a mensagem ${lastProtocol}. Ao enviar, ela chega ao escritório como correção.`
+                : 'Editando a mensagem. Ao enviar, ela chega ao escritório como correção.');
+            message.focus();
+        });
+        // Outra mensagem: formulário vazio
+        done.querySelector('.form-done-again').addEventListener('click', () => {
+            form.reset();
+            correcting = '';
+            submitButton.textContent = label;
+            setStatus('');
+            backToForm();
+            field('name').focus();
         });
     }
 });
