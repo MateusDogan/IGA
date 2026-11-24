@@ -203,7 +203,7 @@
   padding: 0 1.75rem;
   font: 500 0.95rem/1 'Jost', sans-serif;
   color: var(--white);
-  background: var(--terracota);        /* terracota escuro: contraste com o creme e com o verde */
+  background: var(--grafite);
   border: 0;
   border-radius: 0;                    /* reto, como o carimbo do Contato */
   cursor: pointer;
