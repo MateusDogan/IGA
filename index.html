@@ -1,89 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#151515">
     
-    <title>IGA</title>
+    <title>IGA Arquitetura | Arquitetura, interiores e design gráfico</title>
+    <meta name="description" content="Escritório de arquitetura, interiores e design gráfico. Projetos residenciais, comerciais e estandes, do primeiro traço ao acompanhamento da obra.">
+
+    <!-- Endereço do site publicado: troque nas 3 linhas abaixo se o domínio mudar -->
+    <link rel="canonical" href="https://mateusdogan.github.io/IGA/">
+
+    <!-- Compartilhamento (WhatsApp, Instagram, LinkedIn, Facebook, X) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="IGA Arquitetura">
+    <meta property="og:title" content="IGA Arquitetura | Espaços e marcas, desenhados juntos">
+    <meta property="og:description" content="Arquitetura, interiores e design gráfico pensados juntos, do primeiro traço à entrega da obra.">
+    <meta property="og:url" content="https://mateusdogan.github.io/IGA/">
+    <meta property="og:image" content="https://mateusdogan.github.io/IGA/Public/assets/marca/compartilhar.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Fachada de casa projetada pela IGA com o texto Espaços e marcas, desenhados juntos">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Ícones -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="Public/assets/marca/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="Public/assets/marca/icon-192.png">
+    <link rel="apple-touch-icon" href="Public/assets/marca/apple-touch-icon.png">
     
     <!-- Google Fonts -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Julius+Sans+One&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <link href="https://unpkg.com/@material/web@1.0.0/all.css" rel="stylesheet">
-
-    <script type="importmap">
-        {
-          "imports": {
-            "@material/web/": "https://esm.run/@material/web/"
-          }
-        }
-    </script>
-    <script type="module">
-        import '@material/web/all.js';
-        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
-
-        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
-    </script>
-    <!-- Your fonts.css -->
-    <link rel="stylesheet" href="Public/css/colors.css">
-    <link rel="stylesheet" href="Public/css/fonts.css">
-    <link rel="stylesheet" href="Public/css/style.css">
-    <link rel="stylesheet" href="Public/css/navbar.css">
-    <link rel="stylesheet" href="Public/css/mouse.css">
-    <link rel="stylesheet" href="Public/css/button.css">
-    <link rel="stylesheet" href="Public/css/connect.css">
-    <link rel="stylesheet" href="Public/css/services.css">
-    <link rel="stylesheet" href="Public/css/office.css">
-    <link rel="stylesheet" href="Public/css/responsive.css">
+    <!-- Base: paleta, tipografia e reset -->
+    <link rel="stylesheet" href="Public/css/base/colors.css">
+    <link rel="stylesheet" href="Public/css/base/fonts.css">
+    <link rel="stylesheet" href="Public/css/base/style.css">
+    <!-- Componentes usados em várias partes -->
+    <link rel="stylesheet" href="Public/css/components/navbar.css">
+    <link rel="stylesheet" href="Public/css/components/mouse.css">
+    <link rel="stylesheet" href="Public/css/components/marquee.css">
+    <link rel="stylesheet" href="Public/css/components/scrollbar.css">
+    <!-- Seções, na ordem da página -->
+    <link rel="stylesheet" href="Public/css/sections/hero.css">
+    <link rel="stylesheet" href="Public/css/sections/services.css">
+    <link rel="stylesheet" href="Public/css/sections/portfolio.css">
+    <link rel="stylesheet" href="Public/css/sections/office.css">
+    <link rel="stylesheet" href="Public/css/sections/contact.css">
+    <link rel="stylesheet" href="Public/css/sections/footer.css">
 
 </head>
 <body>
 <main>
 <div id="custom-cursor"></div>
     <header id="main-header">
-        <svg class="logo-svg clickable-object" width="1201" height="750" viewBox="0 0 1201 750" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.87207" y="100" width="50" height="400" fill="currentColor"/>
-            <path d="M1000.87 100C1111.33 100 1200.87 189.543 1200.87 300V500H1150.87V432.287C1114.22 473.809 1060.61 500 1000.87 500C890.415 500 800.872 410.457 800.872 300C800.872 189.543 890.415 100 1000.87 100ZM1000.87 150C918.029 150 850.872 217.157 850.872 300C850.872 382.843 918.029 450 1000.87 450C1083.71 450 1150.87 382.843 1150.87 300C1150.87 217.157 1083.71 150 1000.87 150Z" fill="currentColor"/>
-            <path d="M650.872 550C650.872 660.457 561.329 750 450.872 750C340.415 750 250.872 660.457 250.872 550H300.872C300.872 632.843 368.029 700 450.872 700C533.715 700 600.872 632.843 600.872 550V432.287C564.225 473.809 510.608 500 450.872 500C340.415 500 250.872 410.457 250.872 300C250.872 189.543 340.415 100 450.872 100C510.608 100 564.225 126.19 600.872 167.712V100H650.872V550ZM450.872 150C368.029 150 300.872 217.157 300.872 300C300.872 382.843 368.029 450 450.872 450C533.715 450 600.872 382.843 600.872 300C600.872 217.157 533.715 150 450.872 150Z" fill="currentColor"/>
-            <circle cx="1175.87" cy="725" r="25" fill="currentColor"/>
-            <circle cx="25.8721" cy="25" r="25" fill="currentColor"/>
-        </svg>
-        <nav id="header-navigation" aria-label="Main Page Navigation">
+        <a class="brand" href="#Hero-Page" aria-label="IGA, voltar ao início">
+            <svg class="brand-symbol" viewBox="0 0 1201 750" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0.87207" y="100" width="50" height="400" fill="currentColor"/>
+                <path d="M1000.87 100C1111.33 100 1200.87 189.543 1200.87 300V500H1150.87V432.287C1114.22 473.809 1060.61 500 1000.87 500C890.415 500 800.872 410.457 800.872 300C800.872 189.543 890.415 100 1000.87 100ZM1000.87 150C918.029 150 850.872 217.157 850.872 300C850.872 382.843 918.029 450 1000.87 450C1083.71 450 1150.87 382.843 1150.87 300C1150.87 217.157 1083.71 150 1000.87 150Z" fill="currentColor"/>
+                <path d="M650.872 550C650.872 660.457 561.329 750 450.872 750C340.415 750 250.872 660.457 250.872 550H300.872C300.872 632.843 368.029 700 450.872 700C533.715 700 600.872 632.843 600.872 550V432.287C564.225 473.809 510.608 500 450.872 500C340.415 500 250.872 410.457 250.872 300C250.872 189.543 340.415 100 450.872 100C510.608 100 564.225 126.19 600.872 167.712V100H650.872V550ZM450.872 150C368.029 150 300.872 217.157 300.872 300C300.872 382.843 368.029 450 450.872 450C533.715 450 600.872 382.843 600.872 300C600.872 217.157 533.715 150 450.872 150Z" fill="currentColor"/>
+                <circle cx="1175.87" cy="725" r="25" fill="var(--new-terracota)"/>
+                <circle cx="25.8721" cy="25" r="25" fill="currentColor"/>
+            </svg>
+        </a>
+        <nav id="header-navigation" aria-label="Principal">
             <ul>
-                <li class="clickable-object hover-underline-animation left"><a href="#Services" class="nav-link">Serviços</a></li>
-                <li class="clickable-object hover-underline-animation left"><a href="#Projects" class="nav-link">Projetos</a></li>
-                <li class="clickable-object hover-underline-animation left"><a href="#Office" class="nav-link">Escritório</a></li>
-                <li class="clickable-object hover-underline-animation left"><a href="#Connect" class="nav-link">Contato</a></li>
+                <li><a href="#Services" class="nav-link">Serviços</a></li>
+                <li><a href="#Projects" class="nav-link">Projetos</a></li>
+                <li><a href="#Office" class="nav-link">Escritório</a></li>
             </ul>
         </nav>
+        <a class="header-cta" href="#Connect">Contato</a>
     </header>
     <!-------------------------- Hero Page --------------------------->
     <section id="Hero-Page">
 
+        <!-- Fotos do hero: para adicionar outra, copie a linha da <img>, troque
+             src/alt e o nome e a categoria em data-name/data-meta (aparecem na
+             legenda). A primeira carrega na hora; as outras com loading="lazy".
+             Com uma foto só, ela fica parada. -->
+        <div class="hero-slides">
+            <img class="hero-slide is-active" src="Public/assets/marca/imagem_IGA-1440.webp" alt="Fachada de casa térrea com jardim, projeto IGA" data-name="Nome do projeto" data-meta="Arquitetura, 2025" fetchpriority="high" decoding="async">
+        </div>
+
         <div id="hero-content">
-            <h4 class="text-grey">Design Gráfico | Design de Interiores | Projetos Arquitetônicos</h4>
-            <h1 class="libre-caslon font-700 leading-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
-            <div id="hero-buttons">
-                <a href="#Services" class="transparent-button">Saiba Mais</a>
-                <a href="#Projects" class="transparent-button">Portfólio</a>
-            </div>
+            <h1 class="hero-title">
+                <span class="hero-line">Espaços e marcas,</span>
+                <span class="hero-line">desenhados juntos.</span>
+            </h1>
         </div>
 
         <div id="hero-label">
-            <div id="Explore" class="clickable-object">
-                <a href="#Services">
-                    <h1>Explore o espaço</h1>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-80 200-360l56-56 184 183v-647h80v647l184-184 56 57L480-80Z"/></svg>
-                </a>
-            </div>
-            <h1 class="clickable-object">Projeto: sla a bel me diz o nome dps</h1>
+            <a id="Explore" class="scroll-cue clickable-object" href="#Services" aria-label="Explore o espaço">
+                <span class="scroll-mouse" aria-hidden="true"><span class="scroll-wheel"></span></span>
+                <span class="scroll-text">Explore o espaço</span>
+            </a>
+            <p class="hero-caption"><span class="hero-caption-name">Nome do projeto</span><span class="hero-caption-meta">Arquitetura, 2025</span></p>
         </div>
     </section>
 </main>
@@ -93,101 +108,139 @@
             <h2 class="libre-caslon">Serviços</h2>
             <p>Três frentes que trabalham juntas: da identidade da marca à casa onde ela vive.</p>
         </div>
-        <ul class="services-list">
-            <li class="service">
-                <h3 class="libre-caslon">Design gráfico</h3>
-                <div class="service-body">
-                    <p>Identidade visual, materiais e peças que dão voz ao seu projeto, no papel e na tela.</p>
-                    <ul>
-                        <li>Identidade visual e logotipo</li>
-                        <li>Material impresso e apresentações</li>
-                        <li>Sinalização e comunicação visual</li>
-                    </ul>
-                </div>
-            </li>
-            <li class="service">
+
+        <article class="service service--arq">
+            <img class="service-photo" src="Public/assets/projetos/foto5-800.webp" srcset="Public/assets/projetos/foto5-800.webp 800w, Public/assets/projetos/foto5-1440.webp 1440w" sizes="(min-width: 1000px) 55vw, 100vw" width="1440" height="810" alt="Estande Alux, projeto de arquitetura" loading="lazy" decoding="async">
+            <div class="service-body">
                 <h3 class="libre-caslon">Arquitetura</h3>
-                <div class="service-body">
-                    <p>Do estudo preliminar à obra: projetos residenciais e comerciais pensados para o terreno, o clima e a rotina de quem usa.</p>
-                    <ul>
-                        <li>Projeto arquitetônico e legal</li>
-                        <li>Reformas e ampliações</li>
-                        <li>Acompanhamento de obra</li>
-                    </ul>
-                </div>
-            </li>
-            <li class="service">
+                <p>Do estudo preliminar à obra: projetos residenciais, comerciais e efêmeros pensados para o lugar e para a rotina de quem usa.</p>
+                <ul>
+                    <li>Projeto arquitetônico e executivo</li>
+                    <li>Reformas e ampliações</li>
+                    <li>Acompanhamento de obra</li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="service service--graf">
+            <img class="service-photo" src="Public/assets/projetos/Foto4-600.webp" srcset="Public/assets/projetos/Foto4-600.webp 600w, Public/assets/projetos/Foto4-900.webp 900w" sizes="(min-width: 1000px) 30vw, 100vw" width="900" height="1600" alt="Prancha de apresentação do estande Alux" loading="lazy" decoding="async">
+            <div class="service-body">
+                <h3 class="libre-caslon">Design gráfico</h3>
+                <p>Identidade visual, materiais e peças que dão voz ao projeto, no papel e na tela.</p>
+                <ul>
+                    <li>Identidade visual e logotipo</li>
+                    <li>Material impresso e apresentações</li>
+                    <li>Sinalização e comunicação visual</li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="service service--int">
+            <img class="service-photo" src="Public/assets/projetos/Foto2-800.webp" srcset="Public/assets/projetos/Foto2-800.webp 800w, Public/assets/projetos/Foto2-1440.webp 1440w" sizes="(min-width: 1000px) 55vw, 100vw" width="1440" height="810" alt="Cozinha integrada, projeto de interiores" loading="lazy" decoding="async">
+            <div class="service-body">
                 <h3 class="libre-caslon">Interiores</h3>
-                <div class="service-body">
-                    <p>Ambientes confortáveis e coerentes, com mobiliário, iluminação e materiais escolhidos em conjunto.</p>
-                    <ul>
-                        <li>Projeto de interiores completo</li>
-                        <li>Mobiliário e marcenaria sob medida</li>
-                        <li>Iluminação e paisagismo de apoio</li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
+                <p>Ambientes confortáveis e coerentes, com mobiliário, iluminação e materiais escolhidos em conjunto.</p>
+                <ul>
+                    <li>Projeto de interiores completo</li>
+                    <li>Mobiliário e marcenaria sob medida</li>
+                    <li>Iluminação e paisagismo de apoio</li>
+                </ul>
+            </div>
+        </article>
+    </section>
+
+    <!-------------------------- Portfólio --------------------------->
+    <!-- Para adicionar uma foto: coloque um <img src="Public/assets/projetos/arquivo.webp" alt="Descrição">
+         dentro do .portfolio-photo correspondente. Enquanto estiver vazio, aparece a caixa de espera. -->
+    <section id="Projects">
+        <div class="portfolio-intro">
+            <h2 class="libre-caslon">Projetos</h2>
+            <p>Uma seleção de trabalhos do escritório, entre casas, interiores, estandes e identidades.</p>
+        </div>
+        <div class="portfolio-grid">
+            <figure class="portfolio-item portfolio-item--l">
+                <div class="portfolio-photo"></div>
+                <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2025</span></figcaption>
+            </figure>
+            <figure class="portfolio-item portfolio-item--m">
+                <div class="portfolio-photo"></div>
+                <figcaption><h3>Nome do projeto</h3><span>Interiores, 2025</span></figcaption>
+            </figure>
+            <figure class="portfolio-item portfolio-item--s">
+                <div class="portfolio-photo"></div>
+                <figcaption><h3>Nome do projeto</h3><span>Design gráfico, 2024</span></figcaption>
+            </figure>
+            <figure class="portfolio-item portfolio-item--s">
+                <div class="portfolio-photo"></div>
+                <figcaption><h3>Nome do projeto</h3><span>Interiores, 2024</span></figcaption>
+            </figure>
+            <figure class="portfolio-item portfolio-item--s">
+                <div class="portfolio-photo"></div>
+                <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2024</span></figcaption>
+            </figure>
+            <figure class="portfolio-item portfolio-item--w">
+                <div class="portfolio-photo"></div>
+                <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2023</span></figcaption>
+            </figure>
+            <figure class="portfolio-item portfolio-item--p">
+                <div class="portfolio-photo"></div>
+                <figcaption><h3>Nome do projeto</h3><span>Interiores, 2023</span></figcaption>
+            </figure>
+        </div>
     </section>
 
     <section id="Office">
 
-        <h1 id="Office-heading" class="Segoe">Escritório</h1>
+        <div class="office-intro">
+            <h2 id="Office-heading">Escritório</h2>
+            <div class="office-story">
+                <p id="office-text">Três arquitetos e urbanistas que desenham juntos cada projeto, do primeiro esboço ao acompanhamento da obra.</p>
+            </div>
+        </div>
 
         <div id="photos-container">
-        <div class="container-profile" tabindex="0" id="Isabel">    
-            <div class="photo-card" id="Isabel-photo"></div>
-            <div class="hide">
-                <h4 class="Julius-sans font-700 text-white">Isabel Recamon de Melo</h4>
-                <span class="text-white">Arquiteta e Urbanista</span>
-                <p class="text-white">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-            </div>
-        </div>
+            <figure class="member">
+                <div class="container-profile" tabindex="0" id="Isabel" aria-describedby="bio-isabel">
+                    <img class="photo-card" id="Isabel-photo" src="Public/assets/equipe/Bel-600.webp" srcset="Public/assets/equipe/Bel-600.webp 600w, Public/assets/equipe/Bel-1200.webp 1200w" sizes="(min-width: 701px) 25vw, 420px" alt="Foto de Isabel Recamon de Melo" loading="lazy" decoding="async" width="600" height="800">
+                    <div class="hide"><p id="bio-isabel">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p></div>
+                </div>
+                <figcaption>
+                    <h3>Isabel Recamon de Melo</h3>
+                    <span>Arquiteta e urbanista</span>
+                </figcaption>
+            </figure>
 
-        <div class="container-profile" tabindex="0" id="Gustavo">    
-            <div class="photo-card" id="Gustavo-photo"></div>
-            <div class="hide">
-                <h4 class="Julius-sans font-700 text-white">Gustavo Henrique</h4>
-                <span class="text-white">Arquiteto e Urbanista</span>
-                <p class="text-white">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-            </div>
-        </div>
+            <figure class="member">
+                <div class="container-profile" tabindex="0" id="Gustavo" aria-describedby="bio-gustavo">
+                    <img class="photo-card" id="Gustavo-photo" src="Public/assets/equipe/Gu_Henrique-600.webp" srcset="Public/assets/equipe/Gu_Henrique-600.webp 600w, Public/assets/equipe/Gu_Henrique-1080.webp 1080w" sizes="(min-width: 701px) 25vw, 420px" alt="Foto de Gustavo Henrique" loading="lazy" decoding="async" width="600" height="800">
+                    <div class="hide"><p id="bio-gustavo">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p></div>
+                </div>
+                <figcaption>
+                    <h3>Gustavo Henrique</h3>
+                    <span>Arquiteto e urbanista</span>
+                </figcaption>
+            </figure>
 
-        <div class="container-profile" tabindex="0" id="Gabriela">
-            <div class="photo-card" id="Gabriela-photo"></div>
-            <div class="hide">
-                <h4 class="Julius-sans font-900 text-white">Gabriela Muhein</h4>
-                <span class="text-white font-400">Arquiteta e Urbanista</span>
-                <p class="text-white">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-            </div>
+            <figure class="member">
+                <div class="container-profile" tabindex="0" id="Gabriela" aria-describedby="bio-gabriela">
+                    <img class="photo-card" id="Gabriela-photo" src="Public/assets/equipe/Ga_muhein-600.webp" srcset="Public/assets/equipe/Ga_muhein-600.webp 600w, Public/assets/equipe/Ga_muhein-1080.webp 1080w" sizes="(min-width: 701px) 25vw, 420px" alt="Foto de Gabriela Muhein" loading="lazy" decoding="async" width="600" height="800">
+                    <div class="hide"><p id="bio-gabriela">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p></div>
+                </div>
+                <figcaption>
+                    <h3>Gabriela Muhein</h3>
+                    <span>Arquiteta e urbanista</span>
+                </figcaption>
+            </figure>
         </div>
-
-        </div>
-        
-        <p class="font-900 uppercase leading-loose clickable-object" id="office-text">
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-        </p>
     </section>
 
 
 
-    <div class="marquee-container">
-        <div class="marquee-content-wrapper">
-            <div class="marquee-text-wrapper">
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-            </div>
-            <div class="false-div">
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-                <h2 class="marquee-text">Lorem Ipsum.</h2>
-            </div>
-        </div>
+    <!-- Faixa de marcas: aqui vão os logos das marcas criadas nos projetos de design gráfico,
+         conforme a cliente liberar. Para cada marca, troque um <h2 class="marquee-text"> por
+         <img class="marquee-logo" src="Public/assets/marcas/nome.svg" alt="">
+         (repita a mesma sequência nos dois blocos, para o loop ficar contínuo). -->
+    <div class="marquee-container" aria-hidden="true">
         <div class="marquee-content-wrapper right">
             <div class="marquee-text-wrapper">
                 <h2 class="marquee-text">Outro Ipsum.</h2>
@@ -209,18 +262,19 @@
     <section id="Connect">
         <div id="social-container">
         <div id="social-container-inv">
+          <!-- Trocar pelos endereços reais do Instagram, LinkedIn, e-mail e telefone -->
           <div id="socila-links">
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="1em" height="1em" style="fill: currentColor;">    <path d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z"/></svg>
+                <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank" rel="noopener">
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="1em" height="1em" style="fill: currentColor;">    <path d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z"/></svg>
                 </a>
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="1em" height="1em" style="fill: currentColor;">    <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"/></svg>
+                <a href="https://www.linkedin.com/" aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="1em" height="1em" style="fill: currentColor;">    <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"/></svg>
                 </a>
-                <a href="#">
-                    <svg width="800px" height="800px" viewBox="0 -2.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Dribbble-Light-Preview" transform="translate(-340.000000, -922.000000)" fill="currentColor"><g id="icons" transform="translate(56.000000, 160.000000)">    <path d="M294,774.474 L284,765.649 L284,777 L304,777 L304,765.649 L294,774.474 Z M294.001,771.812 L284,762.981 L284,762 L304,762 L304,762.981 L294.001,771.812 Z" id="email-[#1572]"></path></g></g></g></svg> 
+                <a href="mailto:iga@e-mail.com" aria-label="E-mail">
+                    <svg aria-hidden="true" focusable="false" width="800px" height="800px" viewBox="0 -2.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Dribbble-Light-Preview" transform="translate(-340.000000, -922.000000)" fill="currentColor"><g id="icons" transform="translate(56.000000, 160.000000)">    <path d="M294,774.474 L284,765.649 L284,777 L304,777 L304,765.649 L294,774.474 Z M294.001,771.812 L284,762.981 L284,762 L304,762 L304,762.981 L294.001,771.812 Z" id="email-[#1572]"></path></g></g></g></svg> 
                 </a>
-                <a href="#">
-                    <svg height="800px" width="800px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><style type="text/css">.st0{fill:currentColor;}</style><g><path class="st0" d="M94.811,21.696c-35.18,22.816-42.091,94.135-28.809,152.262c10.344,45.266,32.336,105.987,69.42,163.165c34.886,53.79,83.557,102.022,120.669,129.928c47.657,35.832,115.594,58.608,150.774,35.792c17.789-11.537,44.218-43.058,45.424-48.714c0,0-15.498-23.896-18.899-29.14l-51.972-80.135c-3.862-5.955-28.082-0.512-40.386,6.457c-16.597,9.404-31.882,34.636-31.882,34.636c-11.38,6.575-20.912,0.024-40.828-9.142c-24.477-11.262-51.997-46.254-73.9-77.947c-20.005-32.923-40.732-72.322-41.032-99.264c-0.247-21.922-2.341-33.296,8.304-41.006c0,0,29.272-3.666,44.627-14.984c11.381-8.392,26.228-28.286,22.366-34.242l-51.972-80.134c-3.401-5.244-18.899-29.14-18.899-29.14C152.159-1.117,112.6,10.159,94.811,21.696z"/></g></svg>
+                <a href="tel:+5501298765432" aria-label="Telefone">
+                    <svg aria-hidden="true" focusable="false" height="800px" width="800px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><style type="text/css">.st0{fill:currentColor;}</style><g><path class="st0" d="M94.811,21.696c-35.18,22.816-42.091,94.135-28.809,152.262c10.344,45.266,32.336,105.987,69.42,163.165c34.886,53.79,83.557,102.022,120.669,129.928c47.657,35.832,115.594,58.608,150.774,35.792c17.789-11.537,44.218-43.058,45.424-48.714c0,0-15.498-23.896-18.899-29.14l-51.972-80.135c-3.862-5.955-28.082-0.512-40.386,6.457c-16.597,9.404-31.882,34.636-31.882,34.636c-11.38,6.575-20.912,0.024-40.828-9.142c-24.477-11.262-51.997-46.254-73.9-77.947c-20.005-32.923-40.732-72.322-41.032-99.264c-0.247-21.922-2.341-33.296,8.304-41.006c0,0,29.272-3.666,44.627-14.984c11.381-8.392,26.228-28.286,22.366-34.242l-51.972-80.134c-3.401-5.244-18.899-29.14-18.899-29.14C152.159-1.117,112.6,10.159,94.811,21.696z"/></g></svg>
                 </a>
         </div>
         </div>
@@ -230,75 +284,43 @@
             <div id="forms-footer">
              <div id="form-container">
         <header id="form-header">
-            <h1>Converse com a gente sobre o seu próximo projeto.</h1>
+            <h2>Converse com a gente sobre o seu próximo projeto.</h2>
+            <p class="form-lede">Conte um pouco do que você imagina e a gente retorna com os próximos passos.</p>
         </header>
 
-         <form id="form" action="#" method="POST">
-
-
-
-
+         <form id="form" action="#" method="POST" novalidate>
         <section id="input-container">
-            <div class="question-container">
-            <md-outlined-text-field
-                label="Nome"
-                type="text"
-                name="name"
-                placeholder="Digite seu nome"
-                required
-                error-text="O nome é obrigatório."
-            ></md-outlined-text-field>
+            <div class="field">
+                <label for="f-name">Nome</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Digite seu nome" required aria-describedby="e-name">
+                <small class="field-error" id="e-name">Escreva seu nome.</small>
             </div>
-            
-            <div class="question-container">
-            <md-outlined-text-field
-                label="E-mail"
-                type="email"
-                name="email"
-                placeholder="Digite seu e-mail"
-                required
-                error-text="O e-mail é obrigatório e precisa ser válido."
-            ></md-outlined-text-field>
+            <div class="field">
+                <label for="f-email">E-mail</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" placeholder="seu@email.com" required aria-describedby="e-email">
+                <small class="field-error" id="e-email">Escreva um e-mail válido, como nome@email.com.</small>
             </div>
-
-            <div class="question-container">
-            <md-outlined-text-field
-                label="Celular"
-                type="tel"
-                name="phone"
-                placeholder="(xx) x xxxx-xxxx"
-                pattern="[0-9]{10,11}"
-                inputmode="numeric"
-                error-text="O número de celular deve ter 10 ou 11 dígitos."
-            ></md-outlined-text-field>
+            <div class="field">
+                <label for="f-phone">Celular <span class="field-optional">(opcional)</span></label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 0 0000-0000" aria-describedby="e-phone">
+                <small class="field-error" id="e-phone">O celular precisa ter 10 ou 11 dígitos, com DDD.</small>
             </div>
-
-            <div class="question-container">
-            <md-outlined-text-field
-                label="Cidade"
-                type="text"
-                name="city"
-                placeholder="Sua cidade"
-            ></md-outlined-text-field>
+            <div class="field">
+                <label for="f-city">Cidade <span class="field-optional">(opcional)</span></label>
+                <input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Sua cidade">
             </div>
         </section>
 
-        <section class="message-box">
-            <md-outlined-text-field
-                type="textarea"
-                label="Sua Mensagem"
-                name="message"
-                rows="5"
-                placeholder="Descreva seu projeto ou sua dúvida aqui..."
-                required
-                error-text="A mensagem é obrigatória."
-            ></md-outlined-text-field>
+        <section class="message-box field">
+            <label for="f-message">Sua mensagem</label>
+            <textarea id="f-message" name="message" rows="5" placeholder="Conte sobre o projeto ou a sua dúvida" required aria-describedby="e-message"></textarea>
+            <small class="field-error" id="e-message">Escreva sua mensagem.</small>
         </section>
 
         <section id="submit">
             <div class="submit-button">
-               <md-filled-button type="submit">Enviar</md-filled-button>
-               <span>Ao clickar em Enviar voce concorda com a nossa politica de Privacidade.</span>
+               <button type="submit" class="form-submit">Enviar mensagem</button>
+               <span>Ao enviar, você concorda com a nossa <a href="privacidade.html">Política de Privacidade</a>.</span>
             </div>
         </section>
     </form>
@@ -316,29 +338,27 @@
 
         <div id="footer-row">
             <div class="footer-col">
-                <h4 class="clickable-object">Planta</h4>
+                <h3 class="clickable-object">Planta</h3>
                 <ul>
-                    <li><a class="hover-underline-animation left" href="#Hero-Page">index</a></li>
-                    <li><a class="hover-underline-animation left" href="#Sobre">Sobre</a></li>
+                    <li><a class="hover-underline-animation left" href="#Hero-Page">Início</a></li>
                     <li><a class="hover-underline-animation left" href="#Services">Serviços</a></li>
-                    <li><a class="hover-underline-animation left" href="#">Portfólio</a></li>
+                    <li><a class="hover-underline-animation left" href="#Projects">Portfólio</a></li>
                     <li><a class="hover-underline-animation left" href="#Office">Equipe</a></li>
-                    
                 </ul>
             </div>
             <div class="footer-col">
-                <h4 class="clickable-object">Portfólio</h4>
+                <h3 class="clickable-object">Portfólio</h3>
                 <ul>
-                    <li><a class="hover-underline-animation left" href="#">Projeto Arquitetônico</a></li>
-                    <li><a class="hover-underline-animation left" href="#">Design de Interiores</a></li>
-                    <li><a class="hover-underline-animation left" href="#">Design Gráfico</a></li>  
+                    <li><a class="hover-underline-animation left" href="#Projects">Projeto Arquitetônico</a></li>
+                    <li><a class="hover-underline-animation left" href="#Projects">Design de Interiores</a></li>
+                    <li><a class="hover-underline-animation left" href="#Projects">Design Gráfico</a></li>  
                 </ul>
             </div>
              <div class="footer-col">
-                <h4 class="clickable-object">Contato</h4>
+                <h3 class="clickable-object">Contato</h3>
                 <ul>
-                    <li><a class="hover-underline-animation left" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg> iga@e-mail.com</a></li>
-                    <li><a class="hover-underline-animation left" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em" fill="currentColor"><path d="M280-40q-33 0-56.5-23.5T200-120v-720q0-33 23.5-56.5T280-920h400q33 0 56.5 23.5T760-840v124q18 7 29 22t11 34v80q0 19-11 34t-29 22v404q0 33-23.5 56.5T680-40H280Zm0-80h400v-720H280v720Zm0 0v-720 720Zm120-40h160q17 0 28.5-11.5T600-200q0-17-11.5-28.5T560-240H400q-17 0-28.5 11.5T360-200q0 17 11.5 28.5T400-160Z"/></svg>(012) 9 8765-4321</a></li>
+                    <li><a class="hover-underline-animation left" href="mailto:iga@e-mail.com"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg> iga@e-mail.com</a></li>
+                    <li><a class="hover-underline-animation left" href="tel:+5501298765432"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em" fill="currentColor"><path d="M280-40q-33 0-56.5-23.5T200-120v-720q0-33 23.5-56.5T280-920h400q33 0 56.5 23.5T760-840v124q18 7 29 22t11 34v80q0 19-11 34t-29 22v404q0 33-23.5 56.5T680-40H280Zm0-80h400v-720H280v720Zm0 0v-720 720Zm120-40h160q17 0 28.5-11.5T600-200q0-17-11.5-28.5T560-240H400q-17 0-28.5 11.5T360-200q0 17 11.5 28.5T400-160Z"/></svg> (012) 9 8765-4321</a></li>
                 </ul>
             </div>
         </div>
@@ -348,40 +368,18 @@
     </div>
 
         <div id="copyright">
-        <span>COPYRIGHT &copy; 2025, IGA Arquiteura</span>
+        <span>&copy; <span id="copy-year">2025</span> IGA Arquitetura</span>
             <ul>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Privacidade</a></li>
-                <li><a href="#">Termos e Condições</a></li>
+                <li><a href="privacidade.html">Política de Privacidade</a></li>
             </ul>
         </div>
     </div>
     </section>
 
-<aside id="side-rail" aria-label="Menu lateral">
-    <a class="rail-logo" href="#Hero-Page" aria-label="Início">
-        <svg width="1201" height="750" viewBox="0 0 1201 750" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0.87207" y="100" width="50" height="400" fill="currentColor"/><circle cx="1175.87" cy="725" r="25" fill="currentColor"/><circle cx="25.8721" cy="25" r="25" fill="currentColor"/></svg>
-    </a>
-    <button class="rail-menu" type="button" aria-expanded="false" aria-controls="side-panel">Menu</button>
-    <span class="rail-label" id="rail-label" aria-hidden="true">Início</span>
-</aside>
-<div id="side-backdrop" hidden></div>
-<div id="side-panel" role="dialog" aria-modal="true" aria-label="Menu principal" aria-hidden="true">
-    <button class="panel-close" type="button" aria-label="Fechar menu">Fechar</button>
-    <nav aria-label="Seções do site">
-        <ul>
-            <li><a href="#Services" data-img="Public/assets/Foto2.jpg">Serviços</a></li>
-            <li><a href="#Projects" data-img="Public/assets/Foto3.jpg">Projetos</a></li>
-            <li><a href="#Office" data-img="Public/assets/Foto4.jpg">Escritório</a></li>
-            <li><a href="#Connect" data-img="Public/assets/foto5.jpg">Contato</a></li>
-        </ul>
-    </nav>
-    <img class="panel-photo" src="Public/assets/Foto2.jpg" alt="" width="400" height="300">
-    <p class="panel-contact">iga@e-mail.com<br>(012) 9 8765-4321</p>
-</div>
     <script src="Public/scripts/mouse.js"></script>
-    <script src="Public/scripts/reload_page.js"></script>
     <script src="Public/scripts/header.js"></script>
+    <script src="Public/scripts/hero.js"></script>
     <script src="Public/scripts/forms_validation.js"></script>
+    <script src="Public/scripts/team.js"></script>
 </body>
 </html>

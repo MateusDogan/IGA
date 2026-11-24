@@ -1,63 +1,61 @@
+// Navbar: transparente sobre o hero. Depois dele, some ao rolar para baixo
+// e volta (com fundo) ao rolar para cima.
 document.addEventListener('DOMContentLoaded', () => {
+    const year = document.getElementById('copy-year');
+    if (year) year.textContent = new Date().getFullYear();
+
+    // Link compartilhado com # (ex.: .../#Projects): abre direto na seção,
+    // sem a rolagem suave, depois que as fontes e o layout assentam.
+    if (location.hash) {
+        const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target) {
+            window.addEventListener('load', () => {
+                const html = document.documentElement;
+                html.style.scrollBehavior = 'auto';
+                target.scrollIntoView();
+                html.style.scrollBehavior = '';
+            }, { once: true });
+        }
+    }
+
     const root = document.documentElement;
     const hero = document.getElementById('Hero-Page');
-    const menuBtn = document.querySelector('.rail-menu');
-    const panel = document.getElementById('side-panel');
-    const backdrop = document.getElementById('side-backdrop');
-    const closeBtn = panel.querySelector('.panel-close');
-    const photo = panel.querySelector('.panel-photo');
-    const label = document.getElementById('rail-label');
-    const panelLinks = [...panel.querySelectorAll('nav a')];
+    const header = document.getElementById('main-header');
+    if (!hero || !header) return;
 
-    // Depois do hero: some o menu do topo e entra o trilho
-    new IntersectionObserver(([e]) => {
-        root.classList.toggle('past-hero', !e.isIntersecting);
-    }, { threshold: 0.15 }).observe(hero);
+    const TOLERANCE = 8; // ignora micro-rolagens
+    let lastY = window.scrollY;
 
-    function render(open) {
-        root.classList.toggle('menu-open', open);
-        backdrop.hidden = !open;
-        menuBtn.setAttribute('aria-expanded', String(open));
-        panel.setAttribute('aria-hidden', String(!open));
-    }
-    function openMenu() { render(true); closeBtn.focus(); }
-    function closeMenu(returnFocus) {
-        render(false);
-        if (returnFocus) menuBtn.focus({ preventScroll: true });
-    }
+    function update() {
+        const y = window.scrollY;
+        const pastHero = hero.getBoundingClientRect().bottom <= header.offsetHeight;
+        root.classList.toggle('past-hero', pastHero);
 
-    menuBtn.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', () => closeMenu(true));
-    backdrop.addEventListener('click', () => closeMenu(true));
-    panelLinks.forEach(a => a.addEventListener('click', () => closeMenu(false)));
-
-    document.addEventListener('keydown', (e) => {
-        if (!root.classList.contains('menu-open')) return;
-        if (e.key === 'Escape') { closeMenu(true); return; }
-        if (e.key === 'Tab') { // prende o foco dentro do painel
-            const f = [...panel.querySelectorAll('a, button')];
-            const first = f[0], last = f[f.length - 1];
-            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        if (!pastHero) {
+            root.classList.remove('nav-hidden');
+            lastY = y;
+        } else if (Math.abs(y - lastY) > TOLERANCE) {
+            root.classList.toggle('nav-hidden', y > lastY);
+            lastY = y;
         }
-    });
+    }
 
-    // Foto do painel muda conforme o link em foco/hover
-    panelLinks.forEach(a => {
-        const swap = () => { photo.src = a.dataset.img; };
-        a.addEventListener('mouseenter', swap);
-        a.addEventListener('focus', swap);
-    });
+    window.addEventListener('scroll', update, { passive: true });
+    update();
 
-    // Seção atual no trilho e no painel
-    const names = { 'Hero-Page': 'Início' };
-    panelLinks.forEach(a => { names[a.getAttribute('href').slice(1)] = a.textContent; });
-    const spy = new IntersectionObserver((entries) => {
-        entries.forEach(en => {
-            if (!en.isIntersecting) return;
-            label.textContent = names[en.target.id] || '';
-            panelLinks.forEach(a => a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + en.target.id)));
+    // Teclado: se algo da navbar receber foco, ela reaparece
+    header.addEventListener('focusin', () => root.classList.remove('nav-hidden'));
+
+    // Seção atual: o link da navbar cuja seção cruza o meio da tela fica marcado.
+    const links = [...document.querySelectorAll('#header-navigation .nav-link')];
+    const sections = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const link = links.find((a) => a.getAttribute('href') === '#' + entry.target.id);
+            if (!link) return;
+            if (entry.isIntersecting) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
         });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    Object.keys(names).forEach(id => { const t = document.getElementById(id); if (t) spy.observe(t); });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    sections.forEach((section) => observer.observe(section));
 });

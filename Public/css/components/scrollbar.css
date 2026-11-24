@@ -1,0 +1,13 @@
+/* Barra de rolagem invisível: não ocupa espaço e não tem fundo.
+   A página continua rolando normalmente com a roda do mouse, toque ou teclado. */
+html, body {
+  scrollbar-width: none;            /* Firefox e Chrome recentes */
+  -ms-overflow-style: none;         /* Edge antigo */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;                    /* Safari e Chrome antigo */
+  width: 0;
+  height: 0;
+  background: transparent;
+}

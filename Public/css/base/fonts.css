@@ -1,0 +1,38 @@
+/* Tipografia base. Famílias: Jost (texto) e Libre Caslon Display (títulos). */
+:root {
+  --font-jost: "Jost", sans-serif;
+  --font-libre-caslon: 'Libre Caslon Display', serif;
+  --font-fallback: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-body: var(--font-jost), var(--font-fallback);
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  --line-height-normal: 1.5;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  font-style: normal;
+  font-variation-settings: 'ital' 0;
+  font-size: clamp(1rem, 1vw + 1rem, 1.25rem); /* 16px a 20px */
+  margin: 0;
+  padding: 0;
+}
+
+strong {
+  font-weight: var(--font-weight-bold);
+  font-stretch: 193%;
+}
+
+em { font-style: italic; }
+
+p {
+  font-weight: var(--font-weight-light);
+  font-stretch: 50%;
+  line-height: var(--line-height-normal);
+  font-size: clamp(0.9rem, 0.9vw + 0.9rem, 1.15rem);
+}

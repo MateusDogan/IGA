@@ -1,0 +1,133 @@
+/* Rodapé dentro da moldura verde do Contato: marca ao fundo, três colunas
+   de links e a linha de direitos. */
+
+#footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1 1 0;
+  padding: 2.5rem 6rem 1.5rem 3rem;
+}
+/* Marca "iga" em marca-d'água atrás dos links */
+.footer-svg {
+  position: absolute;
+  top: 1em;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  color: var(--musgo-hover);
+  opacity: 0.35;
+}
+
+#footer-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1.1fr);
+  gap: 2.5rem;
+  align-self: flex-start;
+  width: 100%;
+  max-width: none;
+  margin-top: 0.5rem;
+}
+.footer-col { min-width: 0; }
+.footer-col h3 {
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(55, 65, 81, 0.35);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--navy-dark);
+}
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 0.1rem; }
+
+#footer .footer-col ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em 0;
+  font-family: 'Jost', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--white);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  opacity: 0.9;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+#footer .footer-col ul li a:hover,
+#footer .footer-col ul li a:focus-visible { color: var(--white); opacity: 1; outline: none; }
+#footer .footer-col ul li a svg { width: 1em; height: 1em; }
+/* E-mail e telefone não quebram linha */
+#footer .footer-col:last-child ul li a { overflow-wrap: normal; white-space: nowrap; }
+
+/* Sublinhado que cresce no hover (links do rodapé) */
+.hover-underline-animation { display: inline-block; position: relative; }
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--musgo-hover);
+  transform: scaleX(0);
+  transition: transform 0.25s ease-out;
+}
+.hover-underline-animation:hover::after { transform: scaleX(1); }
+.hover-underline-animation.left::after { transform-origin: bottom right; }
+.hover-underline-animation.left:hover::after { transform-origin: bottom left; }
+
+/* ---------- Direitos ---------- */
+#copyright {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1.75em 0.75rem;
+  color: var(--white);
+  border-bottom-left-radius: var(--panel-radius);
+  border-bottom-right-radius: var(--panel-radius);
+}
+#copyright span { line-height: 1.2; }
+#copyright ul { display: flex; justify-content: space-between; gap: 1em; list-style: none; }
+#copyright ul li a {
+  padding: 0;
+  font-size: 1em;
+  line-height: 1.2;
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+#copyright ul li a:hover { color: var(--jet); }
+
+
+/* ---------- Responsivo ---------- */
+@media (min-width: 1000px) {
+  #footer { padding-top: 1.75rem; padding-bottom: 1rem; }
+}
+/* Notebook pequeno: duas colunas, contato ocupa a linha de baixo */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  #footer { flex: none; width: 100%; padding: 2rem 2em 1.5rem; }
+}
+/* Celular/tablet: rodapé ocupa a largura toda, embaixo do formulário */
+@media (max-width: 999px) {
+  #footer { flex: none; width: 100%; padding: 2rem 1.5rem; }
+  #footer-row { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
+  #footer-row .footer-col:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  #footer-row { grid-template-columns: 1fr; }
+  #footer-row .footer-col:last-child { grid-column: auto; }
+}

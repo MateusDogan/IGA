@@ -9,7 +9,7 @@
     const ease = reduceMotion ? 1 : 0.22; // suaviza o seguimento
     let targetX = 0, targetY = 0, x = 0, y = 0, running = false;
 
-    const INTERACTIVE = 'a, button, md-filled-button, md-outlined-text-field, .clickable-object, .container-profile';
+    const INTERACTIVE = 'a, button, input, textarea, .clickable-object, .container-profile';
 
     function frame() {
         x += (targetX - x) * ease;

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mateusdogan.github.io/IGA/sitemap.xml

@@ -1,0 +1,256 @@
+/* Contato: moldura verde com os ícones sociais, o formulário (campos + mensagem)
+   e o botão de envio. O rodapé que divide essa moldura fica em footer.css. */
+
+/* ---------- Moldura ---------- */
+#Connect-outside {
+  display: block;
+  overflow: hidden;
+  background-color: transparent; /* deixa aparecer a textura do creme */
+}
+#Connect {
+  display: flex;
+  margin: 0 var(--panel-inset) 2%;
+  overflow: hidden;
+}
+#connect-container {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  z-index: 0;
+  color: var(--white);
+  background-color: var(--musgo);
+  border-radius: var(--panel-radius) var(--panel-radius) var(--panel-radius) 0;
+}
+/* Mesmo grão do Projetos, para os dois verdes falarem a mesma língua */
+#connect-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  background-image: var(--grain);
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+#forms-footer { display: flex; }
+
+/* Ícones sociais na aba à esquerda */
+#social-container {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: auto;
+  overflow: hidden;
+}
+#socila-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 1em;
+  background-color: var(--rosa);
+  border-radius: 0 0 var(--panel-radius) 0;
+}
+#socila-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+#socila-links a svg { width: 1em; height: 1em; color: var(--navy-dark); }
+#social-container-inv { background-color: var(--musgo); border-radius: 0; }
+#social-container-fill { flex-grow: 1; background-color: var(--musgo); border-radius: var(--panel-radius) 0 0 var(--panel-radius); }
+
+/* ---------- Formulário ---------- */
+#form-container { display: block; flex: 1.25 1 0; margin: 0 auto; }
+
+#form-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1.75rem 2em 0.25rem;
+  font-size: 1rem;
+}
+#form-header h2 {
+  margin: 0;
+  max-width: 20ch;
+  font-family: 'Libre Caslon Display', serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+#form-header .form-lede {
+  margin: 0;
+  max-width: 34rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.6;
+  color: rgba(242, 240, 239, 0.88);
+}
+
+/* Duas colunas: campos à esquerda, mensagem à direita com a mesma altura */
+#form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "input-section message-section"
+    "submit-section submit-section";
+  gap: 0.85rem 1.25rem;
+  align-items: stretch;
+  width: 100%;
+  padding: 1.5em 2em 2em;
+  box-sizing: border-box;
+}
+#input-container {
+  grid-area: input-section;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+/* Campos nativos: rótulo em cima, contorno fino escuro sobre o verde.
+   O erro só aparece depois que a pessoa tenta enviar ou sai do campo. */
+.field { display: flex; flex-direction: column; gap: 0.35rem; min-height: 0; }
+.field label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--night);
+}
+.field-optional { font-weight: 300; opacity: 0.75; }
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  font: 400 1rem/1.4 'Jost', sans-serif;
+  color: var(--night);
+  background: rgba(242, 240, 239, 0.22);
+  border: 1px solid var(--navy-dark);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.field textarea { resize: vertical; }
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(21, 21, 21, 0.55); }
+.field input:hover,
+.field textarea:hover { border-color: var(--night); }
+.field input:focus-visible,
+.field textarea:focus-visible {
+  border-color: var(--night);
+  box-shadow: inset 0 0 0 1px var(--night);
+  background: rgba(242, 240, 239, 0.4);
+}
+.field-error {
+  display: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--terracota);
+}
+.field [aria-invalid="true"] { border-color: var(--terracota); box-shadow: inset 0 0 0 1px var(--terracota); }
+.field [aria-invalid="true"] ~ .field-error { display: block; }
+
+.message-box {
+  grid-area: message-section;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.message-box textarea { flex: 1 1 auto; min-height: 140px; }
+
+/* ---------- Envio ---------- */
+#submit {
+  grid-area: submit-section;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+}
+.submit-button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+.form-submit {
+  flex: 0 0 auto;
+  min-width: 10rem;
+  height: 48px;
+  padding: 0 1.75rem;
+  font: 500 0.95rem/1 'Jost', sans-serif;
+  color: var(--white);
+  background: var(--night);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+.form-submit:hover { background: var(--new-terracota); }
+.form-submit:focus-visible { outline: 2px solid var(--night); outline-offset: 3px; }
+.form-submit:disabled { opacity: 0.6; cursor: progress; }
+.submit-button span {
+  flex: 1 1 14rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--navy-dark);
+  opacity: 0.85;
+}
+
+/* Mensagem de status criada por forms_validation.js */
+.submit-button span a { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
+.submit-button span a:hover { color: var(--night); }
+
+#form-status { margin: 8px 0 0; font-size: 0.9rem; }
+#form-status[data-type="error"] { color: var(--terracota); }
+#form-status[data-type="success"] { color: var(--night); font-weight: 500; }
+
+/* ---------- Responsivo ---------- */
+@media (min-width: 1000px) {
+  #form { padding: 1rem 2em 1.25rem; }
+}
+/* Notebook pequeno: lado a lado ficava apertado; formulário em cima e rodapé embaixo */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  #forms-footer { flex-direction: column; }
+  #form-container { flex: none; width: 100%; }
+}
+/* Celular/tablet: rodapé embaixo do formulário, campos em uma coluna */
+@media (max-width: 999px) {
+  #forms-footer { flex-direction: column; }
+  #form-container { flex: none; width: 100%; }
+  #form {
+    grid-template-columns: 1fr;
+    grid-template-areas: "input-section" "message-section" "submit-section";
+    padding: 1.25rem;
+  }
+  .message-box textarea { min-height: 160px; }
+}
+@media (max-width: 560px) {
+  .form-submit { width: 100%; }
+}
+
+/* A aba dos ícones é creme opaco (precisa cobrir o verde do canto); recebe o
+   mesmo grão do fundo, fixo na tela, para emendar sem diferença com o creme. */
+#socila-links { position: relative; isolation: isolate; }
+#socila-links::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-image: var(--grain);
+  background-attachment: fixed;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}

@@ -1,0 +1,51 @@
+/* Faixa de texto corrido entre o Escritório e o Contato (uma linha, indo para a direita). */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 20px 0;
+  margin: 10px 0;
+  position: relative;
+}
+
+/* Wrapper com duas cópias do texto lado a lado; anda metade da largura para o loop ficar contínuo */
+.marquee-content-wrapper {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 30s linear infinite;
+}
+.marquee-content-wrapper.right { animation: marquee-right 30s linear infinite; }
+
+.marquee-text-wrapper,
+.false-div { flex-shrink: 0; }
+
+h2.marquee-text {
+  display: inline-block;
+  font-size: 3em;
+  font-weight: bold;
+  color: var(--jet);
+  padding: 0 25px;
+  margin: 0;
+}
+
+/* Logos das marcas (quando entrarem): mesma altura, em tom do texto, coloridos ao passar o mouse */
+.marquee-logo {
+  display: inline-block;
+  height: 3rem;
+  width: auto;
+  margin: 0 2.5rem;
+  vertical-align: middle;
+  filter: grayscale(1);
+  opacity: 0.75;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.marquee-logo:hover { filter: none; opacity: 1; }
+
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
