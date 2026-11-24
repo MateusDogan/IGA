@@ -23,14 +23,21 @@
   background-color: var(--oliva);
   border-radius: var(--panel-radius) var(--panel-radius) var(--panel-radius) 0;
 }
-/* Mesmo grão do Projetos sobre a oliva */
-#connect-container::before {
+/* Mesmo grão do Projetos sobre a oliva. Vale também para a coluna verde da aba
+   dos ícones (fill e inv): sem ele, a coluna ficava num verde diferente do painel.
+   O grão fica preso à tela (fixed) para emendar sem costura entre as partes. */
+#social-container-inv,
+#social-container-fill { position: relative; isolation: isolate; }
+#connect-container::before,
+#social-container-inv::before,
+#social-container-fill::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -2;
   border-radius: inherit;
   background-image: var(--grain);
+  background-attachment: fixed;
   opacity: 0.18;
   mix-blend-mode: overlay;
   pointer-events: none;
@@ -244,20 +251,12 @@
 @media (max-width: 560px) {
   .form-submit { width: 100%; }
 }
-/* Celular/tablet: a aba dos ícones sai da lateral (roubava ~60 px de largura do
-   formulário e do rodapé) e vira uma aba horizontal no alto, como a orelha de uma pasta */
+/* Celular/tablet: sem a aba lateral dos ícones (eles vão para o rodapé, ver footer.css);
+   o painel vira um cartão simples e o texto de apoio do formulário sai */
 @media (max-width: 999px) {
-  #Connect { flex-direction: column; }
-  #social-container { flex-direction: row; }
-  #social-links {
-    flex-direction: row;
-    gap: 1.4em;
-    padding: 0.85em 1.2em;
-    border-radius: 0 0 var(--panel-radius) 0;
-  }
-  #social-links a { min-width: 1.75rem; min-height: 1.75rem; } /* alvo de toque maior */
-  #social-container-fill { border-radius: var(--panel-radius) var(--panel-radius) 0 0; }
-  #connect-container { border-radius: 0 0 var(--panel-radius) var(--panel-radius); }
+  #social-container { display: none; }
+  #connect-container { border-radius: var(--panel-radius); }
+  .form-lede { display: none; }
 }
 
 /* A aba dos ícones é creme opaco (precisa cobrir o verde do canto); recebe o

@@ -103,3 +103,9 @@
   .service:hover .service-body { border-top-color: var(--new-terracota); }
 }
 @media (prefers-reduced-motion: reduce) { .service-photo { transition: none; } .service:hover .service-photo { transform: none; } }
+
+/* Celular: cada serviço fica com o título e as etiquetas; o parágrafo sai (as etiquetas já dizem o essencial) */
+@media (max-width: 699px) {
+  .service-body > p { display: none; }
+  .service-body ul { margin-top: 0.6rem; }
+}

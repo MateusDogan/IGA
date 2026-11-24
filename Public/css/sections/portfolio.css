@@ -268,3 +268,9 @@
   .gallery-img { max-height: 45svh; object-position: center; }
   .gallery-nav { width: 2.5rem; height: 2.5rem; font-size: 1.6rem; align-self: center; }
 }
+
+/* Celular: o título "Projetos" basta; a frase de apoio sai */
+@media (max-width: 699px) {
+  .portfolio-intro p { display: none; }
+  .portfolio-intro { margin-bottom: 1.5rem; }
+}

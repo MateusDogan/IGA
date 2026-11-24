@@ -139,14 +139,36 @@
   #footer-row { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
   #footer-row .footer-col:last-child { grid-column: 1 / -1; }
 }
-/* Celular: Planta e Portfólio lado a lado, Contato embaixo ocupando a linha;
-   textos menores e mais juntos, para o rodapé não virar uma lista comprida */
-@media (max-width: 560px) {
-  #footer { padding: 2.25rem 1.25rem 1.5rem; }
-  #footer-row { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 2rem 1.25rem; }
-  #footer-row .footer-col:last-child { grid-column: 1 / -1; }
-  .footer-col h3 { font-size: 1rem; margin-bottom: 0.6rem; padding-bottom: 0.45rem; }
-  #footer .footer-col ul li a { font-size: 1rem; padding: 0.3em 0; }
-  .footer-svg { top: auto; bottom: 0; height: 60%; opacity: 0.25; }
-  #copyright { flex-direction: column; align-items: flex-start; gap: 0.4rem; padding: 1rem 1.25rem 1.25rem; font-size: 0.85rem; border-top: 1px solid rgba(247, 242, 236, 0.18); }
+/* Ícones do rodapé: só no celular/tablet */
+#footer-social { display: none; }
+
+/* Celular/tablet: o rodapé mostra só os ícones (Instagram, LinkedIn, e-mail, telefone);
+   as colunas de links saem. Sem JS os ícones não são copiados, então as colunas ficam. */
+@media (max-width: 999px) {
+  .js #footer-row { display: none; }
+  .js #footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  #footer-social a {
+    display: grid;
+    place-items: center;
+    width: 48px;                       /* alvo de toque confortável */
+    height: 48px;
+    color: var(--white);
+    opacity: 0.9;
+  }
+  #footer-social a:active { opacity: 1; }
+  #footer-social svg { width: 22px; height: 22px; }
+  .js #footer { padding: 1.75rem 1rem 0.5rem; align-items: center; }
+  .js .footer-svg { display: none; }
+  #copyright {
+    justify-content: center;
+    gap: 0.25rem 1rem;
+    padding: 0.75rem 1rem 1.25rem;
+    font-size: 0.8rem;
+    opacity: 0.85;
+  }
 }

@@ -31,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Rodapé no celular: só os ícones. Copia os links da aba social (uma fonte só).
+    const footerSocial = document.getElementById('footer-social');
+    const socialLinks = document.querySelectorAll('#social-links a');
+    if (footerSocial && socialLinks.length) {
+        socialLinks.forEach((a) => footerSocial.appendChild(a.cloneNode(true)));
+    }
+
     const root = document.documentElement;
     const hero = document.getElementById('Hero-Page');
     const header = document.getElementById('main-header');
@@ -73,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const setMenu = (open, moveFocus = true) => {
             root.classList.toggle('menu-open', open);
             toggle.setAttribute('aria-expanded', String(open));
-            toggle.textContent = open ? 'Fechar' : 'Menu';
+            toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
             document.body.style.overflow = open ? 'hidden' : '';
             if (open) {
                 root.classList.remove('nav-hidden');
