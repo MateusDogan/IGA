@@ -10,7 +10,7 @@ Para ver localmente, sirva a pasta com qualquer servidor estático (por exemplo 
 
 ## Estado atual (novembro de 2026)
 
-**O design e o código estão prontos.** O que falta é conteúdo real da cliente e alguns ajustes de publicação (lista abaixo).
+**O design e o código estão prontos.** O formulário da fase 1 já está publicado, e o que falta é conteúdo real da cliente, a fase 2 da proteção e alguns ajustes de publicação (lista abaixo).
 
 O que já funciona:
 
@@ -133,11 +133,13 @@ As cores ficam só em `Public/css/base/colors.css`. Use sempre as variáveis:
 | --- | --- | --- |
 | `--linho` | `#F2E8DC` | fundo creme, texto sobre escuro |
 | `--argila` | `#D9A58A` | acentos sobre a oliva |
-| `--new-terracota` | `#B5583A` | acento principal |
-| `--terracota` | `#8F3F24` | hover do botão Contato |
+| `--new-terracota` | `#B5583A` | acento principal: faixa de marcas, linha sob Serviços, sublinhado do menu |
+| `--terracota` | `#8F3F24` | botão Enviar, etiquetas de Serviços, hover do botão Contato |
 | `--oliva` / `--oliva-escura` | `#6B7A3F` / `#5A6735` | painel de contato e rodapé |
 | `--grafite` / `--night` | `#2B2622` / `#1F1B18` | Projetos, textos escuros |
 | `--white` | `#F7F2EC` | branco quente |
+
+**Equilíbrio de cores.** O verde ocupa o painel de Contato e o rodapé, então o terracota precisa aparecer em repouso, não só em hover. Hoje ele está em: faixa de marcas, linha de cada serviço, etiquetas de Serviços e botão Enviar. Para mais terracota, os próximos candidatos são os cargos da equipe e as legendas de Projetos (com `--argila` sobre o grafite, que tem contraste).
 
 Fontes, todas do Google Fonts:
 
