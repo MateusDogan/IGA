@@ -2,8 +2,8 @@
    texto creme e o terracota só como acento. Caixas em tamanhos variados;
    enquanto .portfolio-photo estiver vazio, mostra uma caixa de espera. */
 #Projects {
-  --pf-bg: #2B2622;            /* grafite quente */
-  --pf-cream: #F2E8DC;         /* texto e linhas */
+  --pf-bg: var(--grafite);
+  --pf-cream: var(--linho);    /* texto e linhas */
   --pf-slot: #38312C;          /* caixa de espera, um tom acima do fundo */
   position: relative;
   isolation: isolate;

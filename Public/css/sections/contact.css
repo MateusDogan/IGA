@@ -65,7 +65,6 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: all 0.3s ease;
 }
 #social-links a svg { width: 1em; height: 1em; color: var(--grafite); }
 #social-container-inv { background-color: var(--oliva); border-radius: 0; }
@@ -247,33 +246,36 @@
     padding: 1.25rem;
   }
   .message-box textarea { min-height: 160px; }
-}
-@media (max-width: 560px) {
-  .form-submit { width: 100%; }
-}
-/* Celular/tablet: sem a aba lateral dos ícones (eles vão para o rodapé, ver footer.css);
-   o painel vira um cartão simples e o texto de apoio do formulário sai */
-@media (max-width: 999px) {
+  /* sem a aba lateral dos ícones: o painel vira um cartão simples e o texto de apoio sai */
   #social-container { display: none; }
   #connect-container { border-radius: var(--panel-radius); }
   .form-lede { display: none; }
 }
-/* Tablet: os ícones de contato ficam à direita do título, ocupando o espaço vazio
-   (no celular eles ficam no rodapé; ver footer.css) */
-#form-social { display: none; }
+@media (max-width: 560px) {
+  .form-submit { width: 100%; }
+}
+
+/* ---------- Ícones copiados da aba (celular/tablet) ----------
+   header.js copia os links de #social-links para os blocos .social-copy:
+   no tablet ficam à direita do título do formulário; no celular, no rodapé.
+   Sem JS os blocos ficam vazios e escondidos. */
+.social-copy { display: none; gap: 0.25rem; }
+.social-copy a {
+  display: grid;
+  place-items: center;
+  width: 48px;                         /* alvo de toque confortável */
+  height: 48px;
+  color: var(--white);
+  opacity: 0.9;
+}
+.social-copy a:active { opacity: 1; }
+.social-copy svg { width: 22px; height: 22px; }
 @media (min-width: 700px) and (max-width: 999px) {
   .js #form-header { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem; }
-  .js #form-social { display: flex; gap: 0.25rem; flex-shrink: 0; }
-  #form-social a {
-    display: grid;
-    place-items: center;
-    width: 48px;                       /* alvo de toque confortável */
-    height: 48px;
-    color: var(--white);
-    opacity: 0.9;
-  }
-  #form-social a:active { opacity: 1; }
-  #form-social svg { width: 22px; height: 22px; }
+  .js #form-social { display: flex; flex-shrink: 0; }
+}
+@media (max-width: 699px) {
+  .js #footer-social { display: flex; justify-content: center; width: 100%; }
 }
 
 /* A aba dos ícones é creme opaco (precisa cobrir o verde do canto); recebe o
