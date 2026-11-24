@@ -29,7 +29,8 @@
     const FOOTER_LINK = '#footer .footer-col a';
     const EXPLORE = '#Explore';
     const PHOTO = '.portfolio-open';
-    const OLIVE = '#connect-container'; // painel verde do contato e do rodapé
+    // partes verdes do contato: o painel (formulário + rodapé) e a coluna embaixo dos ícones
+    const OLIVE = '#connect-container, #social-container-fill, #social-container-inv';
 
     function frame() {
         x += (targetX - x) * ease;
@@ -85,7 +86,8 @@
         cursor.classList.toggle('is-footer', footerLink);
         cursor.classList.toggle('is-explore', !!explore);
         cursor.classList.toggle('is-photo', !!photo);
-        cursor.classList.toggle('is-olive', !!e.target.closest(OLIVE));
+        // a aba creme dos ícones fica dentro da coluna verde: ali o anel volta ao normal
+        cursor.classList.toggle('is-olive', !!e.target.closest(OLIVE) && !e.target.closest('#social-links'));
         const onText = !!e.target.closest(TEXT);
         cursor.classList.toggle('is-text', onText);
         cursor.classList.toggle('is-enlarged', !menuLink && !explore && !photo && !onText && !!e.target.closest(INTERACTIVE));
