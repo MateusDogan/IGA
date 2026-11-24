@@ -258,6 +258,23 @@
   #connect-container { border-radius: var(--panel-radius); }
   .form-lede { display: none; }
 }
+/* Tablet: os ícones de contato ficam à direita do título, ocupando o espaço vazio
+   (no celular eles ficam no rodapé; ver footer.css) */
+#form-social { display: none; }
+@media (min-width: 700px) and (max-width: 999px) {
+  .js #form-header { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .js #form-social { display: flex; gap: 0.25rem; flex-shrink: 0; }
+  #form-social a {
+    display: grid;
+    place-items: center;
+    width: 48px;                       /* alvo de toque confortável */
+    height: 48px;
+    color: var(--white);
+    opacity: 0.9;
+  }
+  #form-social a:active { opacity: 1; }
+  #form-social svg { width: 22px; height: 22px; }
+}
 
 /* A aba dos ícones é creme opaco (precisa cobrir o verde do canto); recebe o
    mesmo grão do fundo, fixo na tela, para emendar sem diferença com o creme. */

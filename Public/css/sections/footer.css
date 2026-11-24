@@ -162,6 +162,8 @@
   }
   #footer-social a:active { opacity: 1; }
   #footer-social svg { width: 22px; height: 22px; }
+  /* Tablet: os ícones já estão ao lado do título do formulário, logo acima */
+  @media (min-width: 700px) { .js #footer-social { display: none; } }
   .js #footer { padding: 1.75rem 1rem 0.5rem; align-items: center; }
   .js .footer-svg { display: none; }
   #copyright {

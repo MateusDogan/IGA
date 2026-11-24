@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Rodapé no celular: só os ícones. Copia os links da aba social (uma fonte só).
-    const footerSocial = document.getElementById('footer-social');
+    // Celular/tablet: a aba social some e os ícones aparecem no rodapé (celular) ou
+    // ao lado do título do formulário (tablet). Copia os links da aba (uma fonte só).
     const socialLinks = document.querySelectorAll('#social-links a');
-    if (footerSocial && socialLinks.length) {
-        socialLinks.forEach((a) => footerSocial.appendChild(a.cloneNode(true)));
-    }
+    document.querySelectorAll('.social-copy').forEach((box) => {
+        socialLinks.forEach((a) => box.appendChild(a.cloneNode(true)));
+    });
 
     const root = document.documentElement;
     const hero = document.getElementById('Hero-Page');
