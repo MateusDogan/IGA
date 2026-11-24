@@ -1,6 +1,6 @@
 // URL do Web App do Google Apps Script (ver docs/google-sheets-setup.md).
 // Cole aqui a URL que termina em /exec depois de publicar o script.
-const GOOGLE_SCRIPT_URL = '';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVHNhsWGDC5REdyhxlnq84PlE4VuqJ0hFBjN3MWHZzfp6ETkkSS9xu99ItNC--dSl_mA/exec';
 
 // Formulário com campos nativos. Cada regra marca o campo com aria-invalid,
 // o que mostra a mensagem de erro dele (.field-error) via CSS.
