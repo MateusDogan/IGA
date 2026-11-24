@@ -4,6 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const year = document.getElementById('copy-year');
     if (year) year.textContent = new Date().getFullYear();
 
+    // Início (logo e link "Início") sobe ao topo sem deixar #Hero-Page na URL,
+    // para que recarregar a página não volte ao hero por causa do hash.
+    const HERO_HASH = '#Hero-Page';
+    const cleanUrl = () => history.replaceState(null, '', location.pathname + location.search);
+    if (location.hash === HERO_HASH) cleanUrl();
+    document.addEventListener('click', (e) => {
+        const a = e.target.closest(`a[href="${HERO_HASH}"]`);
+        if (!a) return;
+        e.preventDefault();
+        cleanUrl();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     // Link compartilhado com # (ex.: .../#Projects): abre direto na seção,
     // sem a rolagem suave, depois que as fontes e o layout assentam.
     if (location.hash) {

@@ -23,7 +23,7 @@ h2.marquee-text {
   display: inline-block;
   font-size: 3em;
   font-weight: bold;
-  color: var(--jet);
+  color: var(--grafite);
   padding: 0 25px;
   margin: 0;
 }

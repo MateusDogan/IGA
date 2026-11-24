@@ -27,10 +27,10 @@ html.past-hero #main-header {
   backdrop-filter: blur(18px) saturate(1.1);
   border-bottom-color: rgba(43, 38, 34, 0.1);
   box-shadow: none;
-  color: #2B2622;
+  color: var(--grafite);
 }
 html.past-hero .brand,
-html.past-hero #main-header .nav-link { color: #2B2622; text-shadow: none; }
+html.past-hero #main-header .nav-link { color: var(--grafite); text-shadow: none; }
 html.past-hero #main-header .nav-link:hover { color: var(--new-terracota); }
 
 /* Linha de progresso: fio terracota na base da barra, cresce conforme a página rola (header.js) */
@@ -108,7 +108,7 @@ html.past-hero .header-progress { opacity: 1; }
   display: flex;
   align-items: center;
 }
-.header-cta:hover { background: var(--new-terracota); border-color: var(--new-terracota); color: var(--white); }
+.header-cta:hover { background: var(--terracota); border-color: var(--terracota); color: var(--white); }
 .header-cta:focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 3px; }
 
 #main-header :focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 4px; }
@@ -145,7 +145,7 @@ html.past-hero .header-progress { opacity: 1; }
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #F2E8DC;
+    background: var(--linho);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.35s ease, visibility 0s linear 0.35s;
@@ -158,7 +158,7 @@ html.past-hero .header-progress { opacity: 1; }
     font-size: clamp(2.2rem, 9vw, 3.2rem);
     letter-spacing: 0;
     text-transform: none;
-    color: #2B2622;
+    color: var(--grafite);
     text-shadow: none;
   }
   #main-header .nav-link[aria-current] { text-underline-offset: 0.25em; }
@@ -170,9 +170,9 @@ html.past-hero .header-progress { opacity: 1; }
     backdrop-filter: none;
     border-bottom-color: transparent;
     transform: none;
-    color: #2B2622;
+    color: var(--grafite);
   }
-  html.menu-open .brand { color: #2B2622; }
+  html.menu-open .brand { color: var(--grafite); }
   html.menu-open .header-progress { opacity: 0; }
 }
 

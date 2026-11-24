@@ -18,7 +18,7 @@
   z-index: -1;
   width: 100%;
   height: 100%;
-  color: var(--musgo-hover);
+  color: var(--oliva-escura);
   opacity: 0.35;
 }
 
@@ -44,7 +44,7 @@
   font-weight: 500;
   letter-spacing: 0;
   text-transform: none;
-  color: var(--argila); /* títulos das colunas em argila sobre a oliva */
+  color: var(--linho); /* títulos das colunas em creme sobre a oliva (argila tinha contraste baixo) */
 }
 .footer-col ul { list-style: none; padding: 0; }
 .footer-col ul li { margin-bottom: 0.1rem; }

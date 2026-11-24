@@ -1,9 +1,6 @@
 /* Paleta do site: "Terracota e oliva".
    Terracota é a cor principal; o verde oliva fica só no painel de Contato e no rodapé, como contraste.
-   (As variáveis --oliva e --musgo guardam o verde de contraste, mesmo com o nome antigo.)
-   Use sempre as variáveis; não há classes utilitárias de cor.
-   (Alguns nomes antigos foram mantidos para não mexer em todos os arquivos:
-   --rosa é o linho, --musgo é a oliva, --jet e --navy-dark são o grafite.) */
+   Use sempre as variáveis; não há classes utilitárias de cor. */
 :root {
   --linho: #F2E8DC;          /* fundo */
   --argila: #D9A58A;         /* detalhes claros, destaques sobre a oliva */
@@ -13,12 +10,6 @@
   --oliva-escura: #5A6735;   /* marca-d'água e hover sobre o verde */
   --grafite: #2B2622;        /* texto e fundos escuros (Projetos) */
 
-  /* nomes antigos, apontando para a paleta nova */
-  --rosa: var(--linho);
-  --musgo: var(--oliva);
-  --musgo-hover: var(--oliva-escura);
-  --jet: var(--grafite);
-  --navy-dark: var(--grafite);
   --night: #1F1B18;          /* quase preto quente (fundo do hero enquanto carrega) */
   --white: #F7F2EC;          /* texto claro sobre fundos escuros */
 }

@@ -20,7 +20,7 @@
   flex-grow: 1;
   z-index: 0;
   color: var(--white);
-  background-color: var(--musgo);
+  background-color: var(--oliva);
   border-radius: var(--panel-radius) var(--panel-radius) var(--panel-radius) 0;
 }
 /* Mesmo grão do Projetos sobre a oliva */
@@ -45,24 +45,24 @@
   height: auto;
   overflow: hidden;
 }
-#socila-links {
+#social-links {
   display: flex;
   flex-direction: column;
   gap: 1.5em;
   padding: 1em;
-  background-color: var(--rosa);
+  background-color: var(--linho);
   border-radius: 0 0 var(--panel-radius) 0;
 }
-#socila-links a {
+#social-links a {
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   transition: all 0.3s ease;
 }
-#socila-links a svg { width: 1em; height: 1em; color: var(--navy-dark); }
-#social-container-inv { background-color: var(--musgo); border-radius: 0; }
-#social-container-fill { flex-grow: 1; background-color: var(--musgo); border-radius: var(--panel-radius) 0 0 var(--panel-radius); }
+#social-links a svg { width: 1em; height: 1em; color: var(--grafite); }
+#social-container-inv { background-color: var(--oliva); border-radius: 0; }
+#social-container-fill { flex-grow: 1; background-color: var(--oliva); border-radius: var(--panel-radius) 0 0 var(--panel-radius); }
 
 /* ---------- Formulário ---------- */
 #form-container { display: block; flex: 1.25 1 0; margin: 0 auto; }
@@ -140,7 +140,7 @@
 }
 .field textarea { resize: vertical; }
 .field input::placeholder,
-.field textarea::placeholder { color: rgba(247, 242, 236, 0.6); }
+.field textarea::placeholder { color: rgba(247, 242, 236, 0.75); }
 .field input:hover,
 .field textarea:hover { border-color: var(--white); }
 .field input:focus-visible,
@@ -247,8 +247,8 @@
 
 /* A aba dos ícones é creme opaco (precisa cobrir o verde do canto); recebe o
    mesmo grão do fundo, fixo na tela, para emendar sem diferença com o creme. */
-#socila-links { position: relative; isolation: isolate; }
-#socila-links::before {
+#social-links { position: relative; isolation: isolate; }
+#social-links::before {
   content: '';
   position: absolute;
   inset: 0;

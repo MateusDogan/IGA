@@ -12,7 +12,7 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    border: 2px solid #fff;
+    border: 2px solid var(--white);
     background: transparent;
     mix-blend-mode: difference; /* contrasta com fundos claros e escuros */
     pointer-events: none;
@@ -26,14 +26,14 @@
 /* Campos de texto: o cursor de digitação do sistema volta e o anel some */
 .has-custom-cursor #custom-cursor.is-text { opacity: 0; }
 .has-custom-cursor #custom-cursor.is-enlarged { width: 48px; height: 48px; background: rgba(255, 255, 255, 0.25); }
-.has-custom-cursor #custom-cursor.is-clicked { width: 14px; height: 14px; background: #fff; }
+.has-custom-cursor #custom-cursor.is-clicked { width: 14px; height: 14px; background: var(--white); }
 
 /* Menu: o anel se achata e vira o sublinhado da palavra (a largura vem do JS) */
 .has-custom-cursor #custom-cursor.is-underline {
     height: 2px;
     border-width: 0;
     border-radius: 1px;
-    background: #fff;
+    background: var(--white);
 }
 /* Fotos de Projetos: o anel mantém o tamanho e mostra uma seta.
    Ao pressionar, o anel continua do mesmo tamanho, sem preenchimento, e a seta encolhe um pouco. */
@@ -44,7 +44,7 @@
     display: grid;
     place-items: center;
     font: 400 12px/1 'Jost', sans-serif;
-    color: #fff;
+    color: var(--white);
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }

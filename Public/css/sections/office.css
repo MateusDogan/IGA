@@ -20,7 +20,7 @@
   max-width: 1200px;
   margin-inline: auto;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(58, 58, 58, 0.2);
+  border-bottom: 1px solid rgba(43, 38, 34, 0.2);
 }
 #Office-heading {
   margin: 0;
@@ -31,7 +31,7 @@
   line-height: 1;
   letter-spacing: -0.015em;
   text-transform: none;
-  color: var(--jet);
+  color: var(--grafite);
 }
 #Office-heading::before, #Office-heading::after { content: none; }
 #office-text {
@@ -43,7 +43,7 @@
   font-weight: 300;
   font-size: clamp(1rem, 1.3vw, 1.15rem);
   line-height: 1.6;
-  color: var(--jet);
+  color: var(--grafite);
 }
 
 /* Fotos: molduras 3:4 mantidas; a do meio desce um pouco para dar ritmo */
@@ -66,7 +66,7 @@
     padding-top: 0;
     padding-bottom: 1rem;
     border-top: 0;
-    border-bottom: 1px solid rgba(58, 58, 58, 0.2);
+    border-bottom: 1px solid rgba(43, 38, 34, 0.2);
   }
 }
 
@@ -89,7 +89,7 @@
   align-items: flex-end;
   padding: 1.25rem;
   box-sizing: border-box;
-  background: linear-gradient(to top, rgba(21, 21, 21, 0.85) 0%, rgba(21, 21, 21, 0.2) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(31, 27, 24, 0.85) 0%, rgba(31, 27, 24, 0.2) 55%, transparent 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -117,7 +117,7 @@
   gap: 0.2rem;
   padding-top: 1rem;
   margin-top: 1rem;
-  border-top: 1px solid rgba(58, 58, 58, 0.2);
+  border-top: 1px solid rgba(43, 38, 34, 0.2);
 }
 .member figcaption h3 {
   margin: 0;
@@ -127,13 +127,13 @@
   letter-spacing: 0.04em;
   font-size: clamp(1.1rem, 1.6vw, 1.4rem);
   line-height: 1.25;
-  color: var(--jet);
+  color: var(--grafite);
 }
 .member figcaption span {
   font-family: 'Jost', sans-serif;
   font-weight: 300;
   font-size: 0.95rem;
-  color: var(--navy-dark);
+  color: var(--grafite);
 }
 
 /* Texto da história */
@@ -144,7 +144,7 @@
   font-weight: 300;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: var(--jet);
+  color: var(--grafite);
 }
 .office-story #office-text { max-width: none; font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.55; }
 

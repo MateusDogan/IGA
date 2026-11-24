@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: flex-end;
   background: var(--night);
-  color: #fff;
+  color: var(--white);
   overflow: hidden;
 }
 
@@ -81,7 +81,7 @@
   align-items: center;
   gap: 0.75rem;
   width: 100%;
-  color: #fff;
+  color: var(--white);
   text-align: center;
 }
 /* Legenda da foto do hero no mesmo formato das legendas de Serviços, Projetos
