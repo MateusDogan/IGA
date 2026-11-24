@@ -1,114 +1,138 @@
-/* Navbar: mobile-first dentro do header existente. Carregado depois de style.css. */
+/* Navegação: menu horizontal só no hero (≥1000px) + trilho lateral direito com painel.
+   Carregado depois de style.css. */
 
-/* ---------- Base (celular) ---------- */
-#main-header { padding: 0.5rem 1rem; }
-#main-header .logo-svg { height: 3rem; margin-left: 0; position: relative; z-index: 2; }
+/* ---------- Header (só no hero) ---------- */
+#main-header { padding: 0.5rem 1rem; transition: opacity 0.3s ease, visibility 0s; }
+#main-header .logo-svg { height: 3rem; margin-left: 0; }
+#header-navigation { display: none; }
+html.past-hero #main-header { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
 
-.nav-toggle {
-  position: relative;
-  z-index: 2;
-  margin-left: auto;
-  width: 48px;           /* alvo de toque mínimo */
-  height: 48px;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  display: grid;
-  place-content: center;
-  gap: 7px;
-  cursor: pointer;
-}
-.nav-toggle span {
-  display: block;
-  width: 28px;
-  height: 2px;
-  background: currentColor;
-  transition: transform 0.3s ease;
-}
-.nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(4.5px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span:last-child  { transform: translateY(-4.5px) rotate(-45deg); }
-.nav-toggle:focus-visible, #main-header .nav-link:focus-visible {
-  outline: 2px solid var(--new-terracota);
-  outline-offset: 4px;
-}
+#main-header .nav-link:hover { color: var(--new-terracota); }
+#main-header .nav-link:focus-visible,
+#side-rail :focus-visible, #side-panel :focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 4px; }
 
-/* Menu em tela cheia */
-#header-navigation {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  padding: 6rem 1.5rem 3rem;
-  background: var(--night);
-  color: var(--white);
-  opacity: 0;
-  visibility: hidden;      /* some do foco e da leitura de tela quando fechado */
-  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
-}
-#header-navigation ul { flex-direction: column; gap: 1.25rem; }
-#header-navigation li { margin: 0; }
-#main-header .nav-link { font-size: clamp(2.2rem, 10vw, 3.6rem); font-weight: 300; }
-
-#main-header.menu-open #header-navigation {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease, visibility 0s;
-}
-/* backdrop-filter/transform criam um "containing block" e prenderiam o menu fixo dentro do header */
-#main-header.menu-open {
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  transform: none;
-  overflow: visible;
-  background: transparent;
-  box-shadow: none;
-  width: 100%;
-  top: 0;
-  border-radius: 0;
-  padding: 0.5rem 1rem;
-  color: var(--white);
-}
-html.menu-open { overflow: hidden; }
-
-/* ---------- Hover e link ativo (vale em todos os tamanhos) ---------- */
-#main-header .nav-link:hover,
-#main-header .nav-link[aria-current="true"] { color: var(--new-terracota); }
-
-/* ---------- Barra "pílula" escura: texto branco sempre legível ---------- */
-#main-header.header-scrolled {
-  background-color: rgba(21, 21, 21, 0.78);
-  width: min(92%, 1000px);
-  padding: 0.35rem 1rem;
-}
-
-/* ---------- Tablet pequeno / desktop (≥ 1000px): menu horizontal ---------- */
 @media (min-width: 1000px) {
   #main-header { padding: 0.2rem 3rem; }
   #main-header .logo-svg { height: 4.5rem; margin-left: 1.5rem; }
-  .nav-toggle { display: none; }
-
-  #header-navigation {
-    position: static;
-    inset: auto;
-    z-index: auto;
-    margin-left: auto;
-    padding: 0;
-    background: transparent;
-    color: inherit;
-    opacity: 1;
-    visibility: visible;
-    transition: none;
-  }
-  #header-navigation ul { flex-direction: row; gap: clamp(1rem, 3vw, 3rem); }
+  #header-navigation { display: block; }
+  #header-navigation ul { gap: clamp(1rem, 3vw, 3rem); }
   #header-navigation li { margin-left: 0; }
   #main-header .nav-link { font-size: clamp(1rem, 1.7vw, 1.6rem); }
-  #main-header.header-scrolled .logo-svg { height: 3rem; }
 }
-
 @media (min-width: 1400px) { #main-header { padding-inline: 6rem; } }
 
+/* ---------- Trilho lateral ---------- */
+#side-rail {
+  position: fixed;
+  z-index: 1050;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  background: rgba(21, 21, 21, 0.88);
+  color: var(--white);
+  border-radius: 10px 0 0 10px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.rail-logo, .rail-label { display: none; }
+.rail-menu {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: 400 1rem/1 'Jost', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.rail-menu:hover { color: var(--new-terracota); }
+
+@media (min-width: 1000px) {
+  #side-rail {
+    top: 12px; bottom: 12px; right: 12px;
+    transform: none;
+    width: 56px;
+    padding: 1.1rem 0;
+    justify-content: space-between;
+    border-radius: 28px;
+  }
+  .rail-logo { display: block; color: inherit; }
+  .rail-logo svg { width: 34px; height: auto; display: block; }
+  .rail-label {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  /* No hero o menu do topo basta: o trilho entra depois dele */
+  html:not(.past-hero) #side-rail { opacity: 0; transform: translateX(120%); pointer-events: none; visibility: hidden; }
+}
+
+/* ---------- Painel lateral ---------- */
+#side-backdrop {
+  position: fixed; inset: 0; z-index: 1090;
+  background: rgba(0, 0, 0, 0.5);
+}
+#side-backdrop[hidden] { display: none; }
+
+#side-panel {
+  position: fixed;
+  z-index: 1100;
+  top: 0; right: 0; bottom: 0;
+  width: min(460px, 100%);
+  padding: 4.5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--night);
+  color: var(--white);
+  transform: translateX(100%);
+  visibility: hidden;                 /* fechado: fora do foco e da leitura de tela */
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.4s;
+  overflow-y: auto;
+}
+html.menu-open #side-panel { transform: none; visibility: visible; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s; }
+html.menu-open { overflow: hidden; }
+
+.panel-close {
+  position: absolute; top: 1.25rem; right: 1.5rem;
+  border: 0; background: none; color: inherit;
+  font: 400 1rem 'Jost', sans-serif;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.5rem; cursor: pointer;
+}
+.panel-close:hover { color: var(--new-terracota); }
+
+#side-panel ul { display: flex; flex-direction: column; gap: 0.25rem; }
+#side-panel li a {
+  display: inline-block;
+  font-family: 'Libre Caslon Display', serif;
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  line-height: 1.15;
+  color: var(--white);
+  opacity: 0.55;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+#side-panel li a:hover, #side-panel li a:focus-visible, #side-panel li a[aria-current="true"] { opacity: 1; }
+#side-panel li a:hover, #side-panel li a:focus-visible { color: var(--new-terracota); }
+
+.panel-photo {
+  width: 100%; height: auto; aspect-ratio: 4 / 3;
+  object-fit: cover; border-radius: 4px; margin-top: auto;
+}
+.panel-contact { font-size: 0.95rem; line-height: 1.6; color: var(--grey); }
+
 @media (prefers-reduced-motion: reduce) {
-  #header-navigation, .nav-toggle span { transition: none; }
+  #side-panel, #side-rail, #main-header { transition: none; }
 }

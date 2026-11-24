@@ -54,9 +54,6 @@
             <circle cx="1175.87" cy="725" r="25" fill="currentColor"/>
             <circle cx="25.8721" cy="25" r="25" fill="currentColor"/>
         </svg>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-navigation" aria-label="Abrir menu">
-            <span></span><span></span>
-        </button>
         <nav id="header-navigation" aria-label="Main Page Navigation">
             <ul>
                 <li class="clickable-object hover-underline-animation left"><a href="#Services" class="nav-link">Serviços</a></li>
@@ -360,6 +357,27 @@
     </div>
     </section>
 
+<aside id="side-rail" aria-label="Menu lateral">
+    <a class="rail-logo" href="#Hero-Page" aria-label="Início">
+        <svg width="1201" height="750" viewBox="0 0 1201 750" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0.87207" y="100" width="50" height="400" fill="currentColor"/><circle cx="1175.87" cy="725" r="25" fill="currentColor"/><circle cx="25.8721" cy="25" r="25" fill="currentColor"/></svg>
+    </a>
+    <button class="rail-menu" type="button" aria-expanded="false" aria-controls="side-panel">Menu</button>
+    <span class="rail-label" id="rail-label" aria-hidden="true">Início</span>
+</aside>
+<div id="side-backdrop" hidden></div>
+<div id="side-panel" role="dialog" aria-modal="true" aria-label="Menu principal" aria-hidden="true">
+    <button class="panel-close" type="button" aria-label="Fechar menu">Fechar</button>
+    <nav aria-label="Seções do site">
+        <ul>
+            <li><a href="#Services" data-img="Public/assets/Foto2.jpg">Serviços</a></li>
+            <li><a href="#Projects" data-img="Public/assets/Foto3.jpg">Projetos</a></li>
+            <li><a href="#Office" data-img="Public/assets/Foto4.jpg">Escritório</a></li>
+            <li><a href="#Connect" data-img="Public/assets/foto5.jpg">Contato</a></li>
+        </ul>
+    </nav>
+    <img class="panel-photo" src="Public/assets/Foto2.jpg" alt="" width="400" height="300">
+    <p class="panel-contact">iga@e-mail.com<br>(012) 9 8765-4321</p>
+</div>
     <script src="Public/scripts/mouse.js"></script>
     <script src="Public/scripts/reload_page.js"></script>
     <script src="Public/scripts/header.js"></script>
