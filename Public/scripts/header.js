@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const pastHero = hero.getBoundingClientRect().bottom <= header.offsetHeight;
         root.classList.toggle('past-hero', pastHero);
 
+        // linha de progresso: 0 no topo, 1 no fim da página
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        header.style.setProperty('--progress', max > 0 ? Math.min(1, y / max).toFixed(4) : 0);
+
+        if (root.classList.contains('menu-open')) return; // menu aberto: a barra fica visível
         if (!pastHero) {
             root.classList.remove('nav-hidden');
             lastY = y;
@@ -45,6 +50,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Teclado: se algo da navbar receber foco, ela reaparece
     header.addEventListener('focusin', () => root.classList.remove('nav-hidden'));
+
+    // Celular/tablet: botão "Menu" abre as seções em tela cheia.
+    // Fecha com o mesmo botão, com Esc ou ao escolher uma seção.
+    const toggle = header.querySelector('.menu-toggle');
+    const nav = document.getElementById('header-navigation');
+    if (toggle && nav) {
+        const mobile = window.matchMedia('(max-width: 999px)');
+        const setMenu = (open, moveFocus = true) => {
+            root.classList.toggle('menu-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.textContent = open ? 'Fechar' : 'Menu';
+            document.body.style.overflow = open ? 'hidden' : '';
+            if (open) {
+                root.classList.remove('nav-hidden');
+                if (moveFocus) nav.querySelector('a').focus();
+            } else if (moveFocus) {
+                toggle.focus();
+            }
+        };
+        toggle.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
+        nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false, false); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && root.classList.contains('menu-open')) setMenu(false);
+        });
+        // voltou para o desktop com o menu aberto: fecha sem mexer no foco
+        mobile.addEventListener('change', () => { if (!mobile.matches) setMenu(false, false); });
+    }
 
     // Seção atual: o link da navbar cuja seção cruza o meio da tela fica marcado.
     const links = [...document.querySelectorAll('#header-navigation .nav-link')];

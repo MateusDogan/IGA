@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.add('js')</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#151515">
     
@@ -73,7 +74,9 @@
                 <li><a href="#Office" class="nav-link">Escritório</a></li>
             </ul>
         </nav>
-        <a class="header-cta" href="#Connect">Contato</a>
+        <a class="header-cta" href="#Connect"><span>Contato</span><span aria-hidden="true">A1</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="header-navigation">Menu</button>
+        <span class="header-progress" aria-hidden="true"></span>
     </header>
     <!-------------------------- Hero Page --------------------------->
     <section id="Hero-Page">
@@ -109,7 +112,7 @@
             <p>Três frentes que trabalham juntas: da identidade da marca à casa onde ela vive.</p>
         </div>
 
-        <article class="service service--arq">
+        <article class="service reveal service--arq">
             <img class="service-photo" src="Public/assets/projetos/foto5-800.webp" srcset="Public/assets/projetos/foto5-800.webp 800w, Public/assets/projetos/foto5-1440.webp 1440w" sizes="(min-width: 1000px) 55vw, 100vw" width="1440" height="810" alt="Estande Alux, projeto de arquitetura" loading="lazy" decoding="async">
             <div class="service-body">
                 <h3 class="libre-caslon">Arquitetura</h3>
@@ -122,7 +125,7 @@
             </div>
         </article>
 
-        <article class="service service--graf">
+        <article class="service reveal service--graf">
             <img class="service-photo" src="Public/assets/projetos/Foto4-600.webp" srcset="Public/assets/projetos/Foto4-600.webp 600w, Public/assets/projetos/Foto4-900.webp 900w" sizes="(min-width: 1000px) 30vw, 100vw" width="900" height="1600" alt="Prancha de apresentação do estande Alux" loading="lazy" decoding="async">
             <div class="service-body">
                 <h3 class="libre-caslon">Design gráfico</h3>
@@ -135,7 +138,7 @@
             </div>
         </article>
 
-        <article class="service service--int">
+        <article class="service reveal service--int">
             <img class="service-photo" src="Public/assets/projetos/Foto2-800.webp" srcset="Public/assets/projetos/Foto2-800.webp 800w, Public/assets/projetos/Foto2-1440.webp 1440w" sizes="(min-width: 1000px) 55vw, 100vw" width="1440" height="810" alt="Cozinha integrada, projeto de interiores" loading="lazy" decoding="async">
             <div class="service-body">
                 <h3 class="libre-caslon">Interiores</h3>
@@ -150,41 +153,50 @@
     </section>
 
     <!-------------------------- Portfólio --------------------------->
-    <!-- Para adicionar uma foto: coloque um <img src="Public/assets/projetos/arquivo.webp" alt="Descrição">
-         dentro do .portfolio-photo correspondente. Enquanto estiver vazio, aparece a caixa de espera. -->
+    <!-- As imagens "generico-*" são ilustrações provisórias. Para trocar: mude o src e o alt do <img>
+         (e width/height) e o nome e a categoria na legenda. Clicar na foto abre a galeria em tela cheia
+         (Public/scripts/gallery.js), que usa a foto, a legenda e o texto completo (.portfolio-details) de cada item.
+         Os textos são provisórios: o resumo aparece sobre a foto ao passar o mouse; o texto completo, na galeria. -->
     <section id="Projects">
         <div class="portfolio-intro">
             <h2 class="libre-caslon">Projetos</h2>
             <p>Uma seleção de trabalhos do escritório, entre casas, interiores, estandes e identidades.</p>
         </div>
         <div class="portfolio-grid">
-            <figure class="portfolio-item portfolio-item--l">
-                <div class="portfolio-photo"></div>
+            <figure class="portfolio-item reveal portfolio-item--l">
+                <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-l.webp" width="1200" height="900" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Casa térrea de linhas simples, aberta para o jardim.</span></span></button>
                 <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2025</span></figcaption>
+                <div class="portfolio-details" hidden><p>A casa organiza os ambientes em volumes baixos ao redor do jardim, de modo que a sala, a cozinha e a varanda se abrem para a área externa.</p><p>A escolha de poucos materiais, com concreto aparente, madeira e vidro, mantém a obra simples de construir e fácil de conservar.</p></div>
             </figure>
-            <figure class="portfolio-item portfolio-item--m">
-                <div class="portfolio-photo"></div>
+            <figure class="portfolio-item reveal portfolio-item--m">
+                <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-m.webp" width="1200" height="1500" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Ambientes integrados, com materiais naturais.</span></span></button>
                 <figcaption><h3>Nome do projeto</h3><span>Interiores, 2025</span></figcaption>
+                <div class="portfolio-details" hidden><p>O projeto integra cozinha, sala e jantar em um único espaço, pensado para receber e para o dia a dia da família.</p><p>Madeira, pedra e tons claros dão continuidade entre os ambientes, e a iluminação é planejada para cada momento do dia.</p></div>
             </figure>
-            <figure class="portfolio-item portfolio-item--s">
-                <div class="portfolio-photo"></div>
+            <figure class="portfolio-item reveal portfolio-item--s">
+                <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-s1.webp" width="1000" height="1000" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Identidade visual pensada junto com o espaço.</span></span></button>
                 <figcaption><h3>Nome do projeto</h3><span>Design gráfico, 2024</span></figcaption>
+                <div class="portfolio-details" hidden><p>A identidade foi desenvolvida em paralelo ao projeto do espaço, para que a marca, a sinalização e os materiais conversem entre si.</p><p>O trabalho inclui logotipo, paleta de cores, papelaria e peças de apresentação.</p></div>
             </figure>
-            <figure class="portfolio-item portfolio-item--s">
-                <div class="portfolio-photo"></div>
+            <figure class="portfolio-item reveal portfolio-item--s">
+                <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-s2.webp" width="1000" height="1000" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Marcenaria sob medida e iluminação de apoio.</span></span></button>
                 <figcaption><h3>Nome do projeto</h3><span>Interiores, 2024</span></figcaption>
+                <div class="portfolio-details" hidden><p>Um ambiente resolvido com marcenaria desenhada sob medida, que organiza o armazenamento sem pesar no visual.</p><p>A iluminação de apoio destaca os materiais e cria camadas de luz para diferentes usos.</p></div>
             </figure>
-            <figure class="portfolio-item portfolio-item--s">
-                <div class="portfolio-photo"></div>
+            <figure class="portfolio-item reveal portfolio-item--s">
+                <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-s3.webp" width="1000" height="1000" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Reforma que amplia a casa sem perder o que já funcionava.</span></span></button>
                 <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2024</span></figcaption>
+                <div class="portfolio-details" hidden><p>A reforma reorganiza a planta existente e acrescenta área nova, aproveitando a estrutura e os pontos fortes da casa original.</p><p>O resultado é uma casa mais iluminada, ventilada e adequada à rotina de quem mora nela.</p></div>
             </figure>
-            <figure class="portfolio-item portfolio-item--w">
-                <div class="portfolio-photo"></div>
+            <figure class="portfolio-item reveal portfolio-item--w">
+                <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/Foto3-900.webp" width="900" height="506" alt="Estande Alux, vista frontal" loading="lazy" decoding="async"><span class="portfolio-overlay">Estande para feira, com a marca presente em cada volume.</span></span></button>
                 <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2023</span></figcaption>
+                <div class="portfolio-details" hidden><p>O estande foi desenhado para uma feira do setor de perfis de alumínio, com ambientes abertos para atendimento e conversa.</p><p>A marca aparece nos painéis, na iluminação e nos materiais, reforçando a identidade da empresa em todo o espaço.</p></div>
             </figure>
-            <figure class="portfolio-item portfolio-item--p">
-                <div class="portfolio-photo"></div>
+            <figure class="portfolio-item reveal portfolio-item--p">
+                <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-p.webp" width="900" height="1200" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Ambiente compacto, resolvido com poucos materiais.</span></span></button>
                 <figcaption><h3>Nome do projeto</h3><span>Interiores, 2023</span></figcaption>
+                <div class="portfolio-details" hidden><p>Um espaço pequeno em que cada metro foi pensado: mobiliário integrado, circulação livre e ventilação natural.</p><p>A paleta reduzida de materiais dá unidade ao conjunto e facilita a manutenção.</p></div>
             </figure>
         </div>
     </section>
@@ -338,7 +350,7 @@
 
         <div id="footer-row">
             <div class="footer-col">
-                <h3 class="clickable-object">Planta</h3>
+                <h3>Planta</h3>
                 <ul>
                     <li><a class="hover-underline-animation left" href="#Hero-Page">Início</a></li>
                     <li><a class="hover-underline-animation left" href="#Services">Serviços</a></li>
@@ -347,7 +359,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="clickable-object">Portfólio</h3>
+                <h3>Portfólio</h3>
                 <ul>
                     <li><a class="hover-underline-animation left" href="#Projects">Projeto Arquitetônico</a></li>
                     <li><a class="hover-underline-animation left" href="#Projects">Design de Interiores</a></li>
@@ -355,7 +367,7 @@
                 </ul>
             </div>
              <div class="footer-col">
-                <h3 class="clickable-object">Contato</h3>
+                <h3>Contato</h3>
                 <ul>
                     <li><a class="hover-underline-animation left" href="mailto:iga@e-mail.com"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg> iga@e-mail.com</a></li>
                     <li><a class="hover-underline-animation left" href="tel:+5501298765432"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em" fill="currentColor"><path d="M280-40q-33 0-56.5-23.5T200-120v-720q0-33 23.5-56.5T280-920h400q33 0 56.5 23.5T760-840v124q18 7 29 22t11 34v80q0 19-11 34t-29 22v404q0 33-23.5 56.5T680-40H280Zm0-80h400v-720H280v720Zm0 0v-720 720Zm120-40h160q17 0 28.5-11.5T600-200q0-17-11.5-28.5T560-240H400q-17 0-28.5 11.5T360-200q0 17 11.5 28.5T400-160Z"/></svg> (012) 9 8765-4321</a></li>
@@ -376,10 +388,26 @@
     </div>
     </section>
 
+    <dialog id="gallery" class="gallery" aria-label="Galeria de projetos">
+        <button class="gallery-close" type="button" aria-label="Fechar galeria">&times;</button>
+        <button class="gallery-nav gallery-prev" type="button" aria-label="Projeto anterior">&lsaquo;</button>
+        <div class="gallery-body">
+            <figure class="gallery-figure"><img class="gallery-img" alt=""></figure>
+            <div class="gallery-info">
+                <h3 class="gallery-title"></h3>
+                <p class="gallery-meta"></p>
+                <div class="gallery-text"></div>
+            </div>
+        </div>
+        <button class="gallery-nav gallery-next" type="button" aria-label="Próximo projeto">&rsaquo;</button>
+    </dialog>
+
     <script src="Public/scripts/mouse.js"></script>
     <script src="Public/scripts/header.js"></script>
     <script src="Public/scripts/hero.js"></script>
     <script src="Public/scripts/forms_validation.js"></script>
     <script src="Public/scripts/team.js"></script>
+    <script src="Public/scripts/gallery.js"></script>
+    <script src="Public/scripts/reveal.js"></script>
 </body>
 </html>

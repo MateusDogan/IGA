@@ -1,22 +1,29 @@
-/* Paleta do site. Use sempre as variáveis; não há classes utilitárias de cor. */
+/* Paleta do site: "Terracota e oliva".
+   Terracota é a cor principal; o verde oliva fica só no painel de Contato e no rodapé, como contraste.
+   (As variáveis --oliva e --musgo guardam o verde de contraste, mesmo com o nome antigo.)
+   Use sempre as variáveis; não há classes utilitárias de cor.
+   (Alguns nomes antigos foram mantidos para não mexer em todos os arquivos:
+   --rosa é o linho, --musgo é a oliva, --jet e --navy-dark são o grafite.) */
 :root {
-  --night: #151515;
-  --jet: #3A3A3A;
-  --white: #f2f0ef;
-  --rosa: #EFE4D6;           /* fundo creme */
-  --terracota: #8d2b00;      /* terracota escuro (hover) */
-  --new-terracota: #B85C38;  /* terracota principal */
-  --orange: #D36135;
-  --cinnabar: #b55119;
-  --musgo: #9CAC55;          /* verde do contato */
-  --musgo-hover: #659157;
-  --navy: #32565D;
-  --navy-dark: #374151;
-  --grey: #b0b0b0;
-  --new-blue: #7EA799;
+  --linho: #F2E8DC;          /* fundo */
+  --argila: #D9A58A;         /* detalhes claros, destaques sobre a oliva */
+  --new-terracota: #B5583A;  /* terracota principal */
+  --terracota: #8F3F24;      /* terracota escuro (hover, erros sobre fundo claro) */
+  --oliva: #6B7A3F;          /* verde oliva vivo: painel de Contato e rodapé */
+  --oliva-escura: #5A6735;   /* marca-d'água e hover sobre o verde */
+  --grafite: #2B2622;        /* texto e fundos escuros (Projetos) */
+
+  /* nomes antigos, apontando para a paleta nova */
+  --rosa: var(--linho);
+  --musgo: var(--oliva);
+  --musgo-hover: var(--oliva-escura);
+  --jet: var(--grafite);
+  --navy-dark: var(--grafite);
+  --night: #1F1B18;          /* quase preto quente (fundo do hero enquanto carrega) */
+  --white: #F7F2EC;          /* texto claro sobre fundos escuros */
 }
 
 ::selection {
   color: var(--white);
-  background: var(--cinnabar);
+  background: var(--new-terracota);
 }

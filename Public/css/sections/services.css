@@ -94,3 +94,12 @@
   }
   .service--int .service-body { grid-column: 1 / 5; grid-row: 1; margin-top: 0; }
   .service--int .service-photo { grid-column: 5 / 12; grid-row: 1; aspect-ratio: 16 / 9; }}
+
+/* Interação: a foto aproxima devagar e o filete do texto ganha a cor do acento (só com mouse) */
+.service-photo { transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.service-body { transition: border-color 0.3s ease; }
+@media (hover: hover) {
+  .service:hover .service-photo { transform: scale(1.02); }
+  .service:hover .service-body { border-top-color: var(--new-terracota); }
+}
+@media (prefers-reduced-motion: reduce) { .service-photo { transition: none; } .service:hover .service-photo { transform: none; } }

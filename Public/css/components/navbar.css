@@ -20,14 +20,37 @@
 }
 /* Fora do hero: some ao descer, volta ao subir */
 html.past-hero.nav-hidden #main-header { transform: translateY(-110%); box-shadow: none; }
-/* Depois do hero: fundo escuro translúcido para destacar sobre o conteúdo */
+/* Depois do hero: vidro fosco creme (mesmo efeito da galeria), texto e símbolo em grafite */
 html.past-hero #main-header {
-  background: rgba(21, 21, 21, 0.82);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  background: rgba(242, 232, 220, 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  backdrop-filter: blur(18px) saturate(1.1);
+  border-bottom-color: rgba(43, 38, 34, 0.1);
+  box-shadow: none;
+  color: #2B2622;
 }
+html.past-hero .brand,
+html.past-hero #main-header .nav-link { color: #2B2622; text-shadow: none; }
+html.past-hero #main-header .nav-link:hover { color: var(--new-terracota); }
+
+/* Linha de progresso: fio terracota na base da barra, cresce conforme a página rola (header.js) */
+.header-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--new-terracota);
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+html.past-hero .header-progress { opacity: 1; }
+
+/* Botão do menu: só no celular/tablet */
+.menu-toggle { display: none; }
 
 /* Símbolo à esquerda */
 .brand { display: inline-flex; color: var(--white); text-decoration: none; justify-self: start; }
@@ -60,32 +83,97 @@ html.past-hero #main-header {
   text-underline-offset: 0.6em;
 }
 
-/* Contato à direita, em destaque */
+/* Contato à direita: carimbo de prancha. Caixa de cantos retos com contorno,
+   dividida em duas células; no hover ela se preenche de terracota. */
 .header-cta {
   justify-self: end;
+  display: inline-flex;
+  align-items: stretch;
   font-family: 'Julius Sans One', sans-serif; /* fonte da cliente */
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 0.86rem;
   text-decoration: none;
-  color: var(--white);
-  background: var(--new-terracota);
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
-  transition: background 0.2s ease, transform 0.2s ease;
+  color: inherit;                    /* segue a cor da barra: creme sobre o hero, grafite sobre a barra creme */
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 0;                  /* carimbo: cantos retos */
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
-.header-cta:hover { background: var(--terracota); transform: translateY(-1px); }
+.header-cta span { display: block; padding: 0.7rem 1.1rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+/* Segunda célula do carimbo, como o número da prancha */
+.header-cta span + span {
+  border-left: 1px solid currentColor;
+  font: 400 0.7rem 'Jost', sans-serif;
+  letter-spacing: 0.06em;
+  padding-inline: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+.header-cta:hover { background: var(--new-terracota); border-color: var(--new-terracota); color: var(--white); }
+.header-cta:focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 3px; }
 
 #main-header :focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 4px; }
 
-/* Celular/tablet: símbolo e Contato na primeira linha, seções na segunda */
+/* Celular/tablet: uma linha só (símbolo, Contato, Menu). O botão Menu abre as seções
+   em um painel creme de tela cheia, com os nomes grandes na serifada do site. */
 @media (max-width: 999px) {
-  #main-header { grid-template-columns: 1fr auto; padding: 0.6rem 1rem 0.5rem; }
-  #header-navigation ul { gap: 0.9rem; flex-wrap: wrap; justify-content: center; }
-  #main-header .nav-link { font-size: 0.66rem; letter-spacing: 0.16em; }
-  .header-cta { font-size: 0.66rem; padding: 0.5rem 0.9rem; }
+  #main-header { grid-template-columns: 1fr auto auto; padding: 0.6rem 1rem; }
+  .header-cta { font-size: 0.7rem; }
+  .header-cta span { padding: 0.55rem 0.85rem; }
   .brand-symbol { height: 1.8rem; }
+  .brand, .header-cta, .menu-toggle { position: relative; z-index: 1; }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.95rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: 400 0.66rem/1 'Julius Sans One', sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  #header-navigation {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    justify-self: stretch; /* no grid, um filho fixo com justify-self: center encolhe para a largura do conteúdo */
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F2E8DC;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+  }
+  html.menu-open #header-navigation { opacity: 1; visibility: visible; transition: opacity 0.35s ease; }
+  #header-navigation ul { flex-direction: column; align-items: center; gap: 1.75rem; }
+  #header-navigation li { margin: 0; }
+  #main-header .nav-link {
+    font-family: 'Libre Caslon Display', serif;
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+    letter-spacing: 0;
+    text-transform: none;
+    color: #2B2622;
+    text-shadow: none;
+  }
+  #main-header .nav-link[aria-current] { text-underline-offset: 0.25em; }
+
+  /* Menu aberto: a barra fica transparente sobre o painel, em grafite */
+  html.menu-open #main-header {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+    transform: none;
+    color: #2B2622;
+  }
+  html.menu-open .brand { color: #2B2622; }
+  html.menu-open .header-progress { opacity: 0; }
 }
 
 /* Desktop: barra em uma linha só, com seções realmente no centro */
@@ -96,10 +184,10 @@ html.past-hero #main-header {
   #header-navigation ul { gap: clamp(1.4rem, 2.6vw, 2.8rem); }
   #main-header .nav-link { font-size: 0.78rem; }
   .brand-symbol { height: 2.4rem; }
-  .header-cta { font-size: 0.78rem; }
+  .header-cta { font-size: 0.86rem; }
 }
 @media (min-width: 1400px) { #main-header { padding-inline: 4rem; } }
 
 @media (prefers-reduced-motion: reduce) {
-  #main-header, .brand-symbol, .header-cta { transition: none; }
+  #main-header, .brand-symbol, .header-cta, #header-navigation, .header-progress { transition: none; }
 }
