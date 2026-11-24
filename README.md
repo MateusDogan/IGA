@@ -35,12 +35,11 @@ O que já funciona:
 - [ ] **Faixa de marcas**: mostra "Outro Ipsum." repetido. Trocar pelos logos dos clientes (o exemplo `nome.svg` está comentado em `index.html`) ou por uma frase real. Se nada chegar, dá para esconder a faixa.
 - [ ] **Links e contatos**: os links de Instagram e LinkedIn apontam para a página inicial de cada rede. O e-mail `iga@e-mail.com` e o telefone `+55 01 29876-5432` são provisórios. Eles aparecem em `index.html` (aba de contato e rodapé), em `privacidade.html` e na mensagem de erro de `forms_validation.js`.
 - [ ] **Textos do escritório e dos serviços**: revisar com a cliente. Os textos atuais foram escritos para o site e não vieram dela. Croquis, se ela quiser usar.
-- [ ] **`Mata-Atlantica.webp`** (351 KB): não está em uso. Perguntar se é foto de projeto liberada; se não for, apagar.
 
 ### Antes de publicar de vez
 
 - [ ] **Domínio**: se houver domínio próprio, trocar `mateusdogan.github.io/IGA/` no `<head>` de `index.html` (`canonical`, `og:url`, `og:image`), em `robots.txt` e em `sitemap.xml`, e configurar o domínio no GitHub Pages.
-- [ ] **Aviso de novo contato**: hoje as mensagens do formulário só vão para a planilha, e ninguém é avisado. Para receber um e-mail a cada contato, ative a linha `MailApp.sendEmail` em `docs/apps-script.gs` com o e-mail do escritório e publique o script de novo.
+- [ ] **Publicar o script novo do formulário**: colar `docs/apps-script.gs` no Apps Script, preencher as Propriedades do script e criar uma nova versão da implantação (ver `docs/google-sheets-setup.md`). Até lá o site continua funcionando com o script antigo, mas sem aviso por e-mail, sem protocolo e sem a validação do lado do servidor.
 - [ ] **Teste do formulário**: enviar uma mensagem de teste pelo site publicado e conferir a linha na planilha (ver `docs/google-sheets-setup.md`).
 - [ ] **Política de privacidade**: revisão jurídica de `privacidade.html`. A política deve citar que as fontes vêm do Google Fonts, que recebe o IP de quem visita. A outra saída é hospedar as fontes no próprio site.
 - [ ] **Licença e marca**: `TRADEMARKS.md` ainda tem `[Client Name]`. Confirmar com a cliente se o código fica sob a licença MIT (`LICENSE`, em nome de Mateus Dogan); a marca e as fotos não entram nessa licença.
@@ -50,6 +49,54 @@ O que já funciona:
 
 - Estatísticas de visitas (Plausible, GoatCounter ou Google Analytics). Se entrar, atualizar a política de privacidade, que hoje diz que o site não usa rastreamento.
 - Versões menores das fotos do hero para celular (hoje há só a de 1440 px).
+
+---
+
+## Plano do formulário
+
+O formulário não tem servidor próprio: o site envia para um Apps Script do Google, que grava numa planilha privada. O endereço do script é público por natureza (como a boca de uma caixa de correio), então toda a proteção fica no script. A validação no site só ajuda quem preenche; a que barra dado falso roda no script, porque um robô pode chamar o endereço direto.
+
+**Regras de segurança do projeto**
+
+- A planilha é compartilhada só com as contas do escritório, nunca por link. A conta Google dona usa verificação em duas etapas.
+- O script roda como o dono, aceita envios de qualquer pessoa e nunca devolve dados da planilha (não tem `doGet`). Usa `@OnlyCurrentDoc` para só enxergar a própria planilha.
+- Nada secreto no repositório. O endereço do script e a chave pública do Turnstile podem ficar no site; o e-mail do escritório, a chave secreta do Turnstile e o interruptor ficam nas Propriedades do script.
+- Interruptor: `FORMULARIO_ABERTO = false` nas Propriedades fecha o formulário na hora. Se o endereço for muito abusado, uma nova implantação gera outro endereço; basta trocar uma linha em `forms_validation.js`.
+
+### Fase 1: base (feita)
+
+- [x] O site lê a resposta do script: só mostra "enviada" quando o script confirma, com o número de protocolo.
+- [x] Validação no script: nome, e-mail, celular (DDD que existe, 8 ou 9 dígitos, sem números repetidos), mensagem (de 20 a 3000 caracteres, no máximo 3 links), tamanho de cada campo.
+- [x] Mesmas regras no site, com a mensagem de erro de cada campo.
+- [x] Máscara do celular enquanto digita e contador de caracteres da mensagem.
+- [x] Pop-up "Confira antes de enviar" com o resumo, e pop-up de resultado (enviada com protocolo, ou o que fazer em caso de erro).
+- [x] Limite de envios: 3 por hora por e-mail e 30 por hora no total.
+- [x] Trava de escrita (`LockService`): dois envios ao mesmo tempo não se atropelam.
+- [x] Armadilha de tempo (envio em menos de 3 s) e campo isca conferidos no script. O robô recebe "ok" e nada é gravado.
+- [x] Aviso por e-mail ao escritório a cada contato, com "responder" já endereçado ao cliente.
+- [x] Interruptor `FORMULARIO_ABERTO`.
+- [ ] Publicar o script novo e testar um envio real (depende de vocês; ver "Antes de publicar de vez").
+
+### Fase 2: proteção
+
+- [ ] Cloudflare Turnstile: o site recebe um token de "humano" e o script confere com a Cloudflare, exigindo o domínio da IGA. Precisa de uma conta gratuita na Cloudflare (só para gerar as chaves, sem mudar o domínio).
+- [ ] Aba "Suspeitos": o que falha em regras que podem pegar gente real (e-mail descartável, domínio sem e-mail) vai para outra aba em vez de ser recusado.
+- [ ] E-mail: recusar domínios descartáveis, conferir se o domínio recebe e-mail (consulta MX) e sugerir correção de erros comuns ("gmial.com").
+- [ ] Alerta ao escritório se a aba de suspeitos crescer de repente.
+
+### Fase 3: e-mail para quem enviou
+
+- [ ] Confirmação com o protocolo, o resumo e o prazo de resposta, no visual da marca. Só sai depois da fase 2, para o formulário não virar disparador de e-mails.
+- [ ] Link de verificação no e-mail: a linha entra como "não confirmado" e vira "confirmado" com o clique. Ninguém é bloqueado por não clicar.
+- [ ] Atenção à cota: conta Gmail envia cerca de 100 e-mails automáticos por dia; Google Workspace, cerca de 1.500.
+
+### Fase 4: extras (escolher)
+
+- Tipo de projeto em etiquetas, faixa de orçamento, prazo e área aproximada.
+- Anexos (planta, fotos, referências) numa pasta do Drive.
+- Colunas de status na planilha (Novo, Em contato, Proposta, Fechado) e resumo semanal por e-mail.
+- Rascunho salvo no navegador, botão de WhatsApp, agendamento de conversa.
+- Consentimento LGPD com data e hora, e limpeza automática de contatos antigos.
 
 ---
 

@@ -172,6 +172,15 @@
   min-height: 0;
 }
 .message-box textarea { flex: 1 1 auto; min-height: 140px; }
+/* Contador da mensagem (forms_validation.js); some quando o erro aparece */
+.field-count {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--white);
+  opacity: 0.75;
+}
+.field [aria-invalid="true"] ~ .field-count { display: none; }
 
 /* ---------- Envio ---------- */
 #submit {
@@ -253,6 +262,63 @@
 }
 @media (max-width: 560px) {
   .form-submit { width: 100%; }
+}
+
+/* ---------- Pop-up do envio: conferir e resultado ----------
+   Cartão creme sobre o fundo desfocado (como a galeria), botões retos como o carimbo */
+.form-dialog {
+  width: min(34rem, calc(100% - 2rem));
+  max-height: calc(100svh - 2rem);
+  margin: auto;                        /* o reset geral zera a margem que centraliza o pop-up */
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 0;
+  border-radius: var(--panel-radius);
+  background: var(--linho);
+  color: var(--grafite);
+  overflow-y: auto;
+}
+.form-dialog::backdrop {
+  background: rgba(31, 27, 24, 0.45);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.form-dialog-title {
+  margin: 0 0 1rem;
+  font-family: 'Libre Caslon Display', serif;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  line-height: 1.1;
+}
+.form-dialog-body { font: 300 1rem/1.6 'Jost', sans-serif; }
+.form-dialog-body p { margin: 0; }
+/* Resumo: rótulo pequeno em cima, valor embaixo; a mensagem longa rola dentro do cartão */
+.form-dialog-summary { display: grid; gap: 0.75rem; margin: 0; }
+.form-dialog-summary dt { font-size: 0.8rem; font-weight: 500; color: var(--terracota); }
+.form-dialog-summary dd { margin: 0.1rem 0 0; overflow-wrap: anywhere; white-space: pre-line; }
+.form-dialog-summary dd:last-child { max-height: 9.5rem; overflow-y: auto; }
+.form-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+.form-dialog-actions button {
+  min-height: 48px;
+  padding: 0 1.5rem;
+  font: 500 0.95rem/1 'Jost', sans-serif;
+  border: 1px solid var(--grafite);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.form-dialog-primary { color: var(--white); background: var(--grafite); }
+.form-dialog-primary:hover { background: var(--new-terracota); border-color: var(--new-terracota); }
+.form-dialog-primary:disabled { opacity: 0.6; cursor: progress; }
+.form-dialog-secondary { color: var(--grafite); background: transparent; }
+.form-dialog-secondary:hover { background: rgba(43, 38, 34, 0.08); }
+@media (max-width: 560px) {
+  .form-dialog-actions button { flex: 1 1 auto; }
 }
 
 /* ---------- Ícones copiados da aba (celular/tablet) ----------

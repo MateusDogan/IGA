@@ -13,12 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = dialog.querySelector('.gallery-close');
     let current = 0;
     let opener = null;
-    // cursor customizado (mouse.js): a galeria fica na camada superior e cobriria o cursor,
-    // então ele entra na galeria ao abrir e volta para o body ao fechar
-    const cursor = document.getElementById('custom-cursor');
-    const moveCursor = (parent) => {
-        if (cursor && document.documentElement.classList.contains('has-custom-cursor')) parent.appendChild(cursor);
-    };
 
     function show(index) {
         current = (index + triggers.length) % triggers.length;
@@ -37,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
             opener = trigger;
             show(i);
             dialog.showModal();
-            moveCursor(dialog);
             closeBtn.focus();
         });
     });
@@ -55,8 +48,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // devolve o foco para a foto que abriu a galeria
-    dialog.addEventListener('close', () => {
-        moveCursor(document.body);
-        if (opener) opener.focus();
-    });
+    dialog.addEventListener('close', () => { if (opener) opener.focus(); });
 });

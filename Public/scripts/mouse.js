@@ -3,7 +3,7 @@
 //   links do menu e do rodapé -> o anel desliza para baixo da palavra e vira o sublinhado dela
 //   "Explore o espaço" -> o anel assume a forma do ícone do mouse do botão
 //   fotos de Projetos  -> aparece um "+" dentro do anel (a foto amplia na galeria)
-//   galeria aberta     -> o anel entra na galeria (camada superior) e continua funcionando
+//   pop-up aberto      -> o anel entra no <dialog> (camada superior, cobriria o anel) e continua funcionando
 // Só em dispositivos com mouse; com "reduzir movimento" o anel acompanha sem atraso.
 (function () {
     const cursor = document.getElementById('custom-cursor');
@@ -48,6 +48,10 @@
             snap = false;
         }
         cursor.classList.add('is-visible');
+
+        // galeria e pop-up do formulário ficam na camada superior: o anel vai junto
+        const layer = e.target.closest('dialog[open]') || document.body;
+        if (cursor.parentNode !== layer) layer.appendChild(cursor);
 
         const menuLink = e.target.closest(MENU_LINK);
         const footerLink = !!menuLink && menuLink.matches(FOOTER_LINK);

@@ -308,29 +308,30 @@
         <section id="input-container">
             <div class="field">
                 <label for="f-name">Nome</label>
-                <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Digite seu nome" required aria-describedby="e-name">
+                <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Digite seu nome" maxlength="100" required aria-describedby="e-name">
                 <small class="field-error" id="e-name">Escreva seu nome.</small>
             </div>
             <div class="field">
                 <label for="f-email">E-mail</label>
-                <input id="f-email" name="email" type="email" autocomplete="email" placeholder="seu@email.com" required aria-describedby="e-email">
+                <input id="f-email" name="email" type="email" autocomplete="email" placeholder="seu@email.com" maxlength="254" required aria-describedby="e-email">
                 <small class="field-error" id="e-email">Escreva um e-mail válido, como nome@email.com.</small>
             </div>
             <div class="field">
                 <label for="f-phone">Celular <span class="field-optional">(opcional)</span></label>
-                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 0 0000-0000" aria-describedby="e-phone">
-                <small class="field-error" id="e-phone">O celular precisa ter 10 ou 11 dígitos, com DDD.</small>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" maxlength="15" aria-describedby="e-phone">
+                <small class="field-error" id="e-phone">Confira o número: DDD que existe e 8 ou 9 dígitos, como (12) 99123-4567.</small>
             </div>
             <div class="field">
                 <label for="f-city">Cidade <span class="field-optional">(opcional)</span></label>
-                <input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Sua cidade">
+                <input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Sua cidade" maxlength="100">
             </div>
         </section>
 
         <section class="message-box field">
             <label for="f-message">Sua mensagem</label>
-            <textarea id="f-message" name="message" rows="5" placeholder="Conte sobre o projeto ou a sua dúvida" required aria-describedby="e-message"></textarea>
-            <small class="field-error" id="e-message">Escreva sua mensagem.</small>
+            <textarea id="f-message" name="message" rows="5" placeholder="Conte sobre o projeto ou a sua dúvida" required aria-describedby="message-count e-message"></textarea>
+            <small class="field-count" id="message-count">Mínimo de 20 caracteres</small>
+            <small class="field-error" id="e-message">Escreva pelo menos 20 caracteres, com no máximo 3 links.</small>
         </section>
 
         <section id="submit">
@@ -392,6 +393,16 @@
         </div>
     </div>
     </section>
+
+    <!-- Formulário: "Confira antes de enviar" e o resultado do envio (forms_validation.js) -->
+    <dialog id="form-dialog" class="form-dialog" aria-labelledby="form-dialog-title">
+        <h3 class="form-dialog-title" id="form-dialog-title"></h3>
+        <div class="form-dialog-body"></div>
+        <div class="form-dialog-actions">
+            <button class="form-dialog-secondary" type="button"></button>
+            <button class="form-dialog-primary" type="button"></button>
+        </div>
+    </dialog>
 
     <dialog id="gallery" class="gallery" aria-label="Galeria de projetos">
         <button class="gallery-close" type="button" aria-label="Fechar galeria">&times;</button>
