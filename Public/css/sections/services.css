@@ -67,7 +67,7 @@
 .service-body li {
   padding: 0.3rem 0.75rem;
   border: 1px solid rgba(43, 38, 34, 0.25);
-  border-radius: 999px;
+  border-radius: 0;                    /* etiquetas retas, como o carimbo do Contato */
   font-family: 'Jost', sans-serif;
   font-size: 0.82rem;
   color: var(--grafite);

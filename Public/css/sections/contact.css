@@ -190,7 +190,7 @@
   color: var(--white);
   background: var(--grafite);
   border: 0;
-  border-radius: 999px;
+  border-radius: 0;                    /* reto, como o carimbo do Contato */
   cursor: pointer;
   transition: background 0.2s ease, opacity 0.2s ease;
 }
@@ -243,6 +243,21 @@
 }
 @media (max-width: 560px) {
   .form-submit { width: 100%; }
+}
+/* Celular/tablet: a aba dos ícones sai da lateral (roubava ~60 px de largura do
+   formulário e do rodapé) e vira uma aba horizontal no alto, como a orelha de uma pasta */
+@media (max-width: 999px) {
+  #Connect { flex-direction: column; }
+  #social-container { flex-direction: row; }
+  #social-links {
+    flex-direction: row;
+    gap: 1.4em;
+    padding: 0.85em 1.2em;
+    border-radius: 0 0 var(--panel-radius) 0;
+  }
+  #social-links a { min-width: 1.75rem; min-height: 1.75rem; } /* alvo de toque maior */
+  #social-container-fill { border-radius: var(--panel-radius) var(--panel-radius) 0 0; }
+  #connect-container { border-radius: 0 0 var(--panel-radius) var(--panel-radius); }
 }
 
 /* A aba dos ícones é creme opaco (precisa cobrir o verde do canto); recebe o

@@ -1,4 +1,3 @@
-server
-Public/assets/icons/
-Public/assets/img/
-
+# arquivos do sistema
+.DS_Store
+Thumbs.db

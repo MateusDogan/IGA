@@ -62,13 +62,15 @@
   color: var(--white);
   text-transform: none;
 }
-.hero-line { display: block; font-family: inherit; } /* o reset aplica Jost em * */
 
 /* Único momento de movimento: a frase sobe ao carregar */
 @keyframes hero-rise { from { opacity: 0; transform: translateY(0.6em); } to { opacity: 1; transform: none; } }
-.hero-line { animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero-line {
+  display: block;
+  font-family: inherit; /* o reset aplica Jost em * */
+  animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
 .hero-line:nth-child(2) { animation-delay: 0.12s; }
-.hero-caption { transition: opacity 0.6s ease; }
 .hero-caption.is-changing { opacity: 0; }
 
 /* ---------- Rodapé do hero: indicador de rolagem + nome do projeto ---------- */
@@ -93,6 +95,7 @@
   padding-top: 0.6rem;
   border-top: 1px solid rgba(242, 240, 239, 0.45);
   color: var(--white);
+  transition: opacity 0.6s ease;
 }
 .hero-caption-name { font: 400 1.05rem/1.2 'Libre Caslon Display', serif; }
 .hero-caption-meta { font: 300 0.85rem/1.2 'Jost', sans-serif; opacity: 0.8; white-space: nowrap; }

@@ -2,7 +2,8 @@
 //   links e botões     -> o anel cresce
 //   links do menu e do rodapé -> o anel desliza para baixo da palavra e vira o sublinhado dela
 //   "Explore o espaço" -> o anel assume a forma do ícone do mouse do botão
-//   fotos de Projetos  -> aparece uma seta dentro do anel (a foto abre a galeria)
+//   fotos de Projetos  -> aparece um "+" dentro do anel (a foto amplia na galeria)
+//   galeria aberta     -> o anel entra na galeria (camada superior) e continua funcionando
 // Só em dispositivos com mouse; com "reduzir movimento" o anel acompanha sem atraso.
 (function () {
     const cursor = document.getElementById('custom-cursor');
@@ -14,7 +15,7 @@
     const arrow = document.createElement('span');
     arrow.className = 'cursor-arrow';
     arrow.setAttribute('aria-hidden', 'true');
-    arrow.textContent = '↗'; // ↗
+    arrow.textContent = '+'; // ampliar
     cursor.appendChild(arrow);
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

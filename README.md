@@ -36,11 +36,11 @@ Revisão feita sem alterar nenhum arquivo do site. Cada item indica o arquivo e 
 
 ### 2. Consistência visual
 
-- [ ] **Duas linguagens de forma**: o carimbo do Contato tem cantos retos, mas o botão Menu no celular (`navbar.css`, `.menu-toggle`) e o botão da página 404 (`404.html`, `a.voltar`) são pílulas (`border-radius: 999px`). Decidir: se o carimbo é a marca, os botões secundários também podem ter cantos retos.
-- [ ] **Cursor sobre a galeria**: o cursor personalizado fica abaixo do `<dialog>` (top layer), então aparece o cursor nativo dentro da galeria. Opção: mover o elemento `#custom-cursor` para dentro do `<dialog>` ao abrir (`Public/scripts/gallery.js` e `mouse.js`).
-- [ ] **Seta ↗ nas fotos do portfólio**: sugere link externo, mas abre a galeria. Trocar por "+" ou por uma etiqueta "ver" (`portfolio.css`).
-- [ ] **Sublinhado duplicado no menu**: o item atual já tem sublinhado terracota e o hover também sublinha. Remover um dos dois (`navbar.css`, `.nav-link[aria-current]`).
-- [ ] **Imagem de compartilhamento** (`Public/assets/marca/compartilhar.jpg`): ainda usa as cores antigas. Refazer com a paleta atual.
+- [x] **Duas linguagens de forma**: o carimbo do Contato tem cantos retos, mas o botão Menu no celular (`navbar.css`, `.menu-toggle`) e o botão da página 404 (`404.html`, `a.voltar`) são pílulas (`border-radius: 999px`). Decidir: se o carimbo é a marca, os botões secundários também podem ter cantos retos. Feito: botão Menu, botão de envio, etiquetas de Serviços e botão da 404 agora são retos. Os botões redondos de ícone da galeria ficaram.
+- [x] **Cursor sobre a galeria**: o cursor personalizado fica abaixo do `<dialog>` (top layer), então aparece o cursor nativo dentro da galeria. Opção: mover o elemento `#custom-cursor` para dentro do `<dialog>` ao abrir (`Public/scripts/gallery.js` e `mouse.js`). Feito: o cursor entra no `<dialog>` ao abrir e volta ao `body` ao fechar (`gallery.js`).
+- [x] **Seta ↗ nas fotos do portfólio**: sugere link externo, mas abre a galeria. Trocar por "+" ou por uma etiqueta "ver" (`portfolio.css`). Feito: virou "+".
+- [x] **Sublinhado duplicado no menu**: o item atual já tem sublinhado terracota e o hover também sublinha. Remover um dos dois (`navbar.css`, `.nav-link[aria-current]`). Feito: com o cursor sobre o item atual, o sublinhado fixo some.
+- [x] **Imagem de compartilhamento** (`Public/assets/marca/compartilhar.jpg`): ainda usa as cores antigas. Refazer com a paleta atual. Feito: mesma foto e texto, em tons quentes da paleta.
 - [x] **Pretos fora da paleta**: `office.css` usa `rgba(21, 21, 21, …)` e `rgba(58, 58, 58, …)`; `portfolio.css` usa `rgba(21, 18, 16, …)` e `#38312C`. Trocar por `--grafite` (`#2B2622`) ou `--night` (`#1F1B18`) para manter a paleta quente.
 
 ### 3. Limpeza de código
@@ -51,24 +51,24 @@ Revisão feita sem alterar nenhum arquivo do site. Cada item indica o arquivo e 
   - `--jet` e `--navy-dark` viram `--grafite`: `marquee.css`, `office.css`, `contact.css`.
 - [x] **Cores fixas fora de `colors.css`**: `#2B2622` em `navbar.css` (5 vezes) e `portfolio.css` (2 vezes) vira `var(--grafite)`. `#fff` em `mouse.css`, `hero.css` e `portfolio.css` vira `var(--white)`. `#F2E8DC` em `portfolio.css` vira `var(--linho)`. A página 404 tem cores embutidas de propósito, porque é independente.
 - [x] **Typo de id**: `#socila-links` em `index.html` (linha 278) e `contact.css` (linhas 48, 56, 63, 250, 251). Renomear para `#social-links` nos dois arquivos, de uma vez.
-- [ ] **Regras duplicadas entre arquivos**: `.service-body` e `.service-photo` aparecem em `services.css` e `portfolio.css`. `.field textarea`, `.hero-caption` e `.hero-line` aparecem em dois arquivos cada. `body {` aparece em três. Conferir qual definição vale e apagar a outra, provavelmente cópias de quando o CSS foi dividido.
+- [x] **Regras duplicadas entre arquivos**: `.service-body` e `.service-photo` aparecem em `services.css` e `portfolio.css`. `.field textarea`, `.hero-caption` e `.hero-line` aparecem em dois arquivos cada. `body {` aparece em três. Conferir qual definição vale e apagar a outra, provavelmente cópias de quando o CSS foi dividido. Revisto: não havia cópias entre arquivos (o levantamento contou regras repetidas dentro do mesmo arquivo). As de `hero.css` foram unidas; as de `services.css` separam estado normal e transição, de propósito.
 - [x] **Propriedades sem efeito**: `font-stretch` (`style.css`, em `strong` e `p`) e `font-variation-settings: 'ital' 0` (`style.css`, em `body`). A Jost não tem eixo de largura, então `font-stretch` provavelmente não faz nada. Confirmar no navegador e remover.
-- [ ] **`!important` no cursor** (`mouse.css` linhas 5 e 56; `portfolio.css` linhas 272 e 273): são intencionais, para vencer o `cursor: pointer` dos links. Manter, mas documentar no comentário.
-- [ ] **`.gitignore`**: as linhas `server`, `Public/assets/icons/` e `Public/assets/img/` apontam para pastas que não existem. Remover ou confirmar se são de uso futuro.
-- [ ] **Classe possivelmente sobrando**: `.field textarea` em `portfolio.css` parece cópia do formulário de contato. Conferir se é usada.
+- [x] **`!important` no cursor** (`mouse.css` linhas 5 e 56; `portfolio.css` linhas 272 e 273): são intencionais, para vencer o `cursor: pointer` dos links. Manter, mas documentar no comentário. Feito: comentários adicionados; as regras da galeria saíram junto com o ajuste do cursor.
+- [x] **`.gitignore`**: as linhas `server`, `Public/assets/icons/` e `Public/assets/img/` apontam para pastas que não existem. Remover ou confirmar se são de uso futuro. Feito: agora ignora só `.DS_Store` e `Thumbs.db`.
+- [x] **Classe possivelmente sobrando**: `.field textarea` em `portfolio.css` parece cópia do formulário de contato. Conferir se é usada. Revisto: `.field textarea` só existe em `contact.css`; não há sobra.
 
 ### 4. Arquivos de imagem
 
 - [ ] **`Public/assets/projetos/Mata-Atlantica.webp`** (351 KB): não é referenciado em nenhuma página. Ou usar em um projeto do portfólio, ou apagar para reduzir o peso do repositório. Não apagar sem confirmar com a cliente, porque pode ser foto de projeto liberada.
 - [ ] **Imagens genéricas `generico-*.webp`**: são placeholders. Substituir pelas fotos reais quando a cliente enviar, e apagar os genéricos.
-- [ ] **Foto3**: o `Foto3.jpg` original foi removido e substituído por `Foto3-900.webp`. Conferir no GitHub que a versão antiga não ficou referenciada em outro lugar.
+- [x] **Foto3**: o `Foto3.jpg` original foi removido e substituído por `Foto3-900.webp`. Conferir no GitHub que a versão antiga não ficou referenciada em outro lugar. Feito: nenhuma referência a `Foto3.jpg`.
 
 ### 5. Verificações antes de publicar
 
-- [ ] Conferir o carimbo do Contato e o painel oliva em largura de celular (menos de 999 px).
+- [x] Conferir o carimbo do Contato e o painel oliva em largura de celular (menos de 999 px). Feito: carimbo ok; no celular a aba dos ícones foi para o alto e o rodapé ganhou duas colunas.
 - [ ] Enviar uma mensagem de teste pelo formulário (feito por você, com dados de teste) e confirmar a linha na planilha. Ver `docs/google-sheets-setup.md`.
-- [ ] Testar com `prefers-reduced-motion` ativado: o cursor, a navbar e a revelação ao rolar devem ficar sem animação.
-- [ ] Checar a navegação por teclado: foco visível em links, botões, carimbo e itens da galeria.
+- [x] Testar com `prefers-reduced-motion` ativado: o cursor, a navbar e a revelação ao rolar devem ficar sem animação. Conferido no código: cursor, hero, revelação e navbar respeitam a preferência.
+- [x] Checar a navegação por teclado: foco visível em links, botões, carimbo e itens da galeria. Feito: contorno de foco em todos os links e botões (argila sobre a oliva); os links do rodapé tinham o contorno removido.
 
 ### 6. Depende da cliente (bloqueado)
 

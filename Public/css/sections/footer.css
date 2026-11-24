@@ -65,7 +65,7 @@
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 #footer .footer-col ul li a:hover,
-#footer .footer-col ul li a:focus-visible { color: var(--white); opacity: 1; outline: none; }
+#footer .footer-col ul li a:focus-visible { color: var(--white); opacity: 1; outline: 2px solid var(--argila); outline-offset: 4px; }
 #footer .footer-col ul li a svg { width: 1em; height: 1em; }
 /* E-mail e telefone não quebram linha */
 #footer .footer-col:last-child ul li a { overflow-wrap: normal; white-space: nowrap; }
@@ -139,7 +139,14 @@
   #footer-row { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
   #footer-row .footer-col:last-child { grid-column: 1 / -1; }
 }
+/* Celular: Planta e Portfólio lado a lado, Contato embaixo ocupando a linha;
+   textos menores e mais juntos, para o rodapé não virar uma lista comprida */
 @media (max-width: 560px) {
-  #footer-row { grid-template-columns: 1fr; }
-  #footer-row .footer-col:last-child { grid-column: auto; }
+  #footer { padding: 2.25rem 1.25rem 1.5rem; }
+  #footer-row { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 2rem 1.25rem; }
+  #footer-row .footer-col:last-child { grid-column: 1 / -1; }
+  .footer-col h3 { font-size: 1rem; margin-bottom: 0.6rem; padding-bottom: 0.45rem; }
+  #footer .footer-col ul li a { font-size: 1rem; padding: 0.3em 0; }
+  .footer-svg { top: auto; bottom: 0; height: 60%; opacity: 0.25; }
+  #copyright { flex-direction: column; align-items: flex-start; gap: 0.4rem; padding: 1rem 1.25rem 1.25rem; font-size: 0.85rem; border-top: 1px solid rgba(247, 242, 236, 0.18); }
 }

@@ -50,3 +50,8 @@ body::before {
 .js .reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Foco por teclado visível em todo link e botão (especificidade zero: as regras
+   das seções podem trocar). Sobre a oliva do Contato o contorno é argila. */
+:where(a, button, [tabindex]):focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 3px; }
+:where(#Connect) :where(a, button):focus-visible { outline-color: var(--argila); }

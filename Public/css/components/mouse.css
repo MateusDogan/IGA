@@ -1,6 +1,7 @@
 /* Cursor customizado: só em dispositivos com mouse (JS adiciona .has-custom-cursor) */
 #custom-cursor { display: none; }
 
+/* !important de propósito: vence o cursor: pointer de links e botões em todo o site */
 .has-custom-cursor,
 .has-custom-cursor * { cursor: none !important; }
 
@@ -47,15 +48,15 @@
 }
 .has-custom-cursor #custom-cursor.is-explore.is-clicked { background: rgba(255, 255, 255, 0.4); }
 
-/* Fotos de Projetos: o anel mantém o tamanho e mostra uma seta.
-   Ao pressionar, o anel continua do mesmo tamanho, sem preenchimento, e a seta encolhe um pouco. */
+/* Fotos de Projetos: o anel mantém o tamanho e mostra um "+".
+   Ao pressionar, o anel continua do mesmo tamanho, sem preenchimento, e o "+" encolhe um pouco. */
 .has-custom-cursor #custom-cursor.is-photo.is-clicked { width: 22px; height: 22px; background: transparent; }
 .cursor-arrow {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
-    font: 400 12px/1 'Jost', sans-serif;
+    font: 300 18px/1 'Jost', sans-serif;
     color: var(--white);
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
@@ -63,7 +64,7 @@
 .has-custom-cursor #custom-cursor.is-photo .cursor-arrow { opacity: 1; }
 .has-custom-cursor #custom-cursor.is-photo.is-clicked .cursor-arrow { transform: scale(0.8); }
 
-/* Campos de texto: cursor de digitação do sistema */
+/* Campos de texto: cursor de digitação do sistema (!important para vencer a regra geral acima) */
 .has-custom-cursor input,
 .has-custom-cursor textarea { cursor: text !important; }
 

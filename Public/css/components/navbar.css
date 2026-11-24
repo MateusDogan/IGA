@@ -79,6 +79,9 @@ html.past-hero .header-progress { opacity: 1; }
 #main-header .nav-link { position: relative; }
 #main-header .nav-link::before { content: ''; position: absolute; inset: -12px -10px; }
 /* Seção atual (marcada por header.js): sublinhado terracota */
+/* Com o cursor customizado em cima do item atual, o próprio cursor é o sublinhado:
+   o sublinhado fixo some para não aparecerem duas linhas */
+.has-custom-cursor #main-header .nav-link[aria-current]:hover { text-decoration-color: transparent; }
 #main-header .nav-link[aria-current] {
   text-decoration: underline;
   text-decoration-color: var(--new-terracota);
@@ -130,7 +133,7 @@ html.past-hero .header-progress { opacity: 1; }
     align-items: center;
     padding: 0.5rem 0.95rem;
     border: 1px solid currentColor;
-    border-radius: 999px;
+    border-radius: 0;                  /* reto, como o carimbo do Contato */
     background: transparent;
     color: inherit;
     font: 400 0.66rem/1 'Julius Sans One', sans-serif;
