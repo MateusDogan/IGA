@@ -66,7 +66,7 @@
   justify-content: center;
   text-decoration: none;
 }
-#social-links a svg { width: 1em; height: 1em; color: var(--grafite); }
+#social-links a svg { width: 1em; height: 1em; color: var(--terracota); }
 #social-container-inv { background-color: var(--oliva); border-radius: 0; }
 #social-container-fill { flex-grow: 1; background-color: var(--oliva); border-radius: var(--panel-radius) 0 0 var(--panel-radius); }
 
