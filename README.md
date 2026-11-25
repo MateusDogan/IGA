@@ -111,7 +111,7 @@ O site não tem etapa de build nem gerenciador de pacotes (sem npm, sem bundler)
 - **Foto de projeto**: em Projetos, troque o `src` e o `alt` do `<img>`, o carimbo da `<figcaption>` (nome, tipo, local, área, ano) e o texto em `.portfolio-details`. O número da prancha é automático e a galeria lê tudo isso sozinha.
 - **Foto do hero**: cada `<img class="hero-slide">` tem `data-name` e `data-meta`, que viram a legenda. Com uma foto só, a troca automática desliga.
 - **Links de contato**: edite só a aba `#social-links` em `index.html`. No celular e no tablet o site copia esses links para o rodapé e para o formulário. Os links das colunas do rodapé do desktop ficam em `#footer-row` e precisam ser trocados também.
-- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261125e`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
+- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261125f`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
 
 ### Cursor
 

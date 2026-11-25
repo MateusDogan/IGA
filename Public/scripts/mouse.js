@@ -45,22 +45,21 @@
         }
     }
 
-    document.addEventListener('mousemove', (e) => {
-        if (snap) {
-            x = targetX = e.clientX; // primeira posição: sem "voar" do canto
-            y = targetY = e.clientY;
-            snap = false;
-        }
-        cursor.classList.add('is-visible');
+    let pointerX = 0, pointerY = 0, hasPointer = false;
 
+    // Lê o elemento sob o mouse e ajusta a forma do anel. Roda ao mover o mouse e
+    // também ao rolar a página: a página passa por baixo do mouse parado, e sem isso
+    // o anel continuava "em hover" num botão que já tinha saído de baixo dele.
+    function update(target, clientX, clientY) {
+        if (!target || !target.closest) return;
         // galeria e pop-up do formulário ficam na camada superior: o anel vai junto
-        const layer = e.target.closest('dialog[open]') || document.body;
+        const layer = target.closest('dialog[open]') || document.body;
         if (cursor.parentNode !== layer) layer.appendChild(cursor);
 
-        const menuLink = e.target.closest(MENU_LINK);
+        const menuLink = target.closest(MENU_LINK);
         const footerLink = !!menuLink && menuLink.matches(FOOTER_LINK);
-        const explore = !menuLink && e.target.closest(EXPLORE);
-        const photo = !menuLink && !explore && e.target.closest(PHOTO);
+        const explore = !menuLink && target.closest(EXPLORE);
+        const photo = !menuLink && !explore && target.closest(PHOTO);
 
         if (menuLink) {
             // vira o sublinhado: mesma largura da palavra, logo abaixo dela
@@ -79,8 +78,8 @@
             cursor.style.width = (r.width + 12) + 'px';
             cursor.style.height = (r.height + 12) + 'px';
         } else {
-            targetX = e.clientX;
-            targetY = e.clientY;
+            targetX = clientX;
+            targetY = clientY;
             cursor.style.width = '';
             cursor.style.height = '';
         }
@@ -89,19 +88,44 @@
         cursor.classList.toggle('is-explore', !!explore);
         cursor.classList.toggle('is-photo', !!photo);
         // a aba creme dos ícones fica dentro da coluna verde: ali o anel volta ao normal
-        cursor.classList.toggle('is-olive', !!e.target.closest(OLIVE) && !e.target.closest('#social-links'));
-        const onText = !!e.target.closest(TEXT);
+        cursor.classList.toggle('is-olive', !!target.closest(OLIVE) && !target.closest('#social-links'));
+        const onText = !!target.closest(TEXT);
         cursor.classList.toggle('is-text', onText);
         ease = onText ? 1 : baseEase; // a barra de digitação acompanha sem atraso, para selecionar texto com precisão
-        cursor.classList.toggle('is-enlarged', !menuLink && !explore && !photo && !onText && !!e.target.closest(INTERACTIVE));
+        cursor.classList.toggle('is-enlarged', !menuLink && !explore && !photo && !onText && !!target.closest(INTERACTIVE));
 
         if (!running) { running = true; requestAnimationFrame(frame); }
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        if (snap) {
+            x = targetX = e.clientX; // primeira posição: sem "voar" do canto
+            y = targetY = e.clientY;
+            snap = false;
+        }
+        pointerX = e.clientX;
+        pointerY = e.clientY;
+        hasPointer = true;
+        cursor.classList.add('is-visible');
+        update(e.target, e.clientX, e.clientY);
     }, { passive: true });
+
+    // rolagem com o mouse parado: relê o que ficou embaixo dele (uma vez por quadro)
+    let scrollQueued = false;
+    window.addEventListener('scroll', () => {
+        if (!hasPointer || scrollQueued) return;
+        scrollQueued = true;
+        requestAnimationFrame(() => {
+            scrollQueued = false;
+            update(document.elementFromPoint(pointerX, pointerY), pointerX, pointerY);
+        });
+    }, { passive: true, capture: true });
 
     // saiu da janela: some e solta o clique; ao voltar, a posição é lida sem deslizar desde a saída
     document.documentElement.addEventListener('mouseleave', () => {
         cursor.classList.remove('is-visible', 'is-clicked');
         snap = true;
+        hasPointer = false;
     });
     document.documentElement.addEventListener('mouseenter', () => { snap = true; });
     document.addEventListener('mousedown', () => cursor.classList.add('is-clicked'));
