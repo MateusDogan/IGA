@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = dialog.querySelector('.gallery-close');
     let current = 0;
     let opener = null;
+    let openedByKeyboard = false;
 
     function show(index) {
         current = (index + triggers.length) % triggers.length;
@@ -22,13 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
         img.src = photo.currentSrc || photo.src;
         img.alt = photo.alt;
         title.textContent = item.querySelector('figcaption h3').textContent;
-        meta.textContent = item.querySelector('figcaption span').textContent;
+        // carimbo da legenda (tipo, local, área, ano) e número da prancha
+        const stamp = item.querySelector('figcaption dl');
+        meta.replaceChildren(stamp ? stamp.cloneNode(true) : '');
+        meta.dataset.sheet = String(current + 1).padStart(2, '0');
         text.innerHTML = details ? details.innerHTML : '';
     }
 
     triggers.forEach((trigger, i) => {
-        trigger.addEventListener('click', () => {
+        trigger.addEventListener('click', (e) => {
             opener = trigger;
+            openedByKeyboard = e.detail === 0; // Enter/Espaço geram clique sem contagem de cliques
             show(i);
             dialog.showModal();
             closeBtn.focus();
@@ -47,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'ArrowRight') show(current + 1);
     });
 
-    // devolve o foco para a foto que abriu a galeria
-    dialog.addEventListener('close', () => { if (opener) opener.focus(); });
+    // Aberta pelo teclado: o foco volta para a foto que abriu a galeria (com a moldura de foco).
+    // Aberta com o mouse: o foco sai da foto, para a moldura não ficar presa depois que o mouse sai.
+    dialog.addEventListener('close', () => {
+        if (!opener) return;
+        opener.focus({ preventScroll: true });
+        if (!openedByKeyboard) opener.blur();
+    });
 });

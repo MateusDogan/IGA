@@ -1,0 +1,105 @@
+/* Ponto terracota: o ponto do símbolo IGA marca onde a pessoa age ou onde ela está.
+   Aparece só em: chamadas de contato (.cta-link), botão de envio do formulário
+   e o "ponto final" da confirmação de envio. (No menu, a seção atual é sublinhada.)
+   Sobre a oliva ele vira argila (terracota sobre a oliva não tem contraste). */
+
+/* Seletor reto em células (frente do projeto no formulário e abas do processo).
+   Contorno de 1px e divisórias, como o carimbo; a opção marcada fica cheia.
+   Cores por variáveis: --seg-line, --seg-on-bg, --seg-on-fg. */
+.segmented {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  border: 1px solid var(--seg-line, currentColor);
+}
+.segmented > * { position: relative; }
+.segmented > * + * { border-left: 1px solid var(--seg-line, currentColor); }
+.segmented input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.segmented label > span,
+.segmented button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 2.6rem;
+  padding: 0.45rem 0.5rem;
+  border: 0;
+  background: transparent;
+  font: 400 0.85rem/1.2 'Jost', sans-serif;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.segmented input:checked + span,
+.segmented button[aria-selected="true"] { background: var(--seg-on-bg); color: var(--seg-on-fg); }
+.segmented label:hover > span,
+.segmented button:hover { background: rgba(242, 232, 220, 0.12); }
+.segmented input:checked + span:hover,
+.segmented button[aria-selected="true"]:hover { background: var(--seg-on-bg); }
+.segmented input:focus-visible + span,
+.segmented button:focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
+
+/* Chamada de contato no meio da página: texto sublinhado com o ponto antes */
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font: 500 0.95rem/1.4 'Jost', sans-serif;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: color 0.2s ease;
+}
+.cta-link::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: var(--new-terracota);
+}
+.cta-link:hover { color: var(--terracota); }
+.cta-link:focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 4px; }
+.service-body .cta-link { margin-top: 1.1rem; }
+
+/* Fim de Projetos (fundo grafite): texto creme, hover em argila */
+.portfolio-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.25rem;
+  max-width: 1200px;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(242, 232, 220, 0.2);
+  font: 300 clamp(1.05rem, 1.4vw, 1.25rem)/1.5 'Libre Caslon Display', serif;
+  color: var(--linho);
+}
+.portfolio-cta .cta-link:hover { color: var(--argila); }
+
+/* Botão de envio: ponto depois do texto; no hover (fundo terracota) o ponto fica creme */
+.form-submit::after {
+  content: '';
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: 0.6em;
+  border-radius: 50%;
+  vertical-align: 0.1em;
+  background: var(--new-terracota);
+  transition: background 0.2s ease;
+}
+.form-submit:hover::after { background: var(--linho); }
+
+/* Confirmação: "Mensagem enviada" termina no ponto, em argila sobre a oliva */
+.form-done h3::after {
+  content: '';
+  display: inline-block;
+  width: 0.2em;
+  height: 0.2em;
+  margin-left: 0.1em;
+  border-radius: 50%;
+  background: var(--argila);
+}

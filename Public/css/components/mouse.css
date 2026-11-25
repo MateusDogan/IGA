@@ -24,10 +24,20 @@
 }
 
 .has-custom-cursor #custom-cursor.is-visible { opacity: 1; }
-/* Campos de texto: o cursor de digitação do sistema volta e o anel some */
-.has-custom-cursor #custom-cursor.is-text { opacity: 0; }
+/* Campos de texto: o anel vira uma barra de digitação creme (o "I" preto do sistema
+   quase some sobre a oliva). Sem atraso no movimento (mouse.js), para selecionar texto. */
+.has-custom-cursor #custom-cursor.is-text {
+    width: 2px;
+    height: 1.6rem;
+    border-width: 0;
+    border-radius: 1px;
+    background: var(--linho);
+    mix-blend-mode: normal;
+    box-shadow: 0 0 0 1px rgba(43, 38, 34, 0.25);
+}
 .has-custom-cursor #custom-cursor.is-enlarged { width: 48px; height: 48px; background: rgba(255, 255, 255, 0.25); }
 .has-custom-cursor #custom-cursor.is-clicked { width: 14px; height: 14px; background: var(--white); }
+.has-custom-cursor #custom-cursor.is-text.is-clicked { width: 2px; height: 1.6rem; background: var(--linho); }
 
 /* Menu: o anel se achata e vira o sublinhado da palavra (a largura vem do JS) */
 .has-custom-cursor #custom-cursor.is-underline {
@@ -49,25 +59,28 @@
 }
 .has-custom-cursor #custom-cursor.is-explore.is-clicked { background: rgba(255, 255, 255, 0.4); }
 
-/* Fotos de Projetos: o anel mantém o tamanho e mostra um "+".
-   Ao pressionar, o anel continua do mesmo tamanho, sem preenchimento, e o "+" encolhe um pouco. */
-.has-custom-cursor #custom-cursor.is-photo.is-clicked { width: 22px; height: 22px; background: transparent; }
+/* Fotos de Projetos: o anel vira um círculo creme com a seta ↗ (abre a galeria).
+   Sem mistura de cores: legível sobre foto clara ou escura. Ao pressionar, encolhe um pouco. */
 .cursor-arrow {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
-    font: 300 18px/1 'Jost', sans-serif;
-    color: var(--white);
+    font: 300 1.5rem/1 'Jost', sans-serif;
+    color: var(--grafite);
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
+.has-custom-cursor #custom-cursor.is-photo {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-width: 0;
+    background: var(--linho);
+    mix-blend-mode: normal;
+}
 .has-custom-cursor #custom-cursor.is-photo .cursor-arrow { opacity: 1; }
-.has-custom-cursor #custom-cursor.is-photo.is-clicked .cursor-arrow { transform: scale(0.8); }
-
-/* Campos de texto: cursor de digitação do sistema (!important para vencer a regra geral acima) */
-.has-custom-cursor input,
-.has-custom-cursor textarea { cursor: text !important; }
+.has-custom-cursor #custom-cursor.is-photo.is-clicked { width: 3.2rem; height: 3.2rem; background: var(--linho); }
+.has-custom-cursor #custom-cursor.is-photo.is-clicked .cursor-arrow { transform: scale(0.9); }
 
 @media (prefers-reduced-motion: reduce) {
     .has-custom-cursor #custom-cursor { transition: none; }

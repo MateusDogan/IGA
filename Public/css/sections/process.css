@@ -1,0 +1,146 @@
+/* Processo, "Do traço à entrega": painel recuado e arredondado como Projetos e Contato,
+   em terracota (equilibra a oliva do Contato). Abas por frente no topo; as etapas
+   ficam penduradas num traço fino, como cotas de prancha, que termina no ponto IGA.
+   Desktop: traço horizontal. Celular/tablet: traço vertical à esquerda.
+   As cores ficam nas variáveis abaixo: para testar outro fundo, troque só elas. */
+#Process {
+  --proc-bg: var(--terracota);
+  --proc-fg: var(--linho);
+  --proc-soft: rgba(242, 232, 220, 0.78);   /* texto de apoio */
+  --proc-line: rgba(242, 232, 220, 0.5);    /* traço e contorno das abas */
+  --proc-accent: var(--argila);             /* números das etapas */
+  --proc-dot: var(--linho);                 /* ponto final do traço */
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: clamp(1.25rem, 2.5vw, 2rem) var(--panel-inset) 0;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 5vw, 5rem);
+  border-radius: var(--panel-radius);
+  background: var(--proc-bg);
+  color: var(--proc-fg);
+}
+/* Mesmo grão dos outros painéis */
+#Process::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--grain);
+  opacity: 0.25;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.process-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+}
+.process-intro h2 {
+  margin: 0;
+  font-family: 'Libre Caslon Display', serif;
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.05;
+}
+.process-intro p {
+  margin: 0.9rem 0 0;
+  max-width: 36ch;
+  font: 300 clamp(1.05rem, 1.3vw, 1.2rem)/1.55 'Jost', sans-serif;
+  color: var(--proc-soft);
+}
+
+/* Abas: mesmo seletor reto do formulário (.segmented, em actions.css) */
+.process-tabs { --seg-line: var(--proc-line); --seg-on-bg: var(--proc-fg); --seg-on-fg: var(--proc-bg); display: none; min-width: min(100%, 26rem); }
+.js .process-tabs { display: grid; }
+
+/* Etapas */
+.process-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0 2.25rem 2.25rem;
+  list-style: none;
+  counter-reset: etapa;
+}
+.process-steps + .process-steps { margin-top: 3rem; }      /* sem JS, as três listas empilhadas */
+.js .process-steps { display: none; margin-top: 0; }
+.js .process-steps.is-active { display: grid; animation: process-in 0.4s ease both; }
+@keyframes process-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* o traço */
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.7rem;
+  left: 0.35rem;
+  width: 1px;
+  background: var(--proc-line);
+}
+/* o ponto final */
+.process-steps::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--proc-dot);
+}
+.process-steps li { position: relative; counter-increment: etapa; }
+/* marca de cada etapa no traço */
+.process-steps li::before {
+  content: '';
+  position: absolute;
+  top: 0.4rem;
+  left: calc(-2.25rem + 0.35rem);
+  width: 0.9rem;
+  height: 1px;
+  background: var(--proc-fg);
+}
+.process-steps h3 {
+  margin: 0 0 0.5rem;
+  font-family: 'Libre Caslon Display', serif;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 1.9vw, 1.75rem);
+  line-height: 1.1;
+}
+.process-steps h3::before {
+  content: counter(etapa, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.45rem;
+  font: 500 0.8rem/1 'Jost', sans-serif;
+  letter-spacing: 0.06em;
+  color: var(--proc-accent);
+}
+.process-steps p {
+  margin: 0;
+  max-width: 32ch;
+  font: 300 1rem/1.6 'Jost', sans-serif;
+  color: var(--proc-soft);
+}
+
+@media (min-width: 1000px) {
+  .process-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+    padding: 2.25rem 2.25rem 0 0;
+  }
+  .process-steps::before { top: 0.35rem; bottom: auto; left: 0; right: 0.7rem; width: auto; height: 1px; }
+  .process-steps::after { top: 0; bottom: auto; left: auto; right: 0; }
+  .process-steps li::before { top: calc(-2.25rem + 0.35rem); left: 0; width: 1px; height: 0.9rem; }
+}
+@media (max-width: 699px) {
+  .process-intro p { display: none; }
+  .process-tabs { min-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .js .process-steps.is-active { animation: none; } }

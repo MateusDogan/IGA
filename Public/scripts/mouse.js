@@ -2,7 +2,8 @@
 //   links e botões     -> o anel cresce
 //   links do menu e do rodapé -> o anel desliza para baixo da palavra e vira o sublinhado dela
 //   "Explore o espaço" -> o anel assume a forma do ícone do mouse do botão
-//   fotos de Projetos  -> aparece um "+" dentro do anel (a foto amplia na galeria)
+//   campos de texto    -> o anel vira uma barra de digitação creme, sem atraso (o I preto do sistema some na oliva)
+//   fotos de Projetos  -> o anel vira um círculo creme com a seta ↗ (a foto abre a galeria)
 //   pop-up aberto      -> o anel entra no <dialog> (camada superior, cobriria o anel) e continua funcionando
 // Só em dispositivos com mouse; com "reduzir movimento" o anel acompanha sem atraso.
 (function () {
@@ -15,16 +16,17 @@
     const arrow = document.createElement('span');
     arrow.className = 'cursor-arrow';
     arrow.setAttribute('aria-hidden', 'true');
-    arrow.textContent = '+'; // ampliar
+    arrow.textContent = '↗'; // ↗ abre a galeria
     cursor.appendChild(arrow);
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const ease = reduceMotion ? 1 : 0.22; // suaviza o seguimento
+    const baseEase = reduceMotion ? 1 : 0.22; // suaviza o seguimento
+    let ease = baseEase;
     let targetX = 0, targetY = 0, x = 0, y = 0, running = false;
     let snap = true; // próxima posição lida sem deslizar (primeira vez ou volta à janela)
 
-    const INTERACTIVE = 'a, button, .clickable-object';
-    const TEXT = 'input, textarea';
+    const INTERACTIVE = 'a, button, .clickable-object, .segmented label';
+    const TEXT = 'input:not([type="checkbox"]):not([type="radio"]), textarea';
     const MENU_LINK = '#main-header .nav-link, #footer .footer-col a';
     const FOOTER_LINK = '#footer .footer-col a';
     const EXPLORE = '#Explore';
@@ -90,6 +92,7 @@
         cursor.classList.toggle('is-olive', !!e.target.closest(OLIVE) && !e.target.closest('#social-links'));
         const onText = !!e.target.closest(TEXT);
         cursor.classList.toggle('is-text', onText);
+        ease = onText ? 1 : baseEase; // a barra de digitação acompanha sem atraso, para selecionar texto com precisão
         cursor.classList.toggle('is-enlarged', !menuLink && !explore && !photo && !onText && !!e.target.closest(INTERACTIVE));
 
         if (!running) { running = true; requestAnimationFrame(frame); }

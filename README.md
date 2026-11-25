@@ -19,11 +19,16 @@ Para ver localmente, sirva a pasta com qualquer servidor estático (por exemplo 
 - [ ] **Faixa de marcas**: mostra "Outro Ipsum." repetido. Trocar pelos logos dos clientes (o exemplo `nome.svg` está comentado em `index.html`) ou por uma frase real. Se nada chegar, dá para esconder a faixa.
 - [ ] **Links e contatos**: Instagram e LinkedIn apontam para a página inicial de cada rede. O e-mail `iga@e-mail.com` e o telefone `+55 01 29876-5432` são provisórios. Eles aparecem em `index.html` (aba de contato e rodapé), em `privacidade.html` e na mensagem de erro de `forms_validation.js`.
 - [ ] **Textos do escritório e dos serviços**: revisar com a cliente. Os textos atuais foram escritos para o site e não vieram dela. Croquis, se ela quiser usar.
+- [ ] **Etapas do processo** ("Do traço à entrega"): confirmar as quatro etapas de cada frente (Arquitetura, Interiores, Design gráfico) e o texto de cada uma.
+- [ ] **Carimbo dos projetos**: local ("Cidade, UF") e área ("180 m²") de cada projeto. Campo vazio não aparece.
+- [ ] **Cidade e região atendida**: entra numa linha de apoio no hero, nos dados estruturados (`LocalBusiness` com endereço) e no alt das fotos. É o que mais pesa para aparecer em buscas locais.
+- [ ] **WhatsApp**: número para um botão ao lado do envio do formulário.
+- [ ] **Perfil da Empresa no Google e Google Search Console**: criados pelo escritório; funcionam no endereço atual, sem domínio próprio. A meta tag de verificação do Search Console vai no `<head>`.
 
 ### Antes de publicar de vez
 
 - [ ] **Domínio**: se houver domínio próprio, trocar `mateusdogan.github.io/IGA/` no `<head>` de `index.html` (`canonical`, `og:url`, `og:image`), em `robots.txt` e em `sitemap.xml`, e configurar o domínio no GitHub Pages.
-- [ ] **Script do formulário**: confirmar que a versão atual de `docs/apps-script.gs` está publicada como "Nova versão" no Apps Script, com as propriedades `EMAIL_ESCRITORIO` e `FORMULARIO_ABERTO` e a coluna G `protocolo` na planilha (passo a passo em `docs/google-sheets-setup.md`).
+- [ ] **Script do formulário**: confirmar que a versão atual de `docs/apps-script.gs` está publicada como "Nova versão" no Apps Script, com as propriedades `EMAIL_ESCRITORIO` e `FORMULARIO_ABERTO` e as colunas G `protocolo` e H `tipo` na planilha (passo a passo em `docs/google-sheets-setup.md`).
 - [ ] **Teste do formulário**: enviar uma mensagem de teste pelo site publicado e conferir a confirmação com protocolo, a linha na planilha e o e-mail de aviso.
 - [ ] **Política de privacidade**: revisão jurídica de `privacidade.html`. Ela precisa dizer que as fontes vêm do Google Fonts, que recebe o IP de quem visita, e que as mensagens do formulário ficam numa planilha do Google. A alternativa é hospedar as fontes no próprio site.
 - [ ] **Licença e marca**: `TRADEMARKS.md` ainda tem `[Client Name]`. Confirmar com a cliente se o código fica sob a licença MIT (`LICENSE`, em nome de Mateus Dogan); a marca e as fotos não entram nessa licença.
@@ -87,24 +92,39 @@ O site não tem etapa de build nem gerenciador de pacotes (sem npm, sem bundler)
 - `404.html`: página de erro, com estilos embutidos para não depender do resto.
 - `privacidade.html`: política de privacidade.
 - `Public/css/base/`: cores (`colors.css`), fontes (`fonts.css`) e estilo geral (`style.css`).
-- `Public/css/components/`: navbar, cursor, faixa de marcas, barra de rolagem.
-- `Public/css/sections/`: uma folha por seção (hero, escritório, serviços, portfólio, contato, rodapé).
+- `Public/css/components/`: navbar, cursor, faixa de marcas, barra de rolagem e `actions.css` (chamadas de contato e o ponto terracota).
+- `Public/css/sections/`: uma folha por seção (hero, serviços, portfólio, processo, escritório, contato, rodapé).
 - `Public/scripts/`: um script por comportamento:
   - `mouse.js`: cursor
   - `header.js`: navbar, menu do celular e cópia dos ícones de contato
   - `hero.js`: troca de fotos, automática e pelo clique
+  - `process.js`: abas por frente em "Do traço à entrega"
   - `forms_validation.js`: formulário
   - `team.js`: bios da equipe no toque
   - `gallery.js`: galeria
   - `reveal.js`: revelação ao rolar
 - `Public/assets/`: imagens em WebP, separadas por `marca`, `projetos` e `equipe`.
-- `docs/`: passo a passo do formulário no Google Sheets e o script do Apps Script.
+- `docs/`: passo a passo do formulário no Google Sheets, o script do Apps Script e a revisão de marca, conversão e SEO (`revisao-design-conversao-seo.md`).
 
 ### Como trocar o conteúdo
 
-- **Foto de projeto**: em Projetos, troque o `src` e o `alt` do `<img>`, o título e a linha da `<figcaption>` e o texto em `.portfolio-details`. A galeria lê tudo isso sozinha.
+- **Foto de projeto**: em Projetos, troque o `src` e o `alt` do `<img>`, o carimbo da `<figcaption>` (nome, tipo, local, área, ano) e o texto em `.portfolio-details`. O número da prancha é automático e a galeria lê tudo isso sozinha.
 - **Foto do hero**: cada `<img class="hero-slide">` tem `data-name` e `data-meta`, que viram a legenda. Com uma foto só, a troca automática desliga.
 - **Links de contato**: edite só a aba `#social-links` em `index.html`. No celular e no tablet o site copia esses links para o rodapé e para o formulário. Os links das colunas do rodapé do desktop ficam em `#footer-row` e precisam ser trocados também.
+- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261125e`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
+
+### Cursor
+
+O cursor customizado (`mouse.js` e `mouse.css`) só aparece em aparelhos com mouse e muda de forma conforme o lugar:
+
+- **Padrão**: anel creme que inverte as cores do fundo. Sobre o painel oliva, fica creme sem inverter.
+- **Links e botões**: o anel cresce. No menu e no rodapé, ele vira o sublinhado da palavra.
+- **Campos do formulário**: barra de digitação creme, sem atraso, para enxergar e selecionar texto sobre a oliva.
+- **Fotos de Projetos**: círculo creme com a seta ↗, que abre a galeria. A foto ganha uma moldura terracota só no hover. Quando a galeria é aberta pelo teclado, a moldura volta como foco ao fechar.
+
+### Painel de contato
+
+No desktop largo (a partir de 1200 px), o formulário ocupa 2/3 do painel oliva e o rodapé vira uma coluna de índice separada por um fio fino. A altura do painel fica em torno de 670 px numa tela de 1536 × 730. Não diminua essa altura.
 
 ---
 
@@ -116,13 +136,17 @@ As cores ficam só em `Public/css/base/colors.css`. Use sempre as variáveis:
 | --- | --- | --- |
 | `--linho` | `#F2E8DC` | fundo creme, texto sobre escuro |
 | `--argila` | `#D9A58A` | acentos sobre a oliva |
-| `--new-terracota` | `#B5583A` | acento principal: faixa de marcas, linha de cada serviço, sublinhado do menu |
-| `--terracota` | `#8F3F24` | etiquetas de Serviços, ícones da aba de contato, hover do botão Contato |
+| `--new-terracota` | `#B5583A` | acento principal: faixa de marcas, linha de cada serviço, sublinhado do menu, ponto de ação (ver abaixo) |
+| `--terracota` | `#8F3F24` | painel "Do traço à entrega", etiquetas de Serviços, ícones da aba de contato, hover do botão Contato |
 | `--oliva` / `--oliva-escura` | `#6B7A3F` / `#5A6735` | painel de contato e rodapé |
 | `--grafite` / `--night` | `#2B2622` / `#1F1B18` | Projetos, textos escuros |
 | `--white` | `#F7F2EC` | branco quente |
 
-O verde ocupa o painel de Contato e o rodapé, então o terracota precisa aparecer em repouso, não só em hover. Os próximos candidatos são os cargos da equipe e as legendas de Projetos (com `--argila` sobre o grafite, que tem contraste).
+O verde ocupa o painel de Contato e o rodapé, então o terracota precisa aparecer em repouso, não só em hover.
+
+**Ponto terracota.** O ponto do símbolo IGA marca onde a pessoa age ou onde ela está: chamadas de contato, botão de envio e o fim da confirmação de envio (em argila sobre a oliva). Ele também fecha o traço de "Do traço à entrega" (em creme sobre o painel terracota) e fica no canto de Projetos, como no logo. Não use o ponto como enfeite em outros lugares.
+
+**Linguagem de prancha.** Botão Contato com "A1", carimbo nas legendas dos projetos, etiquetas retas, o seletor em células (`.segmented`, usado na frente do projeto do formulário e nas abas do processo) e o traço do processo vêm do desenho de arquitetura. Elementos novos devem seguir essa linguagem: cantos retos, linhas de 1px e nenhuma sombra.
 
 Fontes, todas do Google Fonts:
 

@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         el.setAttribute('aria-invalid', String(!ok));
         return ok;
     }
-    const markInvalid = (names) => names.forEach((name) => field(name) && field(name).setAttribute('aria-invalid', 'true'));
 
     // Ao sair de um campo já preenchido, confere; ao digitar, limpa o erro.
     Object.keys(rules).forEach((name) => {
@@ -116,7 +115,30 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCounter();
 
     // ---------- Envio ----------
+    // Frente do projeto (obrigatória; mais de uma pode ser marcada)
+    const tipos = [...form.querySelectorAll('input[name="tipo"]')];
+    const frentes = form.querySelector('.frentes');
+    const tiposMarcados = () => tipos.filter((el) => el.checked).map((el) => el.value).join(', ');
+    function checkTipo() {
+        const ok = !frentes || tipos.some((el) => el.checked);
+        if (frentes) frentes.setAttribute('aria-invalid', String(!ok));
+        return ok;
+    }
+    tipos.forEach((el) => el.addEventListener('change', () => {
+        if (frentes.getAttribute('aria-invalid') === 'true') checkTipo();
+    }));
+
+    // "Começar um projeto de…" (Serviços): marca a etiqueta do serviço; o link leva ao formulário
+    document.querySelectorAll('.cta-link[data-tipo]').forEach((link) => {
+        link.addEventListener('click', () => {
+            const el = tipos.find((t) => t.value === link.dataset.tipo);
+            if (el) el.checked = true;
+            if (frentes && frentes.getAttribute('aria-invalid') === 'true') checkTipo();
+        });
+    });
+
     const values = () => ({
+        tipo: tiposMarcados(),
         name: field('name').value.trim(),
         email: field('email').value.trim(),
         phone: phone.value.trim(),
@@ -131,8 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         if (sending) return;
         const invalid = Object.keys(rules).filter((name) => !check(name));
-        if (invalid.length) {
-            field(invalid[0]).focus();
+        const tipoOk = checkTipo();
+        if (invalid.length || !tipoOk) {
+            (invalid.length ? field(invalid[0]) : tipos[0]).focus();
             setStatus('Confira os campos marcados.');
             return;
         }
@@ -150,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let result;
         try {
             const data = new URLSearchParams({
-                name: v.name, email: v.email, phone: digits(v.phone), city: v.city, message: v.message,
+                name: v.name, email: v.email, phone: digits(v.phone), city: v.city, message: v.message, tipo: v.tipo,
                 website: honeypot.value, t: String(Date.now() - startedAt),
             });
             if (correcting) data.set('corrige', correcting); // o escritório vê que substitui a anterior
@@ -180,7 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showError(result) {
         if (result.erro === 'campos' && Array.isArray(result.campos)) {
-            result.campos.forEach((name) => field(name) && field(name).setAttribute('aria-invalid', 'true'));
+            result.campos.forEach((name) => {
+                if (name === 'tipo') { if (frentes) frentes.setAttribute('aria-invalid', 'true'); }
+                else if (field(name)) field(name).setAttribute('aria-invalid', 'true');
+            });
             const first = form.querySelector('[aria-invalid="true"]');
             if (first) first.focus();
         }
@@ -195,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : 'Respondemos em até dois dias úteis.';
         const summary = done.querySelector('.form-done-summary');
         summary.replaceChildren();
-        [['Nome', v.name], ['E-mail', v.email], ['Celular', v.phone], ['Cidade', v.city], ['Mensagem', v.message]]
+        [['Tipo', v.tipo], ['Nome', v.name], ['E-mail', v.email], ['Celular', v.phone], ['Cidade', v.city], ['Mensagem', v.message]]
             .filter(([, value]) => value)
             .forEach(([term, value]) => {
                 const dt = document.createElement('dt');

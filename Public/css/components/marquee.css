@@ -19,7 +19,7 @@
 .marquee-text-wrapper,
 .false-div { flex-shrink: 0; }
 
-h2.marquee-text {
+.marquee-text {
   display: inline-block;
   font-size: 3em;
   font-weight: bold;

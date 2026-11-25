@@ -25,6 +25,27 @@
     <meta property="og:image:alt" content="Fachada de casa projetada pela IGA com o texto Espaços e marcas, desenhados juntos">
     <meta name="twitter:card" content="summary_large_image">
 
+    <!-- Dados estruturados (Google). Quando houver: trocar "Organization" por "LocalBusiness" e
+         acrescentar "address" e "areaServed" (cidade), "telephone", "email" e "sameAs" (links reais
+         do Instagram e do LinkedIn). Conferir em https://search.google.com/test/rich-results -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "IGA Arquitetura",
+        "url": "https://mateusdogan.github.io/IGA/",
+        "logo": "https://mateusdogan.github.io/IGA/Public/assets/marca/icon-192.png",
+        "image": "https://mateusdogan.github.io/IGA/Public/assets/marca/compartilhar.jpg",
+        "description": "Escritório de arquitetura, interiores e design gráfico. Projetos residenciais, comerciais e estandes, do primeiro traço ao acompanhamento da obra.",
+        "knowsAbout": ["Arquitetura", "Design de interiores", "Design gráfico", "Identidade visual", "Estandes", "Reformas"],
+        "employee": [
+            { "@type": "Person", "name": "Isabel Recamon de Melo", "jobTitle": "Arquiteta e urbanista" },
+            { "@type": "Person", "name": "Gustavo Henrique", "jobTitle": "Arquiteto e urbanista" },
+            { "@type": "Person", "name": "Gabriela Muhein", "jobTitle": "Arquiteta e urbanista" }
+        ]
+    }
+    </script>
+
     <!-- Ícones -->
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="Public/assets/marca/favicon-32x32.png">
@@ -35,23 +56,27 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Julius+Sans+One&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..700&family=Julius+Sans+One&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+    <!-- O "?v=" nos CSS e scripts força o navegador a baixar a versão nova depois de
+         cada publicação. Ao publicar uma mudança, troque a data em todos (busca e troca). -->
     <!-- Base: paleta, tipografia e reset -->
-    <link rel="stylesheet" href="Public/css/base/colors.css">
-    <link rel="stylesheet" href="Public/css/base/fonts.css">
-    <link rel="stylesheet" href="Public/css/base/style.css">
+    <link rel="stylesheet" href="Public/css/base/colors.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/base/fonts.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/base/style.css?v=20261125e">
     <!-- Componentes usados em várias partes -->
-    <link rel="stylesheet" href="Public/css/components/navbar.css">
-    <link rel="stylesheet" href="Public/css/components/mouse.css">
-    <link rel="stylesheet" href="Public/css/components/marquee.css">
-    <link rel="stylesheet" href="Public/css/components/scrollbar.css">
+    <link rel="stylesheet" href="Public/css/components/navbar.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/components/mouse.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/components/marquee.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/components/scrollbar.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/components/actions.css?v=20261125e">
     <!-- Seções, na ordem da página -->
-    <link rel="stylesheet" href="Public/css/sections/hero.css">
-    <link rel="stylesheet" href="Public/css/sections/services.css">
-    <link rel="stylesheet" href="Public/css/sections/portfolio.css">
-    <link rel="stylesheet" href="Public/css/sections/office.css">
-    <link rel="stylesheet" href="Public/css/sections/contact.css">
-    <link rel="stylesheet" href="Public/css/sections/footer.css">
+    <link rel="stylesheet" href="Public/css/sections/hero.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/sections/services.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/sections/portfolio.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/sections/process.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/sections/office.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/sections/contact.css?v=20261125e">
+    <link rel="stylesheet" href="Public/css/sections/footer.css?v=20261125e">
 
 </head>
 <body>
@@ -114,7 +139,7 @@
             <p>Três frentes que trabalham juntas: da identidade da marca à casa onde ela vive.</p>
         </div>
 
-        <article class="service reveal service--arq">
+        <article class="service reveal service--arq" id="arquitetura">
             <img class="service-photo" src="Public/assets/projetos/foto5-800.webp" srcset="Public/assets/projetos/foto5-800.webp 800w, Public/assets/projetos/foto5-1440.webp 1440w" sizes="(min-width: 1000px) 55vw, 100vw" width="1440" height="810" alt="Estande Alux, projeto de arquitetura" loading="lazy" decoding="async">
             <div class="service-body">
                 <h3 class="libre-caslon">Arquitetura</h3>
@@ -124,10 +149,11 @@
                     <li>Reformas e ampliações</li>
                     <li>Acompanhamento de obra</li>
                 </ul>
+                <a class="cta-link" href="#Connect" data-tipo="Arquitetura">Começar um projeto de arquitetura</a>
             </div>
         </article>
 
-        <article class="service reveal service--graf">
+        <article class="service reveal service--graf" id="design-grafico">
             <img class="service-photo" src="Public/assets/projetos/Foto4-600.webp" srcset="Public/assets/projetos/Foto4-600.webp 600w, Public/assets/projetos/Foto4-900.webp 900w" sizes="(min-width: 1000px) 30vw, 100vw" width="900" height="1600" alt="Prancha de apresentação do estande Alux" loading="lazy" decoding="async">
             <div class="service-body">
                 <h3 class="libre-caslon">Design gráfico</h3>
@@ -137,10 +163,11 @@
                     <li>Material impresso e apresentações</li>
                     <li>Sinalização e comunicação visual</li>
                 </ul>
+                <a class="cta-link" href="#Connect" data-tipo="Design gráfico">Começar um projeto de design gráfico</a>
             </div>
         </article>
 
-        <article class="service reveal service--int">
+        <article class="service reveal service--int" id="interiores">
             <img class="service-photo" src="Public/assets/projetos/Foto2-800.webp" srcset="Public/assets/projetos/Foto2-800.webp 800w, Public/assets/projetos/Foto2-1440.webp 1440w" sizes="(min-width: 1000px) 55vw, 100vw" width="1440" height="810" alt="Cozinha integrada, projeto de interiores" loading="lazy" decoding="async">
             <div class="service-body">
                 <h3 class="libre-caslon">Interiores</h3>
@@ -150,14 +177,17 @@
                     <li>Mobiliário e marcenaria sob medida</li>
                     <li>Iluminação e paisagismo de apoio</li>
                 </ul>
+                <a class="cta-link" href="#Connect" data-tipo="Interiores">Começar um projeto de interiores</a>
             </div>
         </article>
     </section>
 
     <!-------------------------- Portfólio --------------------------->
     <!-- As imagens "generico-*" são ilustrações provisórias. Para trocar: mude o src e o alt do <img>
-         (e width/height) e o nome e a categoria na legenda. Clicar na foto abre a galeria em tela cheia
-         (Public/scripts/gallery.js), que usa a foto, a legenda e o texto completo (.portfolio-details) de cada item.
+         (e width/height) e os dados do carimbo na legenda: nome, tipo, local ("Cidade, UF"), área ("180 m²")
+         e ano. Campo vazio não aparece; o número da prancha (01, 02…) é automático. Clicar na foto abre a
+         galeria em tela cheia (Public/scripts/gallery.js), que usa a foto, o carimbo e o texto completo
+         (.portfolio-details) de cada item.
          Os textos são provisórios: o resumo aparece sobre a foto ao passar o mouse; o texto completo, na galeria. -->
     <section id="Projects">
         <div class="portfolio-intro">
@@ -167,40 +197,79 @@
         <div class="portfolio-grid">
             <figure class="portfolio-item reveal portfolio-item--l">
                 <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-l.webp" width="1200" height="900" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Casa térrea de linhas simples, aberta para o jardim.</span></span></button>
-                <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2025</span></figcaption>
+                <figcaption class="stamp"><h3>Nome do projeto</h3><dl><div><dt>Tipo</dt><dd>Arquitetura</dd></div><div><dt>Local</dt><dd></dd></div><div><dt>Área</dt><dd></dd></div><div><dt>Ano</dt><dd>2025</dd></div></dl></figcaption>
                 <div class="portfolio-details" hidden><p>A casa organiza os ambientes em volumes baixos ao redor do jardim, de modo que a sala, a cozinha e a varanda se abrem para a área externa.</p><p>A escolha de poucos materiais, com concreto aparente, madeira e vidro, mantém a obra simples de construir e fácil de conservar.</p></div>
             </figure>
             <figure class="portfolio-item reveal portfolio-item--m">
                 <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-m.webp" width="1200" height="1500" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Ambientes integrados, com materiais naturais.</span></span></button>
-                <figcaption><h3>Nome do projeto</h3><span>Interiores, 2025</span></figcaption>
+                <figcaption class="stamp"><h3>Nome do projeto</h3><dl><div><dt>Tipo</dt><dd>Interiores</dd></div><div><dt>Local</dt><dd></dd></div><div><dt>Área</dt><dd></dd></div><div><dt>Ano</dt><dd>2025</dd></div></dl></figcaption>
                 <div class="portfolio-details" hidden><p>O projeto integra cozinha, sala e jantar em um único espaço, pensado para receber e para o dia a dia da família.</p><p>Madeira, pedra e tons claros dão continuidade entre os ambientes, e a iluminação é planejada para cada momento do dia.</p></div>
             </figure>
             <figure class="portfolio-item reveal portfolio-item--s">
                 <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-s1.webp" width="1000" height="1000" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Identidade visual pensada junto com o espaço.</span></span></button>
-                <figcaption><h3>Nome do projeto</h3><span>Design gráfico, 2024</span></figcaption>
+                <figcaption class="stamp"><h3>Nome do projeto</h3><dl><div><dt>Tipo</dt><dd>Design gráfico</dd></div><div><dt>Local</dt><dd></dd></div><div><dt>Área</dt><dd></dd></div><div><dt>Ano</dt><dd>2024</dd></div></dl></figcaption>
                 <div class="portfolio-details" hidden><p>A identidade foi desenvolvida em paralelo ao projeto do espaço, para que a marca, a sinalização e os materiais conversem entre si.</p><p>O trabalho inclui logotipo, paleta de cores, papelaria e peças de apresentação.</p></div>
             </figure>
             <figure class="portfolio-item reveal portfolio-item--s">
                 <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-s2.webp" width="1000" height="1000" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Marcenaria sob medida e iluminação de apoio.</span></span></button>
-                <figcaption><h3>Nome do projeto</h3><span>Interiores, 2024</span></figcaption>
+                <figcaption class="stamp"><h3>Nome do projeto</h3><dl><div><dt>Tipo</dt><dd>Interiores</dd></div><div><dt>Local</dt><dd></dd></div><div><dt>Área</dt><dd></dd></div><div><dt>Ano</dt><dd>2024</dd></div></dl></figcaption>
                 <div class="portfolio-details" hidden><p>Um ambiente resolvido com marcenaria desenhada sob medida, que organiza o armazenamento sem pesar no visual.</p><p>A iluminação de apoio destaca os materiais e cria camadas de luz para diferentes usos.</p></div>
             </figure>
             <figure class="portfolio-item reveal portfolio-item--s">
                 <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-s3.webp" width="1000" height="1000" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Reforma que amplia a casa sem perder o que já funcionava.</span></span></button>
-                <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2024</span></figcaption>
+                <figcaption class="stamp"><h3>Nome do projeto</h3><dl><div><dt>Tipo</dt><dd>Arquitetura</dd></div><div><dt>Local</dt><dd></dd></div><div><dt>Área</dt><dd></dd></div><div><dt>Ano</dt><dd>2024</dd></div></dl></figcaption>
                 <div class="portfolio-details" hidden><p>A reforma reorganiza a planta existente e acrescenta área nova, aproveitando a estrutura e os pontos fortes da casa original.</p><p>O resultado é uma casa mais iluminada, ventilada e adequada à rotina de quem mora nela.</p></div>
             </figure>
             <figure class="portfolio-item reveal portfolio-item--w">
                 <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/Foto3-900.webp" width="900" height="506" alt="Estande Alux, vista frontal" loading="lazy" decoding="async"><span class="portfolio-overlay">Estande para feira, com a marca presente em cada volume.</span></span></button>
-                <figcaption><h3>Nome do projeto</h3><span>Arquitetura, 2023</span></figcaption>
+                <figcaption class="stamp"><h3>Nome do projeto</h3><dl><div><dt>Tipo</dt><dd>Arquitetura</dd></div><div><dt>Local</dt><dd></dd></div><div><dt>Área</dt><dd></dd></div><div><dt>Ano</dt><dd>2023</dd></div></dl></figcaption>
                 <div class="portfolio-details" hidden><p>O estande foi desenhado para uma feira do setor de perfis de alumínio, com ambientes abertos para atendimento e conversa.</p><p>A marca aparece nos painéis, na iluminação e nos materiais, reforçando a identidade da empresa em todo o espaço.</p></div>
             </figure>
             <figure class="portfolio-item reveal portfolio-item--p">
                 <button class="portfolio-open" type="button" aria-label="Ampliar foto do projeto"><span class="portfolio-photo"><img src="Public/assets/projetos/generico-p.webp" width="900" height="1200" alt="Ilustração de uma casa moderna, imagem provisória" loading="lazy" decoding="async"><span class="portfolio-overlay">Ambiente compacto, resolvido com poucos materiais.</span></span></button>
-                <figcaption><h3>Nome do projeto</h3><span>Interiores, 2023</span></figcaption>
+                <figcaption class="stamp"><h3>Nome do projeto</h3><dl><div><dt>Tipo</dt><dd>Interiores</dd></div><div><dt>Local</dt><dd></dd></div><div><dt>Área</dt><dd></dd></div><div><dt>Ano</dt><dd>2023</dd></div></dl></figcaption>
                 <div class="portfolio-details" hidden><p>Um espaço pequeno em que cada metro foi pensado: mobiliário integrado, circulação livre e ventilação natural.</p><p>A paleta reduzida de materiais dá unidade ao conjunto e facilita a manutenção.</p></div>
             </figure>
         </div>
+        <p class="portfolio-cta">Tem um projeto parecido em mente? <a class="cta-link" href="#Connect">Conte para a gente</a></p>
+    </section>
+
+    <!-------------------------- Processo --------------------------->
+    <!-- Texto provisório: confirmar as etapas com o escritório.
+         Uma lista de etapas por frente; as abas (process.js) mostram uma de cada vez.
+         Sem JavaScript, as três listas aparecem uma embaixo da outra.
+         O traço liga as etapas e termina no ponto do símbolo IGA. -->
+    <section id="Process" aria-labelledby="Process-heading">
+        <div class="process-intro">
+            <div>
+                <h2 id="Process-heading">Do traço à entrega</h2>
+                <p>Cada frente tem o seu caminho. Escolha uma para ver as etapas.</p>
+            </div>
+            <div class="segmented process-tabs" role="tablist" aria-label="Frente do projeto">
+                <button type="button" role="tab" id="tab-arq" aria-controls="steps-arq" aria-selected="true">Arquitetura</button>
+                <button type="button" role="tab" id="tab-int" aria-controls="steps-int" aria-selected="false" tabindex="-1">Interiores</button>
+                <button type="button" role="tab" id="tab-graf" aria-controls="steps-graf" aria-selected="false" tabindex="-1">Design gráfico</button>
+            </div>
+        </div>
+
+        <ol class="process-steps is-active" id="steps-arq" role="tabpanel" aria-labelledby="tab-arq">
+            <li><h3>Briefing</h3><p>Uma conversa para entender o terreno ou o imóvel, a rotina de quem vai usar e o orçamento.</p></li>
+            <li><h3>Estudo preliminar</h3><p>Primeiras plantas, volumes e referências, ajustados com você até o caminho ficar claro.</p></li>
+            <li><h3>Projeto executivo</h3><p>O desenho completo para construir, compatibilizado com estrutura e instalações.</p></li>
+            <li><h3>Acompanhamento executivo</h3><p>Visitas e suporte à obra para que o construído siga o projeto, até a entrega.</p></li>
+        </ol>
+        <ol class="process-steps" id="steps-int" role="tabpanel" aria-labelledby="tab-int">
+            <li><h3>Briefing</h3><p>Como você usa cada ambiente, o que fica, o que sai e quanto quer investir.</p></li>
+            <li><h3>Conceito e layout</h3><p>Planta de layout, paleta de materiais e imagens do ambiente para aprovar antes de detalhar.</p></li>
+            <li><h3>Detalhamento</h3><p>Marcenaria, iluminação, revestimentos e lista de compras, tudo especificado.</p></li>
+            <li><h3>Execução e montagem</h3><p>Acompanhamento de fornecedores e da montagem, até o ambiente pronto para usar.</p></li>
+        </ol>
+        <ol class="process-steps" id="steps-graf" role="tabpanel" aria-labelledby="tab-graf">
+            <li><h3>Briefing</h3><p>O que a marca precisa dizer, para quem e onde ela vai aparecer.</p></li>
+            <li><h3>Conceito</h3><p>Caminhos visuais com símbolo, tipografia e cores para escolher a direção.</p></li>
+            <li><h3>Desenvolvimento</h3><p>A identidade completa: logotipo, paleta, tipografia e aplicações.</p></li>
+            <li><h3>Entrega e aplicação</h3><p>Manual de marca, arquivos finais e acompanhamento da produção das peças.</p></li>
+        </ol>
     </section>
 
     <section id="Office">
@@ -251,24 +320,24 @@
 
 
     <!-- Faixa de marcas: aqui vão os logos das marcas criadas nos projetos de design gráfico,
-         conforme a cliente liberar. Para cada marca, troque um <h2 class="marquee-text"> por
+         conforme a cliente liberar. Para cada marca, troque um <span class="marquee-text"> por
          <img class="marquee-logo" src="Public/assets/marcas/nome.svg" alt="">
          (repita a mesma sequência nos dois blocos, para o loop ficar contínuo). -->
     <div class="marquee-container" aria-hidden="true">
         <div class="marquee-content-wrapper right">
             <div class="marquee-text-wrapper">
-                <h2 class="marquee-text">Outro Ipsum.</h2>
-                <h2 class="marquee-text">Outro Ipsum.</h2>
-                <h2 class="marquee-text">Outro Ipsum.</h2>
-                <h2 class="marquee-text">Outro Ipsum.</h2>
-                <h2 class="marquee-text">Outro Ipsum.</h2>
+                <span class="marquee-text">Outro Ipsum.</span>
+                <span class="marquee-text">Outro Ipsum.</span>
+                <span class="marquee-text">Outro Ipsum.</span>
+                <span class="marquee-text">Outro Ipsum.</span>
+                <span class="marquee-text">Outro Ipsum.</span>
             </div>
             <div class="false-div">
-                <h2 class="marquee-text">Outro Ipsum.</h2>
-                <h2 class="marquee-text">Outro Ipsum.</h2>
-                <h2 class="marquee-text">Outro Ipsum.</h2>
-                <h2 class="marquee-text">Outro Ipsum.</h2>
-                <h2 class="marquee-text">Outro Ipsum.</h2>
+                <span class="marquee-text">Outro Ipsum.</span>
+                <span class="marquee-text">Outro Ipsum.</span>
+                <span class="marquee-text">Outro Ipsum.</span>
+                <span class="marquee-text">Outro Ipsum.</span>
+                <span class="marquee-text">Outro Ipsum.</span>
             </div>
         </div>
     </div>
@@ -336,6 +405,17 @@
         </section>
 
         <section class="message-box field">
+            <!-- Frente do projeto (obrigatória, uma ou mais): vai para a coluna "tipo" da planilha.
+                 As chamadas "Começar um projeto de…" em Serviços já marcam a frente certa. -->
+            <fieldset class="frentes">
+                <legend>Frente do projeto</legend>
+                <div class="segmented">
+                    <label><input type="checkbox" name="tipo" value="Arquitetura"><span>Arquitetura</span></label>
+                    <label><input type="checkbox" name="tipo" value="Interiores"><span>Interiores</span></label>
+                    <label><input type="checkbox" name="tipo" value="Design gráfico"><span>Design gráfico</span></label>
+                </div>
+                <small class="field-error" id="e-tipo">Escolha pelo menos uma frente.</small>
+            </fieldset>
             <label for="f-message">Sua mensagem</label>
             <textarea id="f-message" name="message" rows="5" placeholder="Conte sobre o projeto ou a sua dúvida" required aria-describedby="message-count e-message"></textarea>
             <small class="field-count" id="message-count">Mínimo de 20 caracteres</small>
@@ -371,17 +451,17 @@
                 <h3>Planta</h3>
                 <ul>
                     <li><a class="hover-underline-animation left" href="#Hero-Page">Início</a></li>
-                    <li><a class="hover-underline-animation left" href="#Services">Serviços</a></li>
-                    <li><a class="hover-underline-animation left" href="#Projects">Portfólio</a></li>
-                    <li><a class="hover-underline-animation left" href="#Office">Equipe</a></li>
+                    <li><a class="hover-underline-animation left" href="#Projects">Projetos</a></li>
+                    <li><a class="hover-underline-animation left" href="#Process">Processo</a></li>
+                    <li><a class="hover-underline-animation left" href="#Office">Escritório</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>Portfólio</h3>
+                <h3>Serviços</h3>
                 <ul>
-                    <li><a class="hover-underline-animation left" href="#Projects">Projeto Arquitetônico</a></li>
-                    <li><a class="hover-underline-animation left" href="#Projects">Design de Interiores</a></li>
-                    <li><a class="hover-underline-animation left" href="#Projects">Design Gráfico</a></li>  
+                    <li><a class="hover-underline-animation left" href="#arquitetura">Arquitetura</a></li>
+                    <li><a class="hover-underline-animation left" href="#interiores">Interiores</a></li>
+                    <li><a class="hover-underline-animation left" href="#design-grafico">Design gráfico</a></li>
                 </ul>
             </div>
              <div class="footer-col">
@@ -414,19 +494,20 @@
             <figure class="gallery-figure"><img class="gallery-img" alt=""></figure>
             <div class="gallery-info">
                 <h3 class="gallery-title"></h3>
-                <p class="gallery-meta"></p>
+                <div class="gallery-meta stamp"></div>
                 <div class="gallery-text"></div>
             </div>
         </div>
         <button class="gallery-nav gallery-next" type="button" aria-label="Próximo projeto">&rsaquo;</button>
     </dialog>
 
-    <script src="Public/scripts/mouse.js"></script>
-    <script src="Public/scripts/header.js"></script>
-    <script src="Public/scripts/hero.js"></script>
-    <script src="Public/scripts/forms_validation.js"></script>
-    <script src="Public/scripts/team.js"></script>
-    <script src="Public/scripts/gallery.js"></script>
-    <script src="Public/scripts/reveal.js"></script>
+    <script src="Public/scripts/mouse.js?v=20261125e"></script>
+    <script src="Public/scripts/header.js?v=20261125e"></script>
+    <script src="Public/scripts/hero.js?v=20261125e"></script>
+    <script src="Public/scripts/forms_validation.js?v=20261125e"></script>
+    <script src="Public/scripts/team.js?v=20261125e"></script>
+    <script src="Public/scripts/gallery.js?v=20261125e"></script>
+    <script src="Public/scripts/process.js?v=20261125e"></script>
+    <script src="Public/scripts/reveal.js?v=20261125e"></script>
 </body>
 </html>

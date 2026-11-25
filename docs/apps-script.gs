@@ -12,7 +12,7 @@
  * O número do último protocolo também fica nas propriedades (ULTIMO_PROTOCOLO).
  *
  * Colunas da planilha (linha 1):
- *   data | nome | email | celular | cidade | mensagem | protocolo
+ *   data | nome | email | celular | cidade | mensagem | protocolo | tipo
  *
  * @OnlyCurrentDoc
  */
@@ -25,6 +25,8 @@ var TEMPO_MINIMO_MS = 3000;
 var DDDS = [11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 28, 31, 32, 33, 34, 35, 37, 38,
   41, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 54, 55, 61, 62, 63, 64, 65, 66, 67, 68, 69,
   71, 73, 74, 75, 77, 79, 81, 82, 83, 84, 85, 86, 87, 88, 89, 91, 92, 93, 94, 95, 96, 97, 98, 99];
+// Frente do projeto (obrigatória, uma ou mais); qualquer outro valor é descartado
+var TIPOS = ['Arquitetura', 'Interiores', 'Design gráfico'];
 
 function doPost(e) {
   var props = PropertiesService.getScriptProperties();
@@ -41,7 +43,8 @@ function doPost(e) {
     email: texto(p.email).toLowerCase(),
     celular: String(p.phone || '').replace(/\D/g, ''),
     cidade: texto(p.city),
-    mensagem: texto(p.message)
+    mensagem: texto(p.message),
+    tipo: String(p.tipo || '').split(',').map(texto).filter(function (t) { return TIPOS.indexOf(t) !== -1; }).join(', ')
   };
   // "Editar mensagem" no site reenvia com o protocolo da anterior
   var corrige = /^IGA-\d{4,}$/.test(String(p.corrige || '')) ? String(p.corrige) : '';
@@ -63,7 +66,7 @@ function doPost(e) {
     protocolo = 'IGA-' + ('000' + numero).slice(-4);
     SpreadsheetApp.getActiveSpreadsheet().getSheets()[0].appendRow([
       new Date(), seguro(dados.nome), seguro(dados.email), seguro(dados.celular),
-      seguro(dados.cidade), seguro((corrige ? '[Correção de ' + corrige + '] ' : '') + dados.mensagem), protocolo
+      seguro(dados.cidade), seguro((corrige ? '[Correção de ' + corrige + '] ' : '') + dados.mensagem), protocolo, dados.tipo
     ]);
   } finally {
     lock.releaseLock();
@@ -80,6 +83,7 @@ function validar(d) {
   if (!(d.email.length <= LIMITES.email && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email))) erros.push('email');
   if (d.celular && !celularValido(d.celular)) erros.push('phone');
   if (d.cidade.length > LIMITES.cidade) erros.push('city');
+  if (!d.tipo) erros.push('tipo');
   var links = (d.mensagem.match(/https?:\/\/|www\./gi) || []).length;
   if (d.mensagem.length < LIMITES.mensagemMin || d.mensagem.length > LIMITES.mensagemMax || links > LIMITES.links) erros.push('message');
   return erros;
@@ -130,6 +134,7 @@ function avisarEscritorio(destino, d, protocolo, corrige) {
           ? 'Correção pelo site (' + protocolo + '). Substitui a mensagem ' + corrige + '.'
           : 'Novo contato pelo site (' + protocolo + ').',
         '',
+        'Frente: ' + d.tipo,
         'Nome: ' + d.nome,
         'E-mail: ' + d.email,
         'Celular: ' + (d.celular || '-'),

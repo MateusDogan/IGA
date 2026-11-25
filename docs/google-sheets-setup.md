@@ -5,7 +5,7 @@ O site envia o formulário para um Apps Script do Google, que confere os dados, 
 ## Primeira configuração
 
 1. Crie uma planilha no Google Sheets, com a conta do escritório. Na linha 1 coloque:
-   `data | nome | email | celular | cidade | mensagem | protocolo`
+   `data | nome | email | celular | cidade | mensagem | protocolo | tipo`
 2. Compartilhe a planilha só com as pessoas do escritório. Nunca use "qualquer pessoa com o link".
 3. Menu **Extensões → Apps Script**, apague o conteúdo e cole `docs/apps-script.gs`.
 4. Em **Configurações do projeto (engrenagem) → Propriedades do script**, adicione:
@@ -24,7 +24,7 @@ O site envia o formulário para um Apps Script do Google, que confere os dados, 
 
 A URL continua a mesma. Sem uma nova versão, o site continua falando com o código antigo.
 
-Se a planilha já existia com 6 colunas, escreva `protocolo` na célula G1.
+Se a planilha já existia com 6 colunas, escreva `protocolo` na célula G1. A coluna H, `tipo`, guarda a frente do projeto marcada no formulário (por exemplo "Arquitetura, Interiores"); escreva `tipo` em H1.
 
 ## Testar
 
@@ -46,6 +46,7 @@ As regras são as mesmas no site e no script:
 | E-mail | Formato `nome@dominio.ext` |
 | Celular (opcional) | DDD que existe. Celular com 9 dígitos começando com 9; fixo com 8 começando de 2 a 5. Sem todos os dígitos iguais e sem sequências (`12345678`) |
 | Mensagem | De 20 a 3000 caracteres, no máximo 3 links |
+| Frente do projeto | Pelo menos uma: Arquitetura, Interiores ou Design gráfico |
 
 Também ficam de fora:
 

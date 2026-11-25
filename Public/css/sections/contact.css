@@ -172,6 +172,33 @@
   min-height: 0;
 }
 .message-box textarea { flex: 1 1 auto; min-height: 140px; }
+
+/* Frente do projeto: seletor reto em uma linha (.segmented, em actions.css),
+   mesma altura de um campo; a marcada fica creme cheia */
+.frentes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  border: 0;
+  --seg-line: rgba(247, 242, 236, 0.55);
+  --seg-on-bg: var(--linho);
+  --seg-on-fg: var(--oliva-escura);
+}
+.frentes legend {
+  float: left;                         /* sem o float, a legenda não entra no flex */
+  width: 100%;
+  margin-bottom: 0.35rem;
+  padding: 0;
+  font: 500 0.85rem/1.4 'Jost', sans-serif;
+  color: var(--white);
+}
+.frentes .segmented { border-radius: 4px; overflow: hidden; color: var(--white); }
+.frentes .segmented span { padding-inline: 0.25rem; font-size: 0.8rem; white-space: nowrap; }
+.frentes[aria-invalid="true"] .segmented { border-color: var(--argila); box-shadow: inset 0 0 0 1px var(--argila); }
+.frentes[aria-invalid="true"] .field-error { display: block; }
 /* Contador da mensagem (forms_validation.js); some quando o erro aparece */
 .field-count {
   font-family: 'Jost', sans-serif;
@@ -305,7 +332,6 @@
   #form-header .form-lede { max-width: none; }
   #form { gap: 0.75rem 1.25rem; padding: 1rem 2em 1.25rem; }
   #input-container { gap: 0.7rem; }
-}
 }
 /* Notebook pequeno: lado a lado ficava apertado; formulário em cima e rodapé embaixo */
 @media (min-width: 1000px) and (max-width: 1199px) {
