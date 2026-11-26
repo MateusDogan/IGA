@@ -145,6 +145,41 @@ document.addEventListener('DOMContentLoaded', () => {
         city: field('city').value.trim(),
         message: message.value.trim(),
     });
+    // ---------- Rascunho salvo no navegador ----------
+    // O que a pessoa digita fica só neste navegador (localStorage), nunca vai para o servidor
+    // antes do envio. Volta se ela sair e voltar; some depois do envio ou em 30 dias.
+    const DRAFT_KEY = 'iga-rascunho';
+    const DRAFT_DAYS = 30;
+    const DRAFT_FIELDS = ['name', 'email', 'phone', 'city', 'message'];
+    function saveDraft() {
+        const d = { t: Date.now(), tipo: tipos.filter((el) => el.checked).map((el) => el.value) };
+        DRAFT_FIELDS.forEach((name) => { d[name] = field(name).value; });
+        const empty = !d.tipo.length && DRAFT_FIELDS.every((name) => !d[name].trim());
+        try {
+            if (empty) localStorage.removeItem(DRAFT_KEY);
+            else localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+        } catch { /* navegador sem armazenamento: segue sem rascunho */ }
+    }
+    function clearDraft() {
+        try { localStorage.removeItem(DRAFT_KEY); } catch { /* idem */ }
+    }
+    function restoreDraft() {
+        let d = null;
+        try { d = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch { d = null; }
+        if (!d || typeof d !== 'object') return;
+        if (!d.t || Date.now() - d.t > DRAFT_DAYS * 864e5) { clearDraft(); return; }
+        // não sobrescreve o que o navegador já preencheu sozinho
+        if (DRAFT_FIELDS.some((name) => field(name).value)) return;
+        DRAFT_FIELDS.forEach((name) => { if (typeof d[name] === 'string') field(name).value = d[name]; });
+        if (Array.isArray(d.tipo)) tipos.forEach((el) => { el.checked = d.tipo.includes(el.value); });
+        updateCounter();
+        setStatus('Recuperamos o rascunho da sua mensagem.');
+    }
+    let draftTimer = 0;
+    form.addEventListener('input', () => { clearTimeout(draftTimer); draftTimer = setTimeout(saveDraft, 400); });
+    form.addEventListener('change', saveDraft);
+    restoreDraft();
+
     const label = submitButton.textContent;
     let sending = false;
     let correcting = ''; // protocolo da mensagem que está sendo editada
@@ -188,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.disabled = false;
         submitButton.textContent = correcting ? 'Enviar correção' : label;
 
-        if (result.ok) showDone(v, result.protocolo);
+        if (result.ok) { clearDraft(); showDone(v, result.protocolo); }
         else showError(result);
     });
 
@@ -261,6 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Outra mensagem: formulário vazio
         done.querySelector('.form-done-again').addEventListener('click', () => {
             form.reset();
+            clearDraft();
             correcting = '';
             submitButton.textContent = label;
             setStatus('');

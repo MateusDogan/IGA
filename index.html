@@ -55,31 +55,30 @@
     <link rel="icon" type="image/png" sizes="192x192" href="Public/assets/marca/icon-192.png">
     <link rel="apple-touch-icon" href="Public/assets/marca/apple-touch-icon.png">
     
-    <!-- Google Fonts -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..700&family=Julius+Sans+One&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+    <!-- Fontes: servidas pelo próprio site (Public/assets/fontes, regras em fonts.css).
+         As duas mais usadas na primeira tela carregam antes. -->
+    <link rel="preload" href="Public/assets/fontes/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Public/assets/fontes/libre-caslon-display-latin.woff2" as="font" type="font/woff2" crossorigin>
     <!-- O "?v=" nos CSS e scripts força o navegador a baixar a versão nova depois de
          cada publicação. Ao publicar uma mudança, troque a data em todos (busca e troca). -->
     <!-- Base: paleta, tipografia e reset -->
-    <link rel="stylesheet" href="Public/css/base/colors.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/base/fonts.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/base/style.css?v=20261125h">
+    <link rel="stylesheet" href="Public/css/base/colors.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/base/fonts.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/base/style.css?v=20261125j">
     <!-- Componentes usados em várias partes -->
-    <link rel="stylesheet" href="Public/css/components/navbar.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/components/mouse.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/components/marquee.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/components/scrollbar.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/components/actions.css?v=20261125h">
+    <link rel="stylesheet" href="Public/css/components/navbar.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/components/mouse.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/components/marquee.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/components/scrollbar.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/components/actions.css?v=20261125j">
     <!-- Seções, na ordem da página -->
-    <link rel="stylesheet" href="Public/css/sections/hero.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/sections/services.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/sections/portfolio.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/sections/process.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/sections/office.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/sections/contact.css?v=20261125h">
-    <link rel="stylesheet" href="Public/css/sections/footer.css?v=20261125h">
+    <link rel="stylesheet" href="Public/css/sections/hero.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/sections/services.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/sections/portfolio.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/sections/process.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/sections/office.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/sections/contact.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/sections/footer.css?v=20261125j">
 
 </head>
 <body>
@@ -114,9 +113,18 @@
              legenda). A primeira carrega na hora; as outras com loading="lazy".
              Com uma foto só, ela fica parada. -->
         <div class="hero-slides">
-            <img class="hero-slide is-active" src="Public/assets/marca/imagem_IGA-1440.webp" alt="Fachada de casa térrea com jardim, projeto IGA" data-name="Projeto 1" data-meta="Arquitetura, 2025" fetchpriority="high" decoding="async">
-            <img class="hero-slide" src="Public/assets/marca/hero-salao-jm-1440.webp" alt="Salão JM, com espelhos redondos iluminados, cadeiras pretas e pergolado de madeira" data-name="Salão JM" data-meta="Interiores, 2024" loading="lazy" decoding="async">
-            <img class="hero-slide" src="Public/assets/marca/hero-estande-alux-1440.webp" alt="Estande Alux na FESQUA, com estrutura metálica preta e balcão de madeira ripada" data-name="Estande Alux" data-meta="Estande, 2024" loading="lazy" decoding="async">
+            <picture>
+                <source media="(max-width: 700px) and (orientation: portrait)" srcset="Public/assets/marca/imagem_IGA-retrato.webp">
+                <img class="hero-slide is-active" src="Public/assets/marca/imagem_IGA-1440.webp" alt="Fachada de casa térrea com jardim, projeto IGA" data-name="Projeto 1" data-meta="Arquitetura, 2025" fetchpriority="high" decoding="async">
+            </picture>
+            <picture>
+                <source media="(max-width: 700px) and (orientation: portrait)" srcset="Public/assets/marca/hero-salao-jm-retrato.webp">
+                <img class="hero-slide" src="Public/assets/marca/hero-salao-jm-1440.webp" alt="Salão JM, com espelhos redondos iluminados, cadeiras pretas e pergolado de madeira" data-name="Salão JM" data-meta="Interiores, 2024" loading="lazy" decoding="async">
+            </picture>
+            <picture>
+                <source media="(max-width: 700px) and (orientation: portrait)" srcset="Public/assets/marca/hero-estande-alux-retrato.webp">
+                <img class="hero-slide" src="Public/assets/marca/hero-estande-alux-1440.webp" alt="Estande Alux na FESQUA, com estrutura metálica preta e balcão de madeira ripada" data-name="Estande Alux" data-meta="Estande, 2024" loading="lazy" decoding="async">
+            </picture>
         </div>
 
         <div id="hero-content">
@@ -505,13 +513,13 @@
         <button class="gallery-nav gallery-next" type="button" aria-label="Próximo projeto">&rsaquo;</button>
     </dialog>
 
-    <script src="Public/scripts/mouse.js?v=20261125h"></script>
-    <script src="Public/scripts/header.js?v=20261125h"></script>
-    <script src="Public/scripts/hero.js?v=20261125h"></script>
-    <script src="Public/scripts/forms_validation.js?v=20261125h"></script>
-    <script src="Public/scripts/team.js?v=20261125h"></script>
-    <script src="Public/scripts/gallery.js?v=20261125h"></script>
-    <script src="Public/scripts/process.js?v=20261125h"></script>
-    <script src="Public/scripts/reveal.js?v=20261125h"></script>
+    <script src="Public/scripts/mouse.js?v=20261125j"></script>
+    <script src="Public/scripts/header.js?v=20261125j"></script>
+    <script src="Public/scripts/hero.js?v=20261125j"></script>
+    <script src="Public/scripts/forms_validation.js?v=20261125j"></script>
+    <script src="Public/scripts/team.js?v=20261125j"></script>
+    <script src="Public/scripts/gallery.js?v=20261125j"></script>
+    <script src="Public/scripts/process.js?v=20261125j"></script>
+    <script src="Public/scripts/reveal.js?v=20261125j"></script>
 </body>
 </html>

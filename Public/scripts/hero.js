@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const caption = document.querySelector('.hero-caption');
     if (slides.length < 2) return;
 
-    const container = slides[0].parentElement;
+    // o clique vale para a área toda das fotos (cada foto fica num <picture>, então não usar o pai direto)
+    const container = slides[0].closest('.hero-slides') || slides[0].parentElement;
     const nameEl = caption && caption.querySelector('.hero-caption-name');
     const metaEl = caption && caption.querySelector('.hero-caption-meta');
     const autoplay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;

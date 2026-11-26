@@ -10,55 +10,55 @@ Para ver localmente, sirva a pasta com qualquer servidor estático (por exemplo 
 
 ## O que falta
 
-### Conteúdo da cliente
+Lista revisada em 25/11/2026. Só entra aqui o que foi confirmado para o projeto. O que ficou de fora está no fim, em "Fora do projeto por enquanto".
 
-- [ ] **Fotos dos projetos**: Projetos mostra 3 trabalhos tirados do Instagram do escritório (Residência CP, Salão JM e Estande Alux), em 7 imagens. São renders de 900 a 1440 px; pedir os arquivos originais em alta e fotos de obra pronta. Faltam projetos de design gráfico.
-- [ ] **Hero**: as fotos 2 e 3 são o Salão JM e o Estande Alux, do Instagram. Trocar por imagens originais em alta quando chegarem.
-- [ ] **Textos dos projetos**: nomes, locais e textos vêm das legendas do Instagram. Confirmar com o escritório.
-- [ ] **Bios da equipe**: resumidas das apresentações no Instagram. Confirmar com cada pessoa.
-- [ ] **Faixa de marcas**: mostra "Outro Ipsum." repetido. Trocar pelos logos dos clientes (o exemplo `nome.svg` está comentado em `index.html`) ou por uma frase real. Se nada chegar, dá para esconder a faixa.
-- [ ] **Links e contatos**: o Instagram já é o real (`@iga.arquitetura`); o LinkedIn aponta para a página inicial da rede. O e-mail `iga@e-mail.com` e o telefone `+55 01 29876-5432` são provisórios. Eles aparecem em `index.html` (aba de contato e rodapé), em `privacidade.html` e na mensagem de erro de `forms_validation.js`.
-- [ ] **Textos do escritório e dos serviços**: revisar com a cliente. Os textos atuais foram escritos para o site e não vieram dela. Croquis, se ela quiser usar.
-- [ ] **Etapas do processo** ("Do traço à entrega"): confirmar as quatro etapas de cada frente (Arquitetura, Interiores, Design gráfico) e o texto de cada uma.
-- [ ] **Carimbo dos projetos**: área ("180 m²") de cada projeto. Campo vazio não aparece.
-- [ ] **Endereço completo**: Campinas já está no título, na descrição, no hero e nos dados estruturados. Com rua e CEP, trocar `Organization` por `LocalBusiness`. Confirmar também se o escritório atende outras cidades (os projetos estão em Sorocaba e São Paulo).
-- [ ] **WhatsApp**: número para um botão ao lado do envio do formulário.
-- [ ] **Perfil da Empresa no Google e Google Search Console**: criados pelo escritório; funcionam no endereço atual, sem domínio próprio. A meta tag de verificação do Search Console vai no `<head>`.
+### 1. Conteúdo do escritório
 
-### Antes de publicar de vez
+- [ ] **Imagens em alta**: Projetos e o hero usam renders tirados do Instagram (Residência CP, Salão JM e Estande Alux), com 900 a 1440 px. Pedir os arquivos originais e, se houver, fotos de obra pronta.
+- [ ] **Projetos de design gráfico**: não há nenhum no site. O texto de Projetos diz "casas, interiores e estandes" até chegar algum.
+- [ ] **Confirmar textos**: nomes, locais e textos dos projetos (vieram das legendas do Instagram), bios da equipe (resumidas do Instagram), textos do escritório e dos serviços (escritos para o site) e as quatro etapas de cada frente em "Do traço à entrega".
+- [ ] **Área dos projetos**: m² de cada um, para o carimbo. Campo vazio não aparece.
+- [ ] **Contatos reais**: e-mail e telefone são provisórios (`iga@e-mail.com`, `+55 01 29876-5432`) e o LinkedIn aponta para a página inicial da rede. Aparecem em `index.html` (aba de contato e rodapé), em `privacidade.html` e na mensagem de erro de `forms_validation.js`.
+- [ ] **Endereço e região**: rua e CEP, para trocar `Organization` por `LocalBusiness` nos dados estruturados. Confirmar se o escritório quer dizer que atende a região (os projetos estão em Sorocaba e São Paulo).
+- [ ] **Faixa de marcas**: mostra "Outro Ipsum." repetido. Trocar pelos logos dos clientes (exemplo `nome.svg` comentado em `index.html`) ou por uma frase real.
+- [ ] **Perfil da Empresa no Google e Google Search Console**: criados pelo escritório. Funcionam no endereço atual. A meta tag do Search Console vai no `<head>`.
+- [ ] **Licença e marca**: `TRADEMARKS.md` ainda tem `[Client Name]`. Confirmar a licença MIT do código (`LICENSE`); a marca e as fotos não entram nela.
 
-- [ ] **Domínio**: se houver domínio próprio, trocar `mateusdogan.github.io/IGA/` no `<head>` de `index.html` (`canonical`, `og:url`, `og:image`), em `robots.txt` e em `sitemap.xml`, e configurar o domínio no GitHub Pages.
-- [x] **Script do formulário**: confirmar que a versão atual de `docs/apps-script.gs` está publicada como "Nova versão" no Apps Script, com as propriedades `EMAIL_ESCRITORIO` e `FORMULARIO_ABERTO` e as colunas G `protocolo` e H `tipo` na planilha (passo a passo em `docs/google-sheets-setup.md`).
-- [x] **Teste do formulário**: enviar uma mensagem de teste pelo site publicado e conferir a confirmação com protocolo, a linha na planilha e o e-mail de aviso.
-- [ ] **Política de privacidade**: revisão jurídica de `privacidade.html`. Ela precisa dizer que as fontes vêm do Google Fonts, que recebe o IP de quem visita, e que as mensagens do formulário ficam numa planilha do Google. A alternativa é hospedar as fontes no próprio site.
-- [ ] **Licença e marca**: `TRADEMARKS.md` ainda tem `[Client Name]`. Confirmar com a cliente se o código fica sob a licença MIT (`LICENSE`, em nome de Mateus Dogan); a marca e as fotos não entram nessa licença.
-- [ ] **Teste em aparelhos reais**: um iPhone e um Android (menu, galeria, formulário, rodapé), além de Safari no Mac. Os testes até aqui foram no navegador, simulando as larguras.
+### 2. Formulário: proteção (fase 2)
 
-### Formulário: proteção (fase 2)
+- [ ] **E-mail mais rigoroso**: recusar domínios descartáveis, conferir se o domínio recebe e-mail (consulta MX) e sugerir correção de erros comuns ("gmial.com"). Dá para fazer agora.
+- [ ] **Alerta ao escritório**: e-mail de aviso se os envios recusados crescerem de repente (sinal de ataque). Dá para fazer agora.
+- [ ] **Cloudflare Turnstile**: verificação anti-robô conferida pelo script. Depende de uma conta gratuita na Cloudflare, criada pelo escritório, e do domínio próprio. A chave pública vai no site; a secreta, nas Propriedades do script.
 
-- [ ] **Cloudflare Turnstile**: o site envia um token de "humano" e o script confere com a Cloudflare, exigindo o domínio da IGA. Depende de uma conta gratuita na Cloudflare, criada pelo escritório, para gerar as chaves. A chave pública vai no site; a secreta fica nas Propriedades do script.
-- [ ] **Aba "Suspeitos"**: o que falha em regras que podem pegar gente real (e-mail descartável, domínio sem e-mail) vai para outra aba em vez de ser recusado.
-- [ ] **E-mail mais rigoroso**: recusar domínios descartáveis, conferir se o domínio recebe e-mail (consulta MX) e sugerir correção de erros comuns ("gmial.com").
-- [ ] **Alerta ao escritório** se a aba de suspeitos crescer de repente.
+### 3. Formulário: acompanhamento (fases 3 e 4)
 
-### Formulário: e-mail para quem enviou (fase 3)
+- [ ] **Status e resumo semanal**: colunas Novo, Em contato, Proposta e Fechado na planilha, e um e-mail semanal ao escritório com o resumo. Dá para fazer agora.
+- [ ] **E-mail de confirmação** para quem enviou, com protocolo, resumo, prazo de resposta e link de verificação (a linha passa de "não confirmado" para "confirmado"; ninguém é bloqueado). Sai depois da proteção da fase 2. Cota: cerca de 100 e-mails por dia em conta Gmail, 1.500 no Google Workspace.
 
-- [ ] **Confirmação por e-mail** com o protocolo, o resumo e o prazo de resposta, no visual da marca. Só sai depois da fase 2, para o formulário não virar disparador de e-mails.
-- [ ] **Link de verificação**: a linha entra como "não confirmado" e vira "confirmado" com o clique. Ninguém é bloqueado por não clicar.
-- [ ] **Cota de e-mails**: conta Gmail envia cerca de 100 e-mails automáticos por dia; Google Workspace, cerca de 1.500.
+### 4. Antes de publicar de vez
 
-### Formulário: extras (fase 4, a escolher)
+- [ ] **Domínio**: se houver, trocar `mateusdogan.github.io/IGA/` no `<head>` de `index.html` (`canonical`, `og:url`, `og:image`), em `robots.txt` e em `sitemap.xml`, nos caminhos `/IGA/` de `404.html` (ícone, fontes e link de volta), e configurar no GitHub Pages.
+- [ ] **Política de privacidade**: revisão jurídica de `privacidade.html`. Ela já cita a planilha do Google, as fontes locais e o rascunho salvo no navegador.
+- [ ] **Teste em aparelhos reais**: iPhone, Android e Safari no Mac (menu, galeria, formulário, rodapé).
 
-- [ ] Tipo de projeto em etiquetas, faixa de orçamento, prazo e área aproximada.
-- [ ] Anexos (planta, fotos, referências) numa pasta do Drive.
-- [ ] Colunas de status na planilha (Novo, Em contato, Proposta, Fechado) e resumo semanal por e-mail.
-- [ ] Rascunho salvo no navegador, botão de WhatsApp e agendamento de conversa (cal.com, só como link).
-- [ ] Consentimento LGPD com data e hora, e limpeza automática de contatos antigos.
+### Feito
 
-### Opcional
+- [x] Script do formulário publicado com as colunas G `protocolo` e H `tipo`, e teste de envio pelo site publicado.
+- [x] Campinas no título, na descrição, no hero e nos dados estruturados; Instagram real.
+- [x] Projetos, hero e bios com o conteúdo do Instagram; imagens provisórias apagadas.
+- [x] Fontes servidas pelo próprio site (sem Google Fonts).
+- [x] Hero com versão retrato mais leve no celular.
+- [x] Rascunho do formulário salvo no navegador.
 
-- [ ] Estatísticas de visitas (Plausible, GoatCounter ou Google Analytics). Se entrar, atualizar a política de privacidade, que hoje diz que o site não usa rastreamento.
-- [ ] Versões menores das fotos do hero para celular (hoje há só a de 1440 px).
+### Fora do projeto por enquanto
+
+Decidido em 25/11/2026. Podem voltar se o escritório pedir.
+
+- Aba "Suspeitos" na planilha.
+- Campos de orçamento, prazo e área no formulário; anexos no Drive.
+- Botão de WhatsApp, agendamento de conversa e registro de consentimento LGPD com limpeza automática.
+- Estatísticas de visitas.
+- Esconder a faixa de marcas (ela fica até chegarem os logos).
 
 ---
 
@@ -69,7 +69,7 @@ O site não tem etapa de build nem gerenciador de pacotes (sem npm, sem bundler)
 **Em produção**
 
 - **GitHub Pages:** hospeda a pasta inteira a partir da branch `main`. O endereço atual é `https://mateusdogan.github.io/IGA/`.
-- **Google Fonts:** carrega Jost, Libre Caslon Display e Julius Sans One em `index.html`. `404.html` e `privacidade.html` carregam só Jost e Libre Caslon Display.
+- **Fontes:** Jost, Libre Caslon Display e Julius Sans One ficam em `Public/assets/fontes/` (WOFF2, só alfabetos latinos, licença SIL OFL nos arquivos `OFL-*.txt`). As regras estão em `Public/css/base/fonts.css`; `404.html` e `privacidade.html` declaram só Jost e Libre Caslon Display no próprio `<style>`. Nenhuma página consulta o Google Fonts.
 - **Google Apps Script:** recebe o formulário, valida, grava na planilha, avisa o escritório por e-mail e devolve o protocolo. A URL está em `GOOGLE_SCRIPT_URL`, em `Public/scripts/forms_validation.js`.
 - **Google Sheets:** planilha privada onde ficam as mensagens. Compartilhada só com o escritório. Colunas em `docs/google-sheets-setup.md`.
 - **Gmail (via `MailApp`):** envia o aviso de cada contato. A cota depende da conta: cerca de 100 e-mails automáticos por dia numa conta Gmail comum, cerca de 1.500 no Google Workspace.
@@ -103,15 +103,15 @@ O site não tem etapa de build nem gerenciador de pacotes (sem npm, sem bundler)
   - `team.js`: bios da equipe no toque
   - `gallery.js`: galeria
   - `reveal.js`: revelação ao rolar
-- `Public/assets/`: imagens em WebP, separadas por `marca`, `projetos` e `equipe`.
+- `Public/assets/`: imagens em WebP, separadas por `marca`, `projetos` e `equipe`, e as fontes em `fontes`.
 - `docs/`: passo a passo do formulário no Google Sheets, o script do Apps Script e a revisão de marca, conversão e SEO (`revisao-design-conversao-seo.md`).
 
 ### Como trocar o conteúdo
 
 - **Foto de projeto**: em Projetos, troque o `src` e o `alt` do `<img>`, o carimbo da `<figcaption>` (nome, tipo, local, área, ano) e o texto em `.portfolio-details`. O número da prancha é automático e a galeria lê tudo isso sozinha.
-- **Foto do hero**: cada `<img class="hero-slide">` tem `data-name` e `data-meta`, que viram a legenda. Com uma foto só, a troca automática desliga.
+- **Foto do hero**: cada `<img class="hero-slide">` tem `data-name` e `data-meta`, que viram a legenda. Cada foto fica num `<picture>` com uma versão retrato (`*-retrato.webp`, recorte central de 4:5) para celular em pé; ao trocar a foto, gere o recorte também. Com uma foto só, a troca automática desliga.
 - **Links de contato**: edite só a aba `#social-links` em `index.html`. No celular e no tablet o site copia esses links para o rodapé e para o formulário. Os links das colunas do rodapé do desktop ficam em `#footer-row` e precisam ser trocados também.
-- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261125h`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
+- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261125j`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
 
 ### Cursor
 
@@ -148,7 +148,7 @@ O verde ocupa o painel de Contato e o rodapé, então o terracota precisa aparec
 
 **Linguagem de prancha.** Botão Contato com "A1", carimbo nas legendas dos projetos, etiquetas retas, o seletor em células (`.segmented`, usado na frente do projeto do formulário e nas abas do processo) e o traço do processo vêm do desenho de arquitetura. Elementos novos devem seguir essa linguagem: cantos retos, linhas de 1px e nenhuma sombra.
 
-Fontes, todas do Google Fonts:
+Fontes (servidas pelo próprio site):
 
 - **Jost:** texto.
 - **Libre Caslon Display:** títulos.
