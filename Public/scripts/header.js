@@ -1,5 +1,6 @@
 // Navbar: transparente sobre o hero. Depois dele, some ao rolar para baixo
-// e volta (com fundo) ao rolar para cima.
+// e volta (com fundo) ao rolar para cima. Não some com o mouse em cima dela
+// nem durante a rolagem depois de um clique num item dela.
 document.addEventListener('DOMContentLoaded', () => {
     const year = document.getElementById('copy-year');
     if (year) year.textContent = new Date().getFullYear();
@@ -46,6 +47,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const TOLERANCE = 8; // ignora micro-rolagens
     let lastY = window.scrollY;
 
+    // A barra não some (1) com o mouse em cima dela e (2) depois de um clique nela,
+    // enquanto a página rola até a seção escolhida. Depois, volta a regra normal.
+    let hovering = false;
+    let holding = false;
+    let holdTimer = 0;
+    const releaseHold = () => { holding = false; lastY = window.scrollY; };
+    // solta 250 ms depois do último movimento de rolagem (vale também sem o evento scrollend)
+    const holdUntilStill = (ms = 250) => { clearTimeout(holdTimer); holdTimer = setTimeout(releaseHold, ms); };
+    header.addEventListener('mouseenter', () => { hovering = true; root.classList.remove('nav-hidden'); });
+    header.addEventListener('mouseleave', () => { hovering = false; lastY = window.scrollY; });
+    header.addEventListener('click', (e) => {
+        if (!e.target.closest('a, button')) return;
+        holding = true;
+        root.classList.remove('nav-hidden');
+        holdUntilStill(800); // se a página nem rolar (já está na seção), solta logo
+    });
+
     function update() {
         const y = window.scrollY;
         const pastHero = hero.getBoundingClientRect().bottom <= header.offsetHeight;
@@ -56,11 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
         header.style.setProperty('--progress', max > 0 ? Math.min(1, y / max).toFixed(4) : 0);
 
         if (root.classList.contains('menu-open')) return; // menu aberto: a barra fica visível
-        if (!pastHero) {
+        if (holding) holdUntilStill();
+        if (hovering || holding || !pastHero) {
+            // no hero, com o mouse em cima ou depois de um clique: sempre visível
             root.classList.remove('nav-hidden');
             lastY = y;
         } else if (Math.abs(y - lastY) > TOLERANCE) {
-            root.classList.toggle('nav-hidden', y > lastY);
+            root.classList.toggle('nav-hidden', y > lastY); // desceu: some; subiu: volta
             lastY = y;
         }
     }

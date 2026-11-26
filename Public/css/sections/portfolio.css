@@ -249,10 +249,8 @@
 .gallery::backdrop { background: rgba(31, 27, 24, 0.25); }
 .gallery[open] {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: clamp(0.5rem, 2vw, 2rem);
-  padding: clamp(3.5rem, 6vw, 4.5rem) clamp(0.75rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(4rem, 7vw, 5rem) clamp(1rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
   box-sizing: border-box;
 }
 .gallery-body {
@@ -299,28 +297,81 @@
 .gallery-meta dl { grid-column: 1; }
 .gallery-text { padding-top: 0.25rem; }
 .gallery-text p { margin: 0 0 0.9rem; max-width: 46ch; font: 400 clamp(1rem, 1.3vw, 1.15rem)/1.65 'Jost', sans-serif; }
-.gallery-nav, .gallery-close {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  padding: 0;
-  border: 1px solid rgba(43, 38, 34, 0.45);
-  border-radius: 50%;
-  background: transparent;
-  color: inherit;
-  font: 300 1.9rem/1 'Jost', sans-serif;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+/* Controles: células retas com fio de 1px, como o carimbo e o botão Contato.
+   Em repouso, creme; no hover, grafite (como o botão de envio). Ícones de traço fino em SVG. */
+.gallery {
+  --ctl-line: rgba(43, 38, 34, 0.3);
 }
-.gallery-nav:hover, .gallery-close:hover { background: var(--new-terracota); border-color: var(--new-terracota); color: var(--white); }
-.gallery-nav:focus-visible, .gallery-close:focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 3px; }
-.gallery-close { position: absolute; top: clamp(0.75rem, 2vw, 1.5rem); right: clamp(0.75rem, 2vw, 1.5rem); }
+.gallery-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin-top: 1.75rem; /* mesma largura do carimbo: as bordas se alinham como numa prancha */
+  border: 1px solid var(--ctl-line);
+  background: var(--ctl-line);
+}
+.gallery-nav, .gallery-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  height: 3rem;
+  padding: 0 1.1rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--linho);
+  color: var(--grafite);
+  font: 400 0.8rem/1 'Julius Sans One', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.gallery-nav svg, .gallery-close svg {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: square;
+  vector-effect: non-scaling-stroke;
+  transition: transform 0.25s ease;
+}
+.gallery-nav svg { width: 1.5rem; height: 1rem; }
+.gallery-close svg { width: 0.8rem; height: 0.8rem; }
+.gallery-nav:hover, .gallery-close:hover,
+.gallery-nav:focus-visible, .gallery-close:focus-visible { background: var(--grafite); color: var(--linho); }
+.gallery-nav:focus-visible, .gallery-close:focus-visible { outline: 2px solid var(--new-terracota); outline-offset: 2px; }
+/* a seta anda um pouco na direção do clique */
+.gallery-prev:hover svg { transform: translateX(-3px); }
+.gallery-next:hover svg { transform: translateX(3px); }
+.gallery-close:hover svg { transform: rotate(90deg); }
+.gallery-close {
+  position: absolute;
+  top: clamp(0.75rem, 2vw, 1.5rem);
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  height: 2.75rem;
+  border: 1px solid var(--ctl-line);
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-nav svg, .gallery-close svg { transition: none; }
+}
 @media (max-width: 800px) {
-  .gallery[open] { align-items: start; overflow-y: auto; }
+  /* espaço para a barra fixa de controles embaixo */
+  .gallery[open] { align-items: start; overflow-y: auto; padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
   .gallery-body { grid-template-columns: 1fr; gap: 1.25rem; }
   .gallery-img { max-height: 45svh; object-position: center; }
-  .gallery-nav { width: 2.5rem; height: 2.5rem; font-size: 1.6rem; align-self: center; }
+  /* fechar fica visível mesmo rolando o texto */
+  .gallery-close { position: fixed; z-index: 1; }
+  /* anterior / próximo sempre ao alcance do polegar */
+  .gallery-controls {
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    z-index: 1;
+    max-width: none;
+    margin: 0;
+  }
 }
 
 /* Celular: o título "Projetos" basta; a frase de apoio sai */

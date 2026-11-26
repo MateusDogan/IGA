@@ -62,23 +62,23 @@
     <!-- O "?v=" nos CSS e scripts força o navegador a baixar a versão nova depois de
          cada publicação. Ao publicar uma mudança, troque a data em todos (busca e troca). -->
     <!-- Base: paleta, tipografia e reset -->
-    <link rel="stylesheet" href="Public/css/base/colors.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/base/fonts.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/base/style.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/base/colors.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/base/fonts.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/base/style.css?v=20261126c">
     <!-- Componentes usados em várias partes -->
-    <link rel="stylesheet" href="Public/css/components/navbar.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/components/mouse.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/components/marquee.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/components/scrollbar.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/components/actions.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/components/navbar.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/components/mouse.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/components/marquee.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/components/scrollbar.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/components/actions.css?v=20261126c">
     <!-- Seções, na ordem da página -->
-    <link rel="stylesheet" href="Public/css/sections/hero.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/sections/services.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/sections/portfolio.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/sections/process.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/sections/office.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/sections/contact.css?v=20261125j">
-    <link rel="stylesheet" href="Public/css/sections/footer.css?v=20261125j">
+    <link rel="stylesheet" href="Public/css/sections/hero.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/sections/services.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/sections/portfolio.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/sections/process.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/sections/office.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/sections/contact.css?v=20261126c">
+    <link rel="stylesheet" href="Public/css/sections/footer.css?v=20261126c">
 
 </head>
 <body>
@@ -500,26 +500,38 @@
     </section>
 
     <dialog id="gallery" class="gallery" aria-label="Galeria de projetos">
-        <button class="gallery-close" type="button" aria-label="Fechar galeria">&times;</button>
-        <button class="gallery-nav gallery-prev" type="button" aria-label="Projeto anterior">&lsaquo;</button>
+        <!-- Controles na linguagem de prancha: células retas, fio de 1px, ícones de traço fino -->
+        <button class="gallery-close" type="button" aria-label="Fechar galeria">
+            <span>Fechar</span>
+            <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3 3l10 10M13 3L3 13"/></svg>
+        </button>
         <div class="gallery-body">
             <figure class="gallery-figure"><img class="gallery-img" alt=""></figure>
             <div class="gallery-info">
                 <h3 class="gallery-title"></h3>
                 <div class="gallery-meta stamp"></div>
                 <div class="gallery-text"></div>
+                <div class="gallery-controls">
+                    <button class="gallery-nav gallery-prev" type="button" aria-label="Projeto anterior">
+                        <svg aria-hidden="true" viewBox="0 0 24 16"><path d="M23 8H2M8 2L2 8l6 6"/></svg>
+                        <span>Anterior</span>
+                    </button>
+                    <button class="gallery-nav gallery-next" type="button" aria-label="Próximo projeto">
+                        <span>Próximo</span>
+                        <svg aria-hidden="true" viewBox="0 0 24 16"><path d="M1 8h21M16 2l6 6-6 6"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
-        <button class="gallery-nav gallery-next" type="button" aria-label="Próximo projeto">&rsaquo;</button>
     </dialog>
 
-    <script src="Public/scripts/mouse.js?v=20261125j"></script>
-    <script src="Public/scripts/header.js?v=20261125j"></script>
-    <script src="Public/scripts/hero.js?v=20261125j"></script>
-    <script src="Public/scripts/forms_validation.js?v=20261125j"></script>
-    <script src="Public/scripts/team.js?v=20261125j"></script>
-    <script src="Public/scripts/gallery.js?v=20261125j"></script>
-    <script src="Public/scripts/process.js?v=20261125j"></script>
-    <script src="Public/scripts/reveal.js?v=20261125j"></script>
+    <script src="Public/scripts/mouse.js?v=20261126c"></script>
+    <script src="Public/scripts/header.js?v=20261126c"></script>
+    <script src="Public/scripts/hero.js?v=20261126c"></script>
+    <script src="Public/scripts/forms_validation.js?v=20261126c"></script>
+    <script src="Public/scripts/team.js?v=20261126c"></script>
+    <script src="Public/scripts/gallery.js?v=20261126c"></script>
+    <script src="Public/scripts/process.js?v=20261126c"></script>
+    <script src="Public/scripts/reveal.js?v=20261126c"></script>
 </body>
 </html>

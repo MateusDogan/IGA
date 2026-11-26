@@ -10,55 +10,84 @@ Para ver localmente, sirva a pasta com qualquer servidor estático (por exemplo 
 
 ## O que falta
 
-Lista revisada em 25/11/2026. Só entra aqui o que foi confirmado para o projeto. O que ficou de fora está no fim, em "Fora do projeto por enquanto".
+Lista revisada em 26/11/2026. Próximo passo: publicar a versão nova do script (bloco 1), enquanto o escritório reúne o conteúdo (bloco 2). Só entra aqui o que foi confirmado para o projeto. O que ficou de fora está no fim, em "Fora do projeto por enquanto".
 
-### 1. Conteúdo do escritório
+### 1. Formulário: publicar a versão nova do script (você)
+
+- [ ] **Publicar o script**: colar `docs/apps-script.gs`, rodar `configurar` uma vez, aceitar as permissões novas e publicar uma "Nova versão" (passo a passo em `docs/google-sheets-setup.md`, "Atualização de 25/11/2026"). Não é preciso criar propriedade nova: `EMAIL_ESCRITORIO`, `FORMULARIO_ABERTO` e `ULTIMO_PROTOCOLO` bastam; `SEGREDO` o script cria sozinho. Sem a versão nova, a conferência do domínio do e-mail, o alerta, o status, o resumo e a confirmação não funcionam.
+- [ ] **Só depois, reordenar as colunas**: o script publicado hoje grava por posição. Com a versão nova, ele acha cada coluna pelo título, e a ordem fica livre (sugestão no guia).
+- [ ] **Testar**: um envio real (aviso, confirmação, link "Confirmar meu e-mail", coluna `confirmado`) e `resumoSemanal` executado pelo editor.
+- [ ] **Conferir a planilha**: se houver uma linha de teste "Maria Teste" (maria@empresa.com.br) de 26/11/2026, apagar. Ela pode ter vindo de um teste local.
+
+### 2. Conteúdo do escritório
 
 - [ ] **Imagens em alta**: Projetos e o hero usam renders tirados do Instagram (Residência CP, Salão JM e Estande Alux), com 900 a 1440 px. Pedir os arquivos originais e, se houver, fotos de obra pronta.
 - [ ] **Projetos de design gráfico**: não há nenhum no site. O texto de Projetos diz "casas, interiores e estandes" até chegar algum.
 - [ ] **Confirmar textos**: nomes, locais e textos dos projetos (vieram das legendas do Instagram), bios da equipe (resumidas do Instagram), textos do escritório e dos serviços (escritos para o site) e as quatro etapas de cada frente em "Do traço à entrega".
 - [ ] **Área dos projetos**: m² de cada um, para o carimbo. Campo vazio não aparece.
-- [ ] **Contatos reais**: e-mail e telefone são provisórios (`iga@e-mail.com`, `+55 01 29876-5432`) e o LinkedIn aponta para a página inicial da rede. Aparecem em `index.html` (aba de contato e rodapé), em `privacidade.html` e na mensagem de erro de `forms_validation.js`.
+- [ ] **Contatos reais**: e-mail e telefone são provisórios (`iga@e-mail.com`, `+55 01 29876-5432`) e o LinkedIn aponta para a página inicial da rede. Aparecem em `index.html` (aba de contato e rodapé), em `privacidade.html` e em `CONTACT_EMAIL`, no topo de `forms_validation.js`.
 - [ ] **Endereço e região**: rua e CEP, para trocar `Organization` por `LocalBusiness` nos dados estruturados. Confirmar se o escritório quer dizer que atende a região (os projetos estão em Sorocaba e São Paulo).
 - [ ] **Faixa de marcas**: mostra "Outro Ipsum." repetido. Trocar pelos logos dos clientes (exemplo `nome.svg` comentado em `index.html`) ou por uma frase real.
 - [ ] **Perfil da Empresa no Google e Google Search Console**: criados pelo escritório. Funcionam no endereço atual. A meta tag do Search Console vai no `<head>`.
 - [ ] **Licença e marca**: `TRADEMARKS.md` ainda tem `[Client Name]`. Confirmar a licença MIT do código (`LICENSE`); a marca e as fotos não entram nela.
 
-### 2. Formulário: proteção (fase 2)
+### 3. Depende de conta ou domínio
 
-- [ ] **E-mail mais rigoroso**: recusar domínios descartáveis, conferir se o domínio recebe e-mail (consulta MX) e sugerir correção de erros comuns ("gmial.com"). Dá para fazer agora.
-- [ ] **Alerta ao escritório**: e-mail de aviso se os envios recusados crescerem de repente (sinal de ataque). Dá para fazer agora.
-- [ ] **Cloudflare Turnstile**: verificação anti-robô conferida pelo script. Depende de uma conta gratuita na Cloudflare, criada pelo escritório, e do domínio próprio. A chave pública vai no site; a secreta, nas Propriedades do script.
-
-### 3. Formulário: acompanhamento (fases 3 e 4)
-
-- [ ] **Status e resumo semanal**: colunas Novo, Em contato, Proposta e Fechado na planilha, e um e-mail semanal ao escritório com o resumo. Dá para fazer agora.
-- [ ] **E-mail de confirmação** para quem enviou, com protocolo, resumo, prazo de resposta e link de verificação (a linha passa de "não confirmado" para "confirmado"; ninguém é bloqueado). Sai depois da proteção da fase 2. Cota: cerca de 100 e-mails por dia em conta Gmail, 1.500 no Google Workspace.
+- [ ] **Cloudflare Turnstile**: verificação anti-robô conferida pelo script. Depende de uma conta gratuita na Cloudflare, criada pelo escritório, e do domínio próprio. A chave pública vai no site; a secreta, nas Propriedades do script. Até lá, a confirmação por e-mail se apoia no limite de envios (3 por hora por e-mail, 30 no total) e nas armadilhas contra robôs. Se houver abuso, `CONFIRMACAO` = `false` desliga a confirmação na hora.
+- [ ] **Domínio**: se houver, trocar `mateusdogan.github.io/IGA/` no `<head>` de `index.html` (`canonical`, `og:url`, `og:image`), em `robots.txt` e em `sitemap.xml`, nos caminhos `/IGA/` de `404.html` (ícone, fontes e link de volta), em `SITE_URL` de `docs/apps-script.gs`, e configurar no GitHub Pages.
 
 ### 4. Antes de publicar de vez
 
-- [ ] **Domínio**: se houver, trocar `mateusdogan.github.io/IGA/` no `<head>` de `index.html` (`canonical`, `og:url`, `og:image`), em `robots.txt` e em `sitemap.xml`, nos caminhos `/IGA/` de `404.html` (ícone, fontes e link de volta), e configurar no GitHub Pages.
-- [ ] **Política de privacidade**: revisão jurídica de `privacidade.html`. Ela já cita a planilha do Google, as fontes locais e o rascunho salvo no navegador.
-- [ ] **Teste em aparelhos reais**: iPhone, Android e Safari no Mac (menu, galeria, formulário, rodapé).
+- [ ] **Política de privacidade**: revisão jurídica de `privacidade.html`. Ela já cita a planilha do Google, as fontes locais, o rascunho salvo no navegador, o e-mail de confirmação e a consulta do domínio.
+- [ ] **Teste em aparelhos reais**: iPhone, Android e Safari no Mac (menu, galeria e seus controles, formulário, rodapé, rascunho, hero em pé, navbar ao rolar).
 
 ### Feito
 
-- [x] Script do formulário publicado com as colunas G `protocolo` e H `tipo`, e teste de envio pelo site publicado.
-- [x] Campinas no título, na descrição, no hero e nos dados estruturados; Instagram real.
-- [x] Projetos, hero e bios com o conteúdo do Instagram; imagens provisórias apagadas.
+**Marca e conversão**
+- [x] Revisão de marca, conversão e SEO em `docs/revisao-design-conversao-seo.md`.
+- [x] Seção "Do traço à entrega" em painel terracota, com abas e etapas próprias para Arquitetura, Interiores e Design gráfico.
+- [x] Carimbo de prancha nas legendas dos projetos e na galeria, com número da prancha.
+- [x] Chamadas "Começar um projeto de…" nos serviços e em Projetos, com o ponto terracota.
+- [x] Painel de contato com o formulário em 2/3 da largura no desktop largo.
+- [x] Galeria com controles na linguagem de prancha: "Fechar" e "Anterior / Próximo" em células retas com fio de 1px e setas de traço fino; no celular, barra fixa embaixo.
+
+**Navegação e interação**
+- [x] Navbar não some com o mouse em cima nem durante a rolagem depois de um clique no menu.
+- [x] Clique no hero troca a foto.
+- [x] Cursor: barra de digitação nos campos, círculo com seta nas fotos, moldura terracota só no hover e formato atualizado ao rolar a página.
+
+**Conteúdo e SEO local**
+- [x] Campinas no título, na descrição, no hero e nos dados estruturados; Instagram real (`@iga.arquitetura`).
+- [x] Projetos (Residência CP, Salão JM, Estande Alux), fotos 2 e 3 do hero e bios da equipe com o conteúdo do Instagram; imagens provisórias apagadas.
+
+**Formulário** (as linhas com "script" valem depois de publicar a versão nova, bloco 1)
+- [x] Frente do projeto obrigatória, gravada na coluna `tipo`.
+- [x] Rascunho salvo só no navegador (localStorage, sem cookies), apagado após o envio ou em 30 dias.
+- [x] Script: conferência do domínio do e-mail. Recusa só domínio que não existe ou não recebe e-mail (consulta MX). Domínio próprio de empresa passa.
+- [x] Script: alerta ao escritório quando os envios recusados passam de 15 numa hora.
+- [x] Script: coluna `status` (Novo, Em contato, Proposta, Fechado) e resumo semanal por e-mail às segundas.
+- [x] Script: colunas achadas pelo título da linha 1, com ordem livre na planilha.
+- [x] Script: e-mail de confirmação para quem enviou, com protocolo, resumo e link assinado que preenche a coluna `confirmado`.
+
+**Desempenho e privacidade**
 - [x] Fontes servidas pelo próprio site (sem Google Fonts).
 - [x] Hero com versão retrato mais leve no celular.
-- [x] Rascunho do formulário salvo no navegador.
+- [x] Política de privacidade atualizada com fontes locais, rascunho, frente do projeto, e-mail de confirmação e consulta do domínio.
+- [x] Página 404 conferida no site publicado (fontes e ícone carregam).
+
+**Código**
+- [x] Revisão dos scripts (26/11/2026): formulário e Apps Script reorganizados por partes, sem duplicação de regras e sem lista de domínios. Comportamento conferido no navegador e com uma planilha simulada.
 
 ### Fora do projeto por enquanto
 
-Decidido em 25/11/2026. Podem voltar se o escritório pedir.
+Podem voltar se o escritório pedir.
 
-- Aba "Suspeitos" na planilha.
-- Campos de orçamento, prazo e área no formulário; anexos no Drive.
-- Botão de WhatsApp, agendamento de conversa e registro de consentimento LGPD com limpeza automática.
-- Estatísticas de visitas.
-- Esconder a faixa de marcas (ela fica até chegarem os logos).
+- Aba "Suspeitos" na planilha (25/11/2026).
+- Lista de e-mails temporários e sugestão de correção de digitação no e-mail: recusariam ou corrigiriam endereços reais de domínios fora das listas (26/11/2026).
+- Campos de orçamento, prazo e área no formulário; anexos no Drive (25/11/2026).
+- Botão de WhatsApp, agendamento de conversa e registro de consentimento LGPD com limpeza automática (25/11/2026).
+- Estatísticas de visitas (25/11/2026).
+- Esconder a faixa de marcas: ela fica até chegarem os logos (25/11/2026).
 
 ---
 
@@ -111,7 +140,7 @@ O site não tem etapa de build nem gerenciador de pacotes (sem npm, sem bundler)
 - **Foto de projeto**: em Projetos, troque o `src` e o `alt` do `<img>`, o carimbo da `<figcaption>` (nome, tipo, local, área, ano) e o texto em `.portfolio-details`. O número da prancha é automático e a galeria lê tudo isso sozinha.
 - **Foto do hero**: cada `<img class="hero-slide">` tem `data-name` e `data-meta`, que viram a legenda. Cada foto fica num `<picture>` com uma versão retrato (`*-retrato.webp`, recorte central de 4:5) para celular em pé; ao trocar a foto, gere o recorte também. Com uma foto só, a troca automática desliga.
 - **Links de contato**: edite só a aba `#social-links` em `index.html`. No celular e no tablet o site copia esses links para o rodapé e para o formulário. Os links das colunas do rodapé do desktop ficam em `#footer-row` e precisam ser trocados também.
-- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261125j`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
+- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261126c`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
 
 ### Cursor
 
