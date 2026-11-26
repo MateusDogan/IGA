@@ -71,6 +71,16 @@
   animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .hero-line:nth-child(2) { animation-delay: 0.12s; }
+/* Linha de apoio: o que o escritório faz e onde (pesa nas buscas locais) */
+.hero-place {
+  margin: 0.9rem 0 0;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--linho);
+  opacity: 0.88;
+  animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.24s both;
+}
 .hero-caption.is-changing { opacity: 0; }
 
 /* ---------- Rodapé do hero: indicador de rolagem + nome do projeto ---------- */
@@ -186,6 +196,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-line, .scroll-wheel { animation: none; }
+  .hero-line, .hero-place, .scroll-wheel { animation: none; }
   .hero-slide, .hero-caption { transition: none; }
 }

@@ -12,24 +12,24 @@ Para ver localmente, sirva a pasta com qualquer servidor estático (por exemplo 
 
 ### Conteúdo da cliente
 
-- [ ] **Fotos dos projetos**: as 7 fotos `generico-*.webp` em Projetos são ilustrações provisórias. Trocar e apagar os genéricos.
-- [ ] **Fotos 2 e 3 do hero**: `hero-generico-2-1440.webp` (interiores) e `hero-design-1440.webp` (design gráfico) são provisórias. Trocar `src`, `alt`, `data-name` e `data-meta` em `index.html`.
-- [ ] **Nomes e textos dos projetos**: os 7 itens se chamam "Nome do projeto". Os resumos e textos da galeria (`.portfolio-details`) são de exemplo.
-- [ ] **Bios da equipe**: estão em inglês, com texto de exemplo ("It is a long established fact…"). Faltam o texto real e a função de cada pessoa.
+- [ ] **Fotos dos projetos**: Projetos mostra 3 trabalhos tirados do Instagram do escritório (Residência CP, Salão JM e Estande Alux), em 7 imagens. São renders de 900 a 1440 px; pedir os arquivos originais em alta e fotos de obra pronta. Faltam projetos de design gráfico.
+- [ ] **Hero**: as fotos 2 e 3 são o Salão JM e o Estande Alux, do Instagram. Trocar por imagens originais em alta quando chegarem.
+- [ ] **Textos dos projetos**: nomes, locais e textos vêm das legendas do Instagram. Confirmar com o escritório.
+- [ ] **Bios da equipe**: resumidas das apresentações no Instagram. Confirmar com cada pessoa.
 - [ ] **Faixa de marcas**: mostra "Outro Ipsum." repetido. Trocar pelos logos dos clientes (o exemplo `nome.svg` está comentado em `index.html`) ou por uma frase real. Se nada chegar, dá para esconder a faixa.
-- [ ] **Links e contatos**: Instagram e LinkedIn apontam para a página inicial de cada rede. O e-mail `iga@e-mail.com` e o telefone `+55 01 29876-5432` são provisórios. Eles aparecem em `index.html` (aba de contato e rodapé), em `privacidade.html` e na mensagem de erro de `forms_validation.js`.
+- [ ] **Links e contatos**: o Instagram já é o real (`@iga.arquitetura`); o LinkedIn aponta para a página inicial da rede. O e-mail `iga@e-mail.com` e o telefone `+55 01 29876-5432` são provisórios. Eles aparecem em `index.html` (aba de contato e rodapé), em `privacidade.html` e na mensagem de erro de `forms_validation.js`.
 - [ ] **Textos do escritório e dos serviços**: revisar com a cliente. Os textos atuais foram escritos para o site e não vieram dela. Croquis, se ela quiser usar.
 - [ ] **Etapas do processo** ("Do traço à entrega"): confirmar as quatro etapas de cada frente (Arquitetura, Interiores, Design gráfico) e o texto de cada uma.
-- [ ] **Carimbo dos projetos**: local ("Cidade, UF") e área ("180 m²") de cada projeto. Campo vazio não aparece.
-- [ ] **Cidade e região atendida**: entra numa linha de apoio no hero, nos dados estruturados (`LocalBusiness` com endereço) e no alt das fotos. É o que mais pesa para aparecer em buscas locais.
+- [ ] **Carimbo dos projetos**: área ("180 m²") de cada projeto. Campo vazio não aparece.
+- [ ] **Endereço completo**: Campinas já está no título, na descrição, no hero e nos dados estruturados. Com rua e CEP, trocar `Organization` por `LocalBusiness`. Confirmar também se o escritório atende outras cidades (os projetos estão em Sorocaba e São Paulo).
 - [ ] **WhatsApp**: número para um botão ao lado do envio do formulário.
 - [ ] **Perfil da Empresa no Google e Google Search Console**: criados pelo escritório; funcionam no endereço atual, sem domínio próprio. A meta tag de verificação do Search Console vai no `<head>`.
 
 ### Antes de publicar de vez
 
 - [ ] **Domínio**: se houver domínio próprio, trocar `mateusdogan.github.io/IGA/` no `<head>` de `index.html` (`canonical`, `og:url`, `og:image`), em `robots.txt` e em `sitemap.xml`, e configurar o domínio no GitHub Pages.
-- [ ] **Script do formulário**: confirmar que a versão atual de `docs/apps-script.gs` está publicada como "Nova versão" no Apps Script, com as propriedades `EMAIL_ESCRITORIO` e `FORMULARIO_ABERTO` e as colunas G `protocolo` e H `tipo` na planilha (passo a passo em `docs/google-sheets-setup.md`).
-- [ ] **Teste do formulário**: enviar uma mensagem de teste pelo site publicado e conferir a confirmação com protocolo, a linha na planilha e o e-mail de aviso.
+- [x] **Script do formulário**: confirmar que a versão atual de `docs/apps-script.gs` está publicada como "Nova versão" no Apps Script, com as propriedades `EMAIL_ESCRITORIO` e `FORMULARIO_ABERTO` e as colunas G `protocolo` e H `tipo` na planilha (passo a passo em `docs/google-sheets-setup.md`).
+- [x] **Teste do formulário**: enviar uma mensagem de teste pelo site publicado e conferir a confirmação com protocolo, a linha na planilha e o e-mail de aviso.
 - [ ] **Política de privacidade**: revisão jurídica de `privacidade.html`. Ela precisa dizer que as fontes vêm do Google Fonts, que recebe o IP de quem visita, e que as mensagens do formulário ficam numa planilha do Google. A alternativa é hospedar as fontes no próprio site.
 - [ ] **Licença e marca**: `TRADEMARKS.md` ainda tem `[Client Name]`. Confirmar com a cliente se o código fica sob a licença MIT (`LICENSE`, em nome de Mateus Dogan); a marca e as fotos não entram nessa licença.
 - [ ] **Teste em aparelhos reais**: um iPhone e um Android (menu, galeria, formulário, rodapé), além de Safari no Mac. Os testes até aqui foram no navegador, simulando as larguras.
@@ -111,7 +111,7 @@ O site não tem etapa de build nem gerenciador de pacotes (sem npm, sem bundler)
 - **Foto de projeto**: em Projetos, troque o `src` e o `alt` do `<img>`, o carimbo da `<figcaption>` (nome, tipo, local, área, ano) e o texto em `.portfolio-details`. O número da prancha é automático e a galeria lê tudo isso sozinha.
 - **Foto do hero**: cada `<img class="hero-slide">` tem `data-name` e `data-meta`, que viram a legenda. Com uma foto só, a troca automática desliga.
 - **Links de contato**: edite só a aba `#social-links` em `index.html`. No celular e no tablet o site copia esses links para o rodapé e para o formulário. Os links das colunas do rodapé do desktop ficam em `#footer-row` e precisam ser trocados também.
-- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261125f`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
+- **Versão dos arquivos**: todo CSS e JS em `index.html` termina em `?v=AAAAMMDD` (hoje `?v=20261125h`). Troque esse valor em todos os links a cada publicação. Sem isso, o navegador de quem já visitou o site continua usando os arquivos antigos.
 
 ### Cursor
 
